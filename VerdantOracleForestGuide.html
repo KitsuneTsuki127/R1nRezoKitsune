@@ -432,12 +432,12 @@
           <tr>
             <td><strong>リジェネレーション</strong></td>
             <td>主力回復スキル</td>
-            <td>最大5スタックまで重ね掛け可能。スタックが多いほど回復量が上がり、自身の被ダメージも10%軽減される。常に維持することが最重要。</td>
+            <td>アビリティ：活気により最大5スタックまで重ね掛け可能。スタックが多いほど回復量が上がり、自身の被ダメージも10%軽減される。常に維持することが最重要。</td>
           </tr>
           <tr>
             <td><strong>バイタルブルーム</strong></td>
             <td>回復 ＋ 再生の蕾を生成</td>
-            <td>後述する「再生の蕾」を生み出す核となるスキル。ブルームチャージの後に使うと無詠唱になる。</td>
+            <td>後述する「再生の蕾」を生み出すスキル。ブルームチャージの後に使うと無詠唱になる。</td>
           </tr>
           <tr>
             <td><strong>ブルームチャージ</strong></td>
@@ -447,12 +447,17 @@
           <tr>
             <td><strong>グローヴウィッシュ</strong></td>
             <td>回復 ＋ 全属性耐性を10秒付与</td>
-            <td>回復しながらパーティの属性耐性を高める。クールダウンのたびに使い続けるだけでOK。</td>
+            <td>回復しながらパーティの属性耐性を高める。瞬間回復が必要にならない相手の時はクールダウンのたびに使い続けるだけでOK。</td>
           </tr>
           <tr>
             <td><strong>ファストグロウス</strong></td>
             <td>MATK増加 ＋ スキルCD短縮</td>
             <td>効果中はスキルの回転が速くなり全体的な回復量が上がる。常時使い続けることを意識する。</td>
+          </tr>
+          <tr>
+            <td><strong>ネイチャーワード</strong></td>
+            <td>バリア付与</td>
+            <td>自身と周囲の10名にバリアを付与。本領は威咲で発揮するものだが、森で使ってもそれなりの効果はある。</td>
           </tr>
         </tbody>
       </table>
@@ -464,27 +469,28 @@
         <thead><tr><th>スキル名</th><th>役割</th><th>使いどころ</th></tr></thead>
         <tbody>
           <tr>
+            <td><strong>深葉・ブルームサークル</strong></td>
+            <td>範囲回復 ＋ ダメージ軽減</td>
+            <td>大ダメージが来る場面で使うウルトスキル。意外と発生が遅いので早めの使用を心がけよう。</td>
+          </tr>
+          <tr>
             <td><strong>ライフサージ</strong></td>
-            <td>エネルギー回生速度を強化</td>
-            <td>エネルギーが足りないと感じたときや、スキルサイクルを高速化したい上級者向けの代替スキル。</td>
+            <td>エネルギー回復速度を強化</td>
+            <td>エネルギーが足りないと感じたときや、スキルサイクルを高速化したい上級者向けの代替スキル。軽減がなくなるので基本使わない。</td>
           </tr>
           <tr>
             <td><strong>フェラルシード</strong></td>
-            <td>フォレストエネルギーを補充</td>
+            <td>エネルギーを補充</td>
             <td>エネルギー管理に不安がある場合にファストグロウスの代わりとして採用。</td>
           </tr>
-          <tr>
-            <td><strong>ディヴァイン・サークル・ブルーム</strong></td>
-            <td>範囲回復 ＋ ダメージ軽減</td>
-            <td>大ダメージが来る場面での緊急スキル。普段はなくても問題ない。</td>
-          </tr>
+
         </tbody>
       </table>
     </div>
 
     <div class="notice">
       <span class="notice-icon">💡</span>
-      <span>まずは<strong>リジェネレーション・バイタルブルーム・ブルームチャージ・グローヴウィッシュ・ファストグロウス</strong>の5つを軸にしてください。これだけで十分に機能します。</span>
+      <span>まずは<strong>リジェネレーション・バイタルブルーム・ブルームチャージ・グローヴウィッシュ</strong>の4つを軸にしてください。これだけで十分に機能します。</span>
     </div>
   </section>
 
@@ -504,43 +510,57 @@
       <div class="ability-node">
         <div class="an-dot core"></div>
         <div>
-          <div class="an-name">森癒型スペック</div>
-          <div class="an-effect">バイタルブルームを使うたびに再生の蕾を1個生成するようになる。このスペックの根幹。最優先で取得。</div>
-        </div>
-      </div>
-      <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
           <div class="an-name">花の輪舞</div>
-          <div class="an-effect">「花の苗」を解禁するアビリティ。これを取らないと花の苗が発生しない。必須。</div>
+          <div class="an-effect">「花の苗」を解禁するアビリティ。これを取らないと花の苗が発生しない。</div>
         </div>
       </div>
       <div class="ability-node">
         <div class="an-dot core"></div>
         <div>
-          <div class="an-name">ヴァイタリティ ＋ リジェネレーション・エッセンス ＋ ヴェルダント・リジェネレーションメント ＋ トランセンデンス</div>
-          <div class="an-effect">リジェネレーションを強化するセット。スタック上限増加・バイタルブルームで自動付与・ダメージ10%軽減・エネルギー回復など、このスペックの中核をなす。</div>
+          <div class="an-name">活気 ＋ 無心 ＋ 緑の滋養 ＋ 滋養の華　</div>
+          <div class="an-effect">リジェネレーションを強化するセット。スタック上限増加・バイタルブルームで確率付与・自身のみダメージ10%軽減・エネルギー回復など、森癒型の中核をなす。</div>
         </div>
       </div>
       <div class="ability-node">
         <div class="an-dot core"></div>
         <div>
-          <div class="an-name">バイタルブルーム、フルブルーム ＋ エンドレス・ブロッサム</div>
-          <div class="an-effect">バイタルブルームの回復強化とCDシナジー。ブルームチャージ後にエネルギーなしでバイタルブルームが使えるチャンスが生まれる。</div>
+          <div class="an-name">生命開花　＋　満開 ＋ 尽きせぬ花</div>
+          <div class="an-effect">生命開花によりブルームチャージ後に無詠唱でバイタルブルームを打つ。満開により20%の固定確率で5秒間バイタルブルームをエネルギー消費なしにする。</div>
         </div>
       </div>
-      <div class="ability-node">
+            <div class="ability-node">
+        <div class="an-dot core"></div>
+        <div>
+          <div class="an-name">花言葉</div>
+          <div class="an-effect">マスタリースキルの回復+20%。代わりにバイタルブルームは回復-50%。森癒型の回復量の8割はリジェネレーションによるものなのでバイタルブルームを落としてでもコレを取るべき。</div>
+        </div>
+      </div>
+            <div class="ability-node">
         <div class="an-dot core"></div>
         <div>
           <div class="an-name">エネルギー増量</div>
-          <div class="an-effect">フォレストエネルギーの上限アップ。ブルームチャージ使用時に失ったエネルギーの30%を回復。エネルギー切れのリスクを大幅に下げる。</div>
+          <div class="an-effect">エネルギーの上限アップ。ブルームチャージ使用時に失ったエネルギーの30%を回復。エネルギー切れのリスクを大幅に下げる。</div>
         </div>
       </div>
       <div class="ability-node">
         <div class="an-dot core"></div>
         <div>
-          <div class="an-name">インスパイア ＋ ストレングス ＋ アルティメット・インスピレーション</div>
-          <div class="an-effect">インスピレーションバフを強化し、チーム全体のステータスを大幅に底上げ。サポートとしての貢献度が高い。</div>
+          <div class="an-name">尽きせぬ花</div>
+          <div class="an-effect">バイタルブルーム発動時、50％の固定確率でブルームチャージのCTを減らす。</div>
+          </div>
+      </div>
+      <div class="ability-node">
+        <div class="an-dot core"></div>
+        <div>
+          <div class="an-name">緑の根幹</div>
+          <div class="an-effect">2秒間立ち止まる事で草の領域を生成。領域内にいるだけで自身のファストを+10％する。</div>
+          </div>
+      </div>
+      <div class="ability-node">
+        <div class="an-dot core"></div>
+        <div>
+          <div class="an-name">鼓舞強化 ＋ 鼓舞の極意</div>
+          <div class="an-effect">鼓舞バフを強化し、チーム全体のステータスを大幅に底上げ。必須アビリティ。</div>
         </div>
       </div>
     </div>
@@ -552,7 +572,6 @@
           <strong style="color:var(--text-main);display:block;margin-bottom:6px;">安定を重視する場合</strong>
           <strong>復活の翼</strong> — 味方がHP30%超のダメージを受けた際に緊急回復<br>
           <strong>救護</strong> — HP50%以下の味方へのマスタリースキル回復量アップ<br>
-          <strong>フローラル・ウィスパー</strong> — マスタリースキルの回復+20%。ただしバイタルブルームは-50%になるため、スキル回転が安定してから取ること
         </div>
       </div>
       <div class="card gold">
@@ -560,7 +579,7 @@
           <strong style="color:var(--text-main);display:block;margin-bottom:6px;">回転速度を重視する場合</strong>
           <strong>エネルギー発生</strong> — ファストグロウス中のエネルギー回復強化<br>
           <strong>緑の二重奏</strong> — バイタルブルームが20%の確率で追加ヒール<br>
-          <strong>ヴェルダント・ルート ＋ バッド・トゥ・ブロッサム</strong> — ファスト増加・再生の蕾の生成速度向上
+          <strong>旺盛な苗</strong> — 草の領域にいる際、花の苗の生成速度向上
         </div>
       </div>
     </div>
@@ -575,7 +594,7 @@
       <h2>エネルギー管理</h2>
     </div>
 
-    <p>フォレストエネルギーは一部のスキルを使うために消費するリソースです。毎秒4ずつ自動回復するため基本的には枯渇しにくいですが、<span class="hl">エネルギーの量が花の苗の生成タイミングに直結する</span>ため、上を目指すほど意識が必要になります。</p>
+    <p>エネルギーは一部のスキルを使うために消費するリソースです。毎秒4ずつ自動回復するため基本的には枯渇しにくいですが、<span class="hl">エネルギーの量が花の苗の生成タイミングに直結する</span>ため、上を目指すほど意識が必要になります。</p>
 
     <h3>エネルギーの回復手段</h3>
     <div class="table-wrap">
@@ -584,21 +603,21 @@
         <tbody>
           <tr><td>自然回復</td><td>毎秒4（常時）</td></tr>
           <tr><td>エネルギー増量（アビリティ）</td><td>ブルームチャージ使用時に失ったエネルギーの30%を回復</td></tr>
-          <tr><td>トランセンデンス（アビリティ）</td><td>発動時に追加回復</td></tr>
+          <tr><td>無心（アビリティ）</td><td>発動時にエネルギー100回復</td></tr>
           <tr><td>ライフサージ（スキル）</td><td>使用中に回復速度が増加</td></tr>
-          <tr><td>フェラルシード（スキル）</td><td>使用時に追加回復（代替スキル枠）</td></tr>
+          <tr><td>フェラルシード（スキル）</td><td>攻撃ヒット時に追加回復（代替スキル枠）</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="notice">
       <span class="notice-icon">💡</span>
-      <span><strong>初心者向け：</strong>エネルギーを意識しすぎず、まずはスキルを回すことに集中してください。エネルギーが足りなくなったら<strong>ブルームチャージを使う</strong>と自然に補充されます。</span>
+      <span><strong>初心者向け：</strong>エネルギーを意識しすぎず、まずはリジェネレーションを維持することに集中してください。エネルギーが足りなくなったら<strong>ブルームチャージ・フェラルシードを使う</strong>と維持が簡単になります。</span>
     </div>
 
     <div class="notice info">
       <span class="notice-icon">🎯</span>
-      <span><strong>上級者向け：</strong>エネルギーバーが空になったタイミングで花の苗が発生します。重要なギミック直前に苗が出るよう、意図的にエネルギーを消費してタイミングをコントロールすることが上位プレイへの鍵です。</span>
+      <span><strong>上級者向け：</strong>エネルギーゲージの緑色が空になったタイミングで花の苗が発生します。紅き蓮をファストグロウスやグローヴウィッシュに、黄金の祈りをグローヴウィッシュに使用することで対応力が上がります。</span>
     </div>
   </section>
 
@@ -650,7 +669,7 @@
 
     <div class="notice">
       <span class="notice-icon">💡</span>
-      <span>花の苗は<strong>使い忘れると無駄になります</strong>。次に何の苗が来るか常に把握しておき、対応したスキルと一緒に使う習慣をつけましょう。</span>
+      <span>花の苗は蒼月の祈り以外は<strong>マスタリースキルであれば何にでも消費します。</strong>次に何の苗が来るか常に把握しておき、合わせる事で効率の良いスキルを使う習慣をつけましょう。</span>
     </div>
 
     <div class="stalk-grid">
@@ -663,7 +682,7 @@
           </div>
         </div>
         <div class="stalk-desc">次に使うマスタリースキルのクールダウンを<strong style="color:#f08070;">50%短縮</strong>。任意のマスタリースキルで発動。</div>
-        <div class="stalk-tip">▶ CDが長いリジェネレーションやグローヴウィッシュに合わせると最も効果的。スキル回転が苦しいときの立て直しにも有効です。</div>
+        <div class="stalk-tip">▶ CDが長いマスタリースキルに合わせると最も効果的。スキル回転が苦しいときの立て直しにも有効です。</div>
       </div>
 
       <div class="stalk-card s-gold">
@@ -674,8 +693,8 @@
             <div class="stalk-order">2番目 / 45秒ごと</div>
           </div>
         </div>
-        <div class="stalk-desc">次に使うマスタリースキルが<strong style="color:var(--gold-light);">回復強化+20%（10秒）</strong>を付与。</div>
-        <div class="stalk-tip">▶ ファストグロウス中 ＆ リジェネレーション5スタック時に合わせると回復量が爆発的に増加。ボスのギミック直前に温存するのが理想。</div>
+        <div class="stalk-desc">次にマスタリースキルを使用すると<strong style="color:var(--gold-light);">自身の回復量+20%（10秒間）</strong>を付与。</div>
+        <div class="stalk-tip">▶ 使用するマスタリースキルに決まりはなく、バフ効果も持続10秒の物なので適当に発動して良い。</div>
       </div>
 
       <div class="stalk-card s-moon">
@@ -687,31 +706,9 @@
           </div>
         </div>
         <div class="stalk-desc">次の<strong style="color:var(--moon-light);">バイタルブルームがシールド（攻撃力の200%相当）＋被ダメージ10%軽減（8秒）</strong>を付与。</div>
-        <div class="stalk-tip">▶ バイタルブルームを使ったときだけ発動するため温存が可能。大ダメージが来る直前にバイタルブルームを使い、シールドと軽減を重ねた最大防御状態を作りましょう。</div>
+        <div class="stalk-tip">▶ バイタルブルームを使ったときだけ発動するため温存が可能。これが管理出来れば耐えの幅が広がります。</div>
       </div>
     </div>
-
-    <h3>花の苗の最適な合わせ方</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>苗の種類</th><th>最適な使い方</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><span class="tag tag-red">紅き蓮</span></td>
-            <td>CDが最も長いスキル（リジェネレーション等）に合わせてクールダウンを短縮する</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-gold">黄金の祈り</span></td>
-            <td>ファストグロウス中 ＆ リジェネレーション5スタック時に使い、回復バフを重ねる</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-moon">蒼月の慰め</span></td>
-            <td>大ダメージギミック直前にバイタルブルームを使い、シールドと軽減を重ねる</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
 
   <div class="divider"><span>✦</span></div>
 
@@ -735,46 +732,46 @@
       <div class="rot-num">2</div>
       <div>
         <div class="rot-title">リジェネレーション — 常に5スタックを維持する</div>
-        <div class="rot-detail">このスペックの最重要タスクです。スタックが切れると回復量が落ち、ダメージ軽減効果も消えます。クールダウンのたびに更新し続けてください。スタックを切らすことは極力避けましょう。</div>
+        <div class="rot-detail">森癒型の最重要タスクです。スタックが切れると回復量が落ち、ダメージ軽減効果も消えます。スタックを切らすことは極力避けましょう。</div>
       </div>
     </div>
     <div class="rot-step">
       <div class="rot-num">3</div>
       <div>
-        <div class="rot-title">ファストグロウス — 常に効果を維持する</div>
-        <div class="rot-detail">使用中はスキルCDが短縮され、全体の回転数が上がります。効果が切れたらすぐ使い直す意識を持ちましょう。</div>
+        <div class="rot-title">ファストグロウス — 常に最速で使用する</div>
+        <div class="rot-detail">使用中はスキルCDが短縮され、全体の回転数が上がります。CTが上がったらすぐ使い直す意識を持ちましょう。</div>
       </div>
     </div>
     <div class="rot-step">
       <div class="rot-num">4</div>
       <div>
         <div class="rot-title">ブルームチャージ — クールダウンのたびに使う</div>
-        <div class="rot-detail">使うと複数の効果が連鎖します：①即時回復 ②敵のスキルを中断 ③失ったエネルギーの30%回復 ④次のバイタルブルームがインスタントキャスト化。CDのたびに必ず使いましょう。</div>
+        <div class="rot-detail">使うと複数の効果が連鎖します：①即時回復 ②敵のスキルを中断 ③失ったエネルギーの30%回復 ④次のバイタルブルームが無詠唱化。使い所が多い為、無駄撃ちしないよう気をつけましょう。</div>
       </div>
     </div>
     <div class="rot-step">
       <div class="rot-num">5</div>
       <div>
         <div class="rot-title">バイタルブルーム — ブルームチャージの後に使う</div>
-        <div class="rot-detail">ブルームチャージ直後はインスタントキャストになるため連続して使うと効率的。使うたびに再生の蕾が1個増えます。蒼月の慰めが出ているときはバイタルブルームを使ってシールドを発動させましょう。</div>
+        <div class="rot-detail">ブルームチャージ直後の無詠唱化を意識して使えると効率的。使うたびに再生の蕾が1個増えます。蒼月の慰めが出ているときはバイタルブルームを使ってシールドを発動させましょう。</div>
       </div>
     </div>
     <div class="rot-step">
       <div class="rot-num">6</div>
       <div>
         <div class="rot-title">グローヴウィッシュ — クールダウンのたびに使う</div>
-        <div class="rot-detail">回復しながら全属性耐性を10秒付与。CDが明けたら使い続けるだけでOKです。</div>
+        <div class="rot-detail">回復しながら全属性耐性を10秒付与。大技前に軽減付与はもちろん、瞬間回復が欲しくなるタイミングに合わせられるかどうかでパーティの生存率を大きく左右します。</div>
       </div>
     </div>
 
     <div class="notice">
       <span class="notice-icon">💡</span>
-      <span><strong>まず意識すること：</strong>「リジェネレーションのスタックを切らさない」と「ブルームチャージをCDのたびに使う」この2点だけ守れば、チームの生存率が大幅に上がります。慣れてきたら花の苗のタイミング管理も加えていきましょう。</span>
+      <span><strong>まず意識すること：</strong>「リジェネレーションのスタックを切らさない」と「軽減スキルを適切なタイミングで打つ」この2点だけ守れば、チームの生存率が大幅に上がります。慣れてきたら花の苗のタイミング管理も加えていきましょう。</span>
     </div>
 
     <div class="notice danger">
       <span class="notice-icon">⚠️</span>
-      <span><strong>CCについて：</strong>ブルームチャージによる敵スキルの中断（インタラプト）は、15秒以内に同一の敵へ4回まで有効で、回数を重ねるごとに効果時間が短くなります。チームの妨害スケジュールと合わせて使いましょう。</span>
+      <span><strong>CCについて：</strong>ブルームチャージによる敵スキルの中断、スタン付与は15秒以内に同一の敵へ3回まで有効で、回数を重ねるごとに効果時間が短くなります。無闇に発動せずタイミングを合わせられるようになりましょう。</span>
     </div>
   </section>
 
@@ -818,15 +815,15 @@
     <div class="two-col">
       <div class="card">
         <div style="font-weight:700;color:var(--green-glow);margin-bottom:6px;font-size:13px;">器用（最重要）</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;">全ての回復スキルの回復量を直接増加させます。このスペックの根幹ステータスです。</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;">全ての回復スキルの回復量を直接増加させます。森癒型の根幹ステータスです。</div>
       </div>
       <div class="card">
         <div style="font-weight:700;color:var(--green-light);margin-bottom:6px;font-size:13px;">ファスト（第2優先）</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;">エネルギー回生・キャスト速度・攻撃速度をまとめて改善。リジェネレーションのティック頻度も上がるため、実質的な毎秒回復量（HPS）が向上します。</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;">エネルギー回復速度・詠唱速度・攻撃速度をまとめて改善。リジェネレーションの回復頻度にも関係するため、毎秒回復量（HPS）が向上します。</div>
       </div>
       <div class="card">
         <div style="font-weight:700;color:var(--moon-light);margin-bottom:6px;font-size:13px;">万能（第3優先）</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;">回復量とダメージ軽減を同時に強化。他のステータスと乗算で機能するため、器用とファストが高いほど価値が上がります。</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.75;">回復量とダメージ軽減を同時に強化。器用とファストの変換効率が悪くなる数値まで上がったら万能を上げるようにしましょう。</div>
       </div>
       <div class="card">
         <div style="font-weight:700;color:var(--gold-light);margin-bottom:6px;font-size:13px;">会心（補助）</div>
@@ -834,14 +831,14 @@
       </div>
     </div>
 
-    <h3>セット装備のボーナス効果</h3>
+    <h3>セット装備のボーナス効果（セット装備については海外サイトより引用）</h3>
     <p style="font-size:13px;">S2では全6部位（Genesis Spellbinder系）のセット装備を集めることを目標にしましょう。取得優先はブレスレットR→L→手袋→兜→防具→靴の順です。</p>
     <div class="set-card">
       <div class="set-header">
         <span class="set-count">2セット</span>
         <span class="set-name">スプリング・ブリーズ</span>
       </div>
-      <div class="set-effect">直接回復スキルを使うたびに対象へスタックを付与：<strong>MaxHP+2.5%（10秒）、最大5スタック。</strong><br><span style="font-size:11px;color:var(--text-dim);">▶ 全スタックが揃うとパーティ全体のHPが12.5%増加します。切れないよう維持し続けましょう。</span></div>
+      <div class="set-effect">回復スキルを使うたびに対象へスタックを付与：<strong>MaxHP+2.5%（10秒）、最大5スタック。</strong><br><span style="font-size:11px;color:var(--text-dim);">▶ 全スタックが揃うとパーティ全体のHPが12.5%増加します。切れないよう維持し続けましょう。</span></div>
     </div>
     <div class="set-card">
       <div class="set-header">
@@ -867,36 +864,36 @@
       <li>
         <div class="pri-rank pr-1">1</div>
         <div>
-          <div class="pri-name">ライフ・ウェーブ（レジェンダリー）</div>
-          <div class="pri-reason">MaxHP・インテレクト増加。HPが増減するたびに最も高い上位属性を10%増加（5秒）。回復スキルを使うたびにほぼ確実に発動するため、非常に安定して効果が乗ります。</div>
+          <div class="pri-name">極・HP変動</div>
+          <div class="pri-reason">HPが増減するたびに最も高いステータスを10%増加（5秒）。回復スキルを使うたびにほぼ確実に発動するため、非常に安定して効果が乗ります。</div>
         </div>
       </li>
       <li>
         <div class="pri-rank pr-2">2</div>
         <div>
-          <div class="pri-name">ライフ・コンデンス（レジェンダリー）</div>
-          <div class="pri-reason">MATK・インテレクト増加。自分のHPが50%以上のときに回復強化が働きます。安定して自分のHPを保てる森癒型と相性が良い。</div>
+          <div class="pri-name">極・HP凝縮</div>
+          <div class="pri-reason">自分のHPが50%以上のときに回復量増加。安定して自分のHPを保てる森癒型と相性が良い。</div>
         </div>
       </li>
       <li>
         <div class="pri-rank pr-3">3</div>
         <div>
-          <div class="pri-name">ヒーリング・エンハンス</div>
-          <div class="pri-reason">MATK・インテレクト・マスタリースキルの回復量を直接強化。シンプルに回復量が上がる汎用モジュール。上記2つが揃うまでの代替としても優秀。</div>
+          <div class="pri-name">マスタリー回復強化</div>
+          <div class="pri-reason">マスタリースキルの回復量を直接強化。シンプルに回復量が上がる汎用モジュール。上記2つが揃うまでの代替としても優秀。</div>
         </div>
       </li>
       <li>
         <div class="pri-rank pr-4">4</div>
         <div>
-          <div class="pri-name">アタックSPD / キャストフォーカス</div>
-          <div class="pri-reason">攻撃速度またはキャスト速度とMATKを増加。スキルを素早く使えるようになりサイクルが安定します。</div>
+          <div class="pri-name">集中・詠唱</div>
+          <div class="pri-reason">詠唱速度を増加。バイタルブルームを素早く使えるようになりサイクルが安定します。</div>
         </div>
       </li>
       <li>
         <div class="pri-rank pr-5">5</div>
         <div>
-          <div class="pri-name">チームラック＆クリット（レジェンダリー）</div>
-          <div class="pri-reason">チーム全体のラッキーヒットダメージ倍率と会心ダメージを底上げ。他のモジュールが揃った後に検討する余裕枠。</div>
+          <div class="pri-name">極・幸運会心</div>
+          <div class="pri-reason">PT全体の幸運ダメージと会心ダメージを底上げ。他のモジュールが揃った後に検討する余裕枠。</div>
         </div>
       </li>
     </ul>
@@ -908,10 +905,10 @@
   <section>
     <div class="section-header">
       <span class="section-num">09</span>
-      <h2>エンブレムについて</h2>
+      <h2>潜在心相晶について</h2>
     </div>
 
-    <p>エンドレス・マインドを起点に進め、<span class="hl">右側（リサージ）から先に伸ばすことを推奨</span>します。最終的には両側を揃えていきます。</p>
+    <p>無限思考を起点に進め、<span class="hl">最初の分岐だけ左側を選択、後は右側を選択することを推奨</span>します。</p>
 
     <div class="emblem-grid">
       <div class="ep-branch">
@@ -919,22 +916,22 @@
         <div class="ep-node">
           <span class="ep-icon">🔷</span>
           <div>
-            <div class="ep-name">ポーラリティ ×3</div>
-            <div class="ep-effect">インテレクト+75 / インテレクト+2%。基礎値の強化。</div>
+            <div class="ep-name">極性 X3 G10</div>
+            <div class="ep-effect">知力+75 / 知力+2%。基礎値の強化。</div>
           </div>
         </div>
         <div class="ep-node">
           <span class="ep-icon">🛡️</span>
           <div>
-            <div class="ep-name">スタシス ×5</div>
+            <div class="ep-name">恒常性 ×5 G10</div>
             <div class="ep-effect">MaxHP+2000。受けるダメージが現在HPを超える場合、そのダメージを35%軽減（30秒に1回）。即死防止として強力。</div>
           </div>
         </div>
         <div class="ep-node">
           <span class="ep-icon">🌿</span>
           <div>
-            <div class="ep-name">ヴェルダント・オラクル ×7</div>
-            <div class="ep-effect">ファストグロウス使用後10秒間MATK+16.7%。ファストグロウスと組み合わせて安定した火力底上げ。</div>
+            <div class="ep-name">ヴァーダントオラクル ×8 G10</div>
+            <div class="ep-effect">ブルームチャージ使用時にスーパーアーマー5秒付与。ブルームチャージの夢界ダメージ+100%・CC時間+1.5秒。</div>
           </div>
         </div>
       </div>
@@ -944,22 +941,22 @@
         <div class="ep-node">
           <span class="ep-icon">🔷</span>
           <div>
-            <div class="ep-name">ポーラリティ ×7</div>
-            <div class="ep-effect">器用の獲得量+10%（ラック-6%）。器用依存のこのスペックには実質的なステータス強化になります。</div>
+            <div class="ep-name">極性 ×7 G10</div>
+            <div class="ep-effect">器用の獲得量+10%（幸運-6%）。器用依存のこのスペックには実質的なステータス強化になります。</div>
           </div>
         </div>
         <div class="ep-node">
           <span class="ep-icon">🌸</span>
           <div>
-            <div class="ep-name">VO スタシス ×1</div>
-            <div class="ep-effect">余剰回復をシールドに変換（MaxHPの18%まで、10秒）。味方のHPが満タンでも回復が無駄になりません。</div>
+            <div class="ep-name">ヴァーダントオラクル・恒常性 ×1 G10</div>
+            <div class="ep-effect">余剰回復をシールドに変換（MaxHPの18%まで、10秒）。自身のHPが満タンでも回復が無駄になりません。</div>
           </div>
         </div>
         <div class="ep-node">
           <span class="ep-icon">⚡</span>
           <div>
-            <div class="ep-name">VO ×8</div>
-            <div class="ep-effect">ブルームチャージ使用時にスーパーアーマー5秒付与。ブルームチャージのドリームダメージ+100%・CC時間+1.5秒。</div>
+            <div class="ep-name">ヴァーダントオラクル ×6 G10</div>
+            <div class="ep-effect">ネイチャーワードのバリア量＋50％、幸運または会心1％につき、さらに＋1％を追加する。ネイチャーワードは5％の全属性ダメージ軽減を付与する。持続8秒。</div>
           </div>
         </div>
       </div>
@@ -971,28 +968,28 @@
         <div class="ep-node">
           <span class="ep-icon">🔷</span>
           <div>
-            <div class="ep-name">ポーラリティ ×1</div>
+            <div class="ep-name">恒常性 ×1 G10</div>
             <div class="ep-effect">全属性+212。属性ダメージへの耐性を底上げ。</div>
           </div>
         </div>
         <div class="ep-node">
           <span class="ep-icon">🛡️</span>
           <div>
-            <div class="ep-name">スタシス ×4</div>
+            <div class="ep-name">恒常性 ×4 G10</div>
             <div class="ep-effect">MaxHP+6000 / MaxHP+1.5%。生存性の底上げ。</div>
           </div>
         </div>
         <div class="ep-node">
           <span class="ep-icon">⏱️</span>
           <div>
-            <div class="ep-name">クロノ・エリクサー / ブリンク・ブレス</div>
+            <div class="ep-name">時の秘薬 / 瞬間ブレス</div>
             <div class="ep-effect">最終ノード。コンテンツに応じて選択。</div>
           </div>
         </div>
         <div class="ep-node">
           <span class="ep-icon">🎵</span>
           <div>
-            <div class="ep-name">フィナーレ・チャント</div>
+            <div class="ep-name">終盤速唱</div>
             <div class="ep-effect">強力な効果を持つ最終取得ノード。</div>
           </div>
         </div>
@@ -1021,7 +1018,7 @@
       <div>
         <div class="im-name">ティナ</div>
         <div class="im-effect">周囲10人のスキルCDを20秒間加速。スキル回転が上がり、回復量の底上げにもなります。</div>
-        <div class="im-tip">▶ ファストグロウス中に使うとさらに効果的。CDが明けたら常に使い続けましょう。</div>
+        <div class="im-tip">▶ 味方のバーストに合わせて使用出来るとPT全体のDPSを劇的に上昇します。出来るならバーストに合わせましょう。</div>
       </div>
     </div>
 
@@ -1030,7 +1027,7 @@
       <div>
         <div class="im-name">バジリスク</div>
         <div class="im-effect">使用後10秒間、自分と周囲10人に全属性ボーナスを付与。攻撃・防御どちらにも有用な汎用バフ。</div>
-        <div class="im-tip">▶ ティナと組み合わせると非常に強力。T5同士の場合はバジリスクのCDが完了する前にスキルブロックが切れることがあるので注意。</div>
+        <div class="im-tip">▶ ティナと組み合わせると非常に強力。5凸同士の場合はバジリスクの再発動制限が解除される前にCTが上がることがあるので注意。</div>
       </div>
     </div>
 
@@ -1039,7 +1036,7 @@
       <div>
         <div class="im-name">ヒグマ</div>
         <div class="im-effect">チームのATK・MATKを一定時間増加（自分には2倍の効果）。シンプルなチームバフとして使いやすい。</div>
-        <div class="im-tip">▶ ティナ＋バジリスクが揃うまでの代替として有力。</div>
+        <div class="im-tip">▶ 森癒型自身にはパッシブもアクティブも効果がないが、バフ効果は強力。</div>
       </div>
     </div>
 
@@ -1048,7 +1045,7 @@
       <div>
         <div class="im-name">ヴェノミーンの巣</div>
         <div class="im-effect">敵に「弱体化」を8秒付与。弱体中の敵へのダメージが増加（自分は2倍）。DPS構成のパーティほど価値が高い。</div>
-        <div class="im-tip">▶ パーティにDPSが多い場合にティナの代わりとして検討できます。</div>
+        <div class="im-tip">▶ PTメンバーにバジリスク持ちが既にいる際の選択肢に。</div>
       </div>
     </div>
 
@@ -1057,7 +1054,7 @@
       <div>
         <div class="im-name">アルーナ</div>
         <div class="im-effect">近くの味方最大4人を蘇生。スキルブロック60秒。</div>
-        <div class="im-tip">▶ 普段は使う機会が少ないですが、高難易度コンテンツでは必須になる場面もあります。</div>
+        <div class="im-tip">▶ ロールスキルでの蘇生がある為、普段は使う機会が少ないですが、高難易度コンテンツでは必須になる場面もあります。</div>
       </div>
     </div>
 
@@ -1065,8 +1062,8 @@
       <div class="im-rank">B</div>
       <div>
         <div class="im-name">炎のエルダーゴブリン</div>
-        <div class="im-effect">使用時にインテレクトを一時増加。パッシブでも少量のインテレクトを常時付与。</div>
-        <div class="im-tip">▶ 無課金（F2P）序盤の選択肢として有効。他のイマジンが揃ったら入れ替えましょう。</div>
+        <div class="im-effect">使用時に知力を一時増加。パッシブでも少量のインテレクトを常時付与。</div>
+        <div class="im-tip">▶ 無課金序盤の選択肢として有効。他のイマジンが揃ったら入れ替えましょう。</div>
       </div>
     </div>
 
@@ -1075,8 +1072,8 @@
       <table>
         <thead><tr><th>状況</th><th>おすすめ</th><th>理由</th></tr></thead>
         <tbody>
-          <tr><td>一般コンテンツ</td><td>ティナ ＋ バジリスク / ヒグマ</td><td>汎用性が高くどんな場面でも活躍</td></tr>
-          <tr><td>無課金（F2P）</td><td>炎のエルダーゴブリン ＋ 任意</td><td>入手しやすく回復量の底上げに直結</td></tr>
+          <tr><td>基本構成</td><td>ティナ ＋ バジリスク / ヒグマ</td><td>汎用性が高くどんな場面でも活躍</td></tr>
+          <tr><td>無課金</td><td>炎のエルダーゴブリン ＋ 任意</td><td>入手しやすく回復量の底上げに直結</td></tr>
           <tr><td>DPS重視パーティ</td><td>ティナ ＋ ヴェノミーンの巣</td><td>DPSのダメージをさらに伸ばしつつ回転率も維持</td></tr>
           <tr><td>高難易度・蘇生が必要</td><td>ティナ ＋ アルーナ</td><td>チームの生存率を最優先に確保</td></tr>
         </tbody>
@@ -1095,33 +1092,23 @@
 
     <div class="faq-item">
       <div class="faq-q">リジェネレーションはスキルスロットに必ず入れる必要がありますか？</div>
-      <div class="faq-a">アビリティの「リジェネレーション・エッセンス」があればバイタルブルームから自動で付与することも可能ですが、スタックが切れるリスクが常に残ります。スロットにリジェネレーションを入れておけば任意のタイミングでスタックを更新できるため、ミスに対する許容範囲が大きく広がります。外すのは十分に動きが安定してからにしましょう。</div>
+      <div class="faq-a">アビリティの「滋養の華」があればバイタルブルームから50％の確率で付与することも可能ですが、スタックが切れた際のリスクが激増します。スロットにリジェネレーションを入れておけば任意のタイミングでスタックを更新できる上、付与が確実になる為、ミスに対する許容範囲が大きく広がります。外すのはギャンブルしたくなった時だけにしましょう。</div>
+    </div>
+
+
+    <div class="faq-item">
+      <div class="faq-q">花言葉は絶対に取るべきですか？</div>
+      <div class="faq-a">必須と言うわけではありません。無くても十分リジェネの回復量は高いです。バイタルブルームをメインヒールとして多用している場合は切る事も考えられます。</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q">エネルギーは常に満タンを維持すべきですか？</div>
-      <div class="faq-a">いいえ。エネルギーバーが空になると花の苗が発生します。重要なギミック直前に苗が出るよう、意図的にエネルギーを消費してタイミングを調整することが上級者の重要なスキルです。ただし最初はエネルギーを意識しすぎず、スキル回転を優先してください。</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">ライフサージビルドはいつ使うべきですか？</div>
-      <div class="faq-a">エネルギー管理が安定し、スキルをスムーズに回せるようになってから検討してください。エネルギー回生速度を上げてスキルサイクルを高速化するビルドですが、エネルギー管理が不安定な段階では逆効果になる場合があります。まずは通常ビルドで安定させることを優先しましょう。</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">フローラル・ウィスパーはいつ取るべきですか？</div>
-      <div class="faq-a">マスタリースキルを頻繁に回せる程度にファストが確保できてから取得してください。このアビリティはマスタリースキルの回復+20%と引き換えにバイタルブルームの回復が50%低下します。バイタルブルームをメインヒールとして多用している段階では逆効果になるため、マスタリースキルが実質的なメイン回復になってから採用しましょう。</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">4セット効果のフルブルームを最大限に活用するには？</div>
+      <div class="faq-q">4セット効果のフルブルームを最大限に活用するには？（セット装備については海外サイトより引用）</div>
       <div class="faq-a">スプリング・ブリーズを5スタックに積んだ後、大ダメージギミックが来る直前や、チームバフが最も効果的な場面で直接回復スキルを使ってフルブルームに変換します。シールドとインスピレーション強化は10秒しか持続しないため、タイミングを合わせることが重要です。スタックを常に満タンに保ちながら発動タイミングを意識することが上位プレイに直結します。</div>
     </div>
   </section>
 
   <footer>
-    ヴァーダントオラクル 森癒型 ガイド / Written by Chishiya / Reviewed by Perciculum, Snail<br>
-    Last Updated: March 21, 2026 · © 2026 Maxroll
+    ヴァーダントオラクル 森癒型 ガイド / Written by MoonFox <br>
   </footer>
 
 </div>
