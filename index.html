@@ -340,81 +340,127 @@
     transition: all 0.4s;
   }
 
-  /* class-specific themes */
-  .card-vo-lifebind {
+  /* role-based themes */
+  .role-tank {
+    --card-accent: #4a8fe7;
+    --card-glow: rgba(74,143,231,0.08);
+    --card-shadow: rgba(74,143,231,0.15);
+  }
+  .role-tank .card-icon { background: rgba(74,143,231,0.2); }
+  .role-tank .card-role { background: rgba(74,143,231,0.12); color: #4a8fe7; border: 1px solid rgba(74,143,231,0.25); }
+
+  .role-attacker {
+    --card-accent: #e85a5a;
+    --card-glow: rgba(232,90,90,0.08);
+    --card-shadow: rgba(232,90,90,0.15);
+  }
+  .role-attacker .card-icon { background: rgba(232,90,90,0.15); }
+  .role-attacker .card-role { background: rgba(232,90,90,0.12); color: #e85a5a; border: 1px solid rgba(232,90,90,0.25); }
+
+  .role-healer {
     --card-accent: #6fdf9a;
     --card-glow: rgba(111,223,154,0.08);
     --card-shadow: rgba(111,223,154,0.15);
   }
-  .card-vo-lifebind .card-icon { background: rgba(45,122,79,0.25); }
-  .card-vo-lifebind .card-role { background: rgba(111,223,154,0.12); color: #6fdf9a; border: 1px solid rgba(111,223,154,0.25); }
+  .role-healer .card-icon { background: rgba(45,122,79,0.25); }
+  .role-healer .card-role { background: rgba(111,223,154,0.12); color: #6fdf9a; border: 1px solid rgba(111,223,154,0.25); }
 
-  .card-coming-soon {
+  /* spec branches inside card */
+  .spec-branches {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .spec-branch {
+    position: relative;
+    display: block;
+    padding: 14px 14px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    z-index: 1;
+  }
+
+  .spec-branch:hover {
+    border-color: var(--card-accent, var(--accent-blue));
+    background: rgba(255,255,255,0.04);
+  }
+
+  .spec-branch:hover .spec-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .spec-branch.soon {
     cursor: default;
     opacity: 0.45;
   }
-  .card-coming-soon:hover {
-    transform: none;
-    border-color: var(--border);
-    box-shadow: none;
-  }
-  .card-coming-soon:hover::before { opacity: 0.6; }
-  .card-coming-soon:hover::after { opacity: 0; }
-  .card-coming-soon:hover .card-icon { transform: none; box-shadow: none; }
 
-  .coming-badge {
-    position: absolute;
-    top: 16px;
-    right: 16px;
+  .spec-branch.soon:hover {
+    border-color: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .spec-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+
+  .spec-sub {
     font-family: 'Cinzel', serif;
     font-size: 9px;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
+    color: var(--card-accent, var(--accent-blue));
+    text-transform: uppercase;
+  }
+
+  .spec-soon-label {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1.5px;
     color: var(--text-dim);
     border: 1px solid rgba(255,255,255,0.08);
-    padding: 3px 10px;
+    padding: 1px 6px;
     border-radius: 2px;
+    margin-top: 6px;
   }
 
-  /* placeholder class themes */
-  .card-ts-storm {
-    --card-accent: #e85a5a;
-    --card-glow: rgba(232,90,90,0.06);
-    --card-shadow: rgba(232,90,90,0.15);
+  .spec-arrow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: var(--card-accent, var(--accent-blue));
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.3s;
+    margin-top: 6px;
+    display: block;
   }
-  .card-ts-storm .card-icon { background: rgba(232,90,90,0.15); }
-  .card-ts-storm .card-role { background: rgba(232,90,90,0.1); color: #e85a5a; border: 1px solid rgba(232,90,90,0.2); }
 
-  .card-ag-fortress {
-    --card-accent: #4a8fe7;
-    --card-glow: rgba(74,143,231,0.06);
-    --card-shadow: rgba(74,143,231,0.15);
+  /* card-level hover still works */
+  .class-card {
+    cursor: default;
   }
-  .card-ag-fortress .card-icon { background: rgba(74,143,231,0.15); }
-  .card-ag-fortress .card-role { background: rgba(74,143,231,0.1); color: #4a8fe7; border: 1px solid rgba(74,143,231,0.2); }
 
-  .card-ss-shadow {
-    --card-accent: #8b6fcf;
-    --card-glow: rgba(139,111,207,0.06);
-    --card-shadow: rgba(139,111,207,0.15);
+  .class-card:hover {
+    transform: translateY(-4px);
   }
-  .card-ss-shadow .card-icon { background: rgba(139,111,207,0.15); }
-  .card-ss-shadow .card-role { background: rgba(139,111,207,0.1); color: #8b6fcf; border: 1px solid rgba(139,111,207,0.2); }
 
-  .card-vo-stardust {
-    --card-accent: #5dd6d0;
-    --card-glow: rgba(93,214,208,0.06);
-    --card-shadow: rgba(93,214,208,0.15);
+  .class-card:hover .card-arrow {
+    opacity: 0;
   }
-  .card-vo-stardust .card-icon { background: rgba(93,214,208,0.15); }
-  .card-vo-stardust .card-role { background: rgba(93,214,208,0.1); color: #5dd6d0; border: 1px solid rgba(93,214,208,0.2); }
-
-  .card-ts-blaze {
-    --card-accent: #e8a33a;
-    --card-glow: rgba(232,163,58,0.06);
-    --card-shadow: rgba(232,163,58,0.15);
-  }
-  .card-ts-blaze .card-icon { background: rgba(232,163,58,0.15); }
-  .card-ts-blaze .card-role { background: rgba(232,163,58,0.1); color: #e8a33a; border: 1px solid rgba(232,163,58,0.2); }
 
   /* footer */
   footer {
@@ -461,128 +507,202 @@
 
   <div class="class-grid">
 
-    <!-- Verdant Oracle - Lifebind (ACTIVE) -->
-    <a href="vo_lifebind_advanced_guide (1).html" class="class-card card-vo-lifebind">
+    <!-- 1. ヘビィガーディアン — タンク -->
+    <div class="class-card role-tank">
+      <div class="card-top">
+        <div class="card-icon">🛡️</div>
+        <div class="card-titles">
+          <div class="card-class-name">ヘビィガーディアン</div>
+          <div class="card-spec-name">Heavy Guardian</div>
+        </div>
+      </div>
+      <div class="card-role">TANK</div>
+      <div class="card-desc">重装の鎧で味方を守る正統派タンク。高い耐久力と防御スキルでチームの盾となり、敵の攻撃を一身に引き受ける。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">剛身型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">剛守型</div>
+          <div class="spec-sub">Spec 2</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. シールドファイター — タンク -->
+    <div class="class-card role-tank">
+      <div class="card-top">
+        <div class="card-icon">⚔️</div>
+        <div class="card-titles">
+          <div class="card-class-name">シールドファイター</div>
+          <div class="card-spec-name">Shield Fighter</div>
+        </div>
+      </div>
+      <div class="card-role">TANK</div>
+      <div class="card-desc">盾と剣を操る攻防一体のタンク。カウンターやパリィで敵の攻撃を捌きつつ、前線でダメージも出せる。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">光盾型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">光砕型</div>
+          <div class="spec-sub">Spec 2</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. ストームブレイド — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">🗡️</div>
+        <div class="card-titles">
+          <div class="card-class-name">ストームブレイド</div>
+          <div class="card-spec-name">Storm Blade</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">嵐のような剣撃で敵を切り裂く近接アタッカー。高速コンボと瞬間火力でパーティのダメージを牽引する。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">雷刃型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">月影型</div>
+          <div class="spec-sub">Spec 2</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ゲイルランサー — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">🔱</div>
+        <div class="card-titles">
+          <div class="card-class-name">ゲイルランサー</div>
+          <div class="card-spec-name">Gale Lancer</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">風を纏う槍で広範囲を薙ぎ払うアタッカー。リーチの長い攻撃と機動力を活かした立ち回りが持ち味。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">烈風型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">乱風型</div>
+          <div class="spec-sub">Spec 2</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. フロストメイジ — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">❄️</div>
+        <div class="card-titles">
+          <div class="card-class-name">フロストメイジ</div>
+          <div class="card-spec-name">Frost Mage</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">氷属性の魔法で遠距離から敵を凍てつかせるキャスター。詠唱管理と位置取りが火力を最大化する鍵。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">氷牙型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">霜天型</div>
+          <div class="spec-sub">Spec 2</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. ディバインアーチャー — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">🏹</div>
+        <div class="card-titles">
+          <div class="card-class-name">ディバインアーチャー</div>
+          <div class="card-spec-name">Divine Archer</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">神聖な弓矢で精密射撃を繰り出す遠距離アタッカー。狙撃と連射を使い分け、安全な距離から火力を叩き出す。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">狼弓型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">鷹弓型</div>
+          <div class="spec-sub">Spec 2</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. ヴァーダントオラクル — ヒーラー -->
+    <div class="class-card role-healer">
       <div class="card-top">
         <div class="card-icon">🌿</div>
         <div class="card-titles">
           <div class="card-class-name">ヴァーダントオラクル</div>
-          <div class="card-spec-name">Lifebind / 森癒型</div>
+          <div class="card-spec-name">Verdant Oracle</div>
         </div>
       </div>
-      <div class="card-role">HEALER / SUPPORT</div>
-      <div class="card-desc">チームを回復・防御バフで支え続けるサポート特化のスペック。再生の蕾と花の苗を駆使し、仲間を生かし続ける。</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="card-tag">回復</span>
-          <span class="card-tag">バフ</span>
-          <span class="card-tag">シールド</span>
+      <div class="card-role">HEALER</div>
+      <div class="card-desc">自然の力で味方を癒し守護するヒーラー。スペックによって攻撃寄りにも防御寄りにもなれる。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">威咲型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
         </div>
-        <span class="card-arrow">VIEW ></span>
-      </div>
-    </a>
-
-    <!-- Placeholder: Twin Striker - Stormbreaker -->
-    <div class="class-card card-ts-storm card-coming-soon">
-      <span class="coming-badge">COMING SOON</span>
-      <div class="card-top">
-        <div class="card-icon">🗡️</div>
-        <div class="card-titles">
-          <div class="card-class-name">ツインストライカー</div>
-          <div class="card-spec-name">Stormbreaker / 嵐断型</div>
-        </div>
-      </div>
-      <div class="card-role">MELEE DPS</div>
-      <div class="card-desc">高速の連撃で敵を切り刻む近接アタッカー。嵐のようなコンボチェーンで瞬間火力を叩き出す。</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="card-tag">近接</span>
-          <span class="card-tag">コンボ</span>
-          <span class="card-tag">バースト</span>
-        </div>
+        <a href="vo_lifebind_advanced_guide (1).html" class="spec-branch">
+          <div class="spec-name">森癒型</div>
+          <div class="spec-sub">Lifebind</div>
+          <span class="spec-arrow">VIEW ></span>
+        </a>
       </div>
     </div>
 
-    <!-- Placeholder: Aegis Guard - Fortress -->
-    <div class="class-card card-ag-fortress card-coming-soon">
-      <span class="coming-badge">COMING SOON</span>
+    <!-- 8. ビートパフォーマー — ヒーラー -->
+    <div class="class-card role-healer">
       <div class="card-top">
-        <div class="card-icon">🛡️</div>
+        <div class="card-icon">🎵</div>
         <div class="card-titles">
-          <div class="card-class-name">イージスガード</div>
-          <div class="card-spec-name">Fortress / 鉄壁型</div>
+          <div class="card-class-name">ビートパフォーマー</div>
+          <div class="card-spec-name">Beat Performer</div>
         </div>
       </div>
-      <div class="card-role">TANK</div>
-      <div class="card-desc">チームの盾となり敵の攻撃を引き受ける防衛特化のスペック。高い耐久力とヘイト管理で前線を支える。</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="card-tag">防御</span>
-          <span class="card-tag">挑発</span>
-          <span class="card-tag">カウンター</span>
+      <div class="card-role">HEALER</div>
+      <div class="card-desc">音楽の力で味方を癒し鼓舞するヒーラー。リズムに乗せたスキル回しでチーム全体を回復・強化する。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">狂音型</div>
+          <div class="spec-sub">Spec 1</div>
+          <span class="spec-soon-label">COMING SOON</span>
         </div>
-      </div>
-    </div>
-
-    <!-- Placeholder: Spell Sage - Shadow -->
-    <div class="class-card card-ss-shadow card-coming-soon">
-      <span class="coming-badge">COMING SOON</span>
-      <div class="card-top">
-        <div class="card-icon">🔮</div>
-        <div class="card-titles">
-          <div class="card-class-name">スペルセイジ</div>
-          <div class="card-spec-name">Shadowweave / 暗織型</div>
-        </div>
-      </div>
-      <div class="card-role">RANGED DPS</div>
-      <div class="card-desc">闇属性の魔法で遠距離から大ダメージを与えるキャスター。詠唱管理と位置取りが鍵を握る。</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="card-tag">遠距離</span>
-          <span class="card-tag">詠唱</span>
-          <span class="card-tag">範囲</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Placeholder: Verdant Oracle - Stardust -->
-    <div class="class-card card-vo-stardust card-coming-soon">
-      <span class="coming-badge">COMING SOON</span>
-      <div class="card-top">
-        <div class="card-icon">✨</div>
-        <div class="card-titles">
-          <div class="card-class-name">ヴァーダントオラクル</div>
-          <div class="card-spec-name">Stardust / 星導型</div>
-        </div>
-      </div>
-      <div class="card-role">RANGED DPS / SUPPORT</div>
-      <div class="card-desc">星の力で攻撃と支援を両立するハイブリッドスペック。状況に応じてロールを切り替える万能型。</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="card-tag">ハイブリッド</span>
-          <span class="card-tag">バフ</span>
-          <span class="card-tag">遠距離</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Placeholder: Twin Striker - Blaze -->
-    <div class="class-card card-ts-blaze card-coming-soon">
-      <span class="coming-badge">COMING SOON</span>
-      <div class="card-top">
-        <div class="card-icon">🔥</div>
-        <div class="card-titles">
-          <div class="card-class-name">ツインストライカー</div>
-          <div class="card-spec-name">Blazeedge / 焔刃型</div>
-        </div>
-      </div>
-      <div class="card-role">MELEE DPS</div>
-      <div class="card-desc">炎を纏った双剣で持続的にダメージを与え続けるスペック。DoTとコンボゲージの管理が要求される。</div>
-      <div class="card-footer">
-        <div class="card-tags">
-          <span class="card-tag">近接</span>
-          <span class="card-tag">DoT</span>
-          <span class="card-tag">持続火力</span>
+        <div class="spec-branch soon">
+          <div class="spec-name">響奏型</div>
+          <div class="spec-sub">Spec 2</div>
+          <span class="spec-soon-label">COMING SOON</span>
         </div>
       </div>
     </div>
