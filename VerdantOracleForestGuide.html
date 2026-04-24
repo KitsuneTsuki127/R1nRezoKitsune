@@ -6,1128 +6,1184 @@
 <title>ヴァーダントオラクル 森癒型 ガイド</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green-deep: #0d2018;
-    --green-dark: #152d1f;
-    --green-mid: #1e4530;
-    --green-accent: #2d7a4f;
-    --green-light: #4baf78;
-    --green-glow: #6fdf9a;
-    --gold: #c8a84b;
-    --gold-light: #e8cc7a;
-    --crimson: #c0392b;
-    --moon: #8ecae6;
-    --moon-light: #aedde8;
-    --text-main: #d4e8d8;
-    --text-muted: #7aab8a;
-    --text-dim: #4a7a5a;
-    --border: rgba(75, 175, 120, 0.2);
-    --border-bright: rgba(111, 223, 154, 0.4);
-    --glass: rgba(21, 45, 31, 0.7);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--green-deep);
-    color: var(--text-main);
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 300;
-    line-height: 1.8;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(45,122,79,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(111,223,154,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse 40% 60% at 50% 50%, rgba(13,32,24,0.8) 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(75,175,120,0.03) 3px, transparent 3px),
-      linear-gradient(90deg, rgba(75,175,120,0.03) 3px, transparent 3px);
-    background-size: 42px 42px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    max-width: 1082px;
-    margin: 0 auto;
-    padding: 0 26px 82px;
-    position: relative;
-    z-index: 1;
-  }
-
-  header { text-align: center; padding: 66px 0 50px; }
-
-  .header-badge {
-    display: inline-block;
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 6px;
-    color: var(--green-glow);
-    text-transform: uppercase;
-    border: 3px solid var(--border-bright);
-    padding: 8px 22px;
-    margin-bottom: 26px;
-    background: rgba(111,223,154,0.05);
-  }
-
-  h1 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: clamp(28px, 5vw, 44px);
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--text-main);
-    margin-bottom: 10px;
-  }
-
-  h1 span { color: var(--green-glow); text-shadow: 0 0 32px rgba(111,223,154,0.5); }
-
-  .header-sub { font-size: 15px; color: var(--text-muted); letter-spacing: 4px; margin-top: 14px; }
-
-  .header-line {
-    width: 122px; height: 3px;
-    background: linear-gradient(90deg, transparent, var(--green-accent), transparent);
-    margin: 30px auto 0;
-  }
-
-  section { margin-bottom: 58px; }
-
-  .section-header {
-    display: flex; align-items: center; gap: 18px;
-    margin-bottom: 30px; padding-bottom: 18px;
-    border-bottom: 3px solid var(--border);
-  }
-
-  .section-num {
-    font-family: 'Cinzel', serif; font-size: 13px;
-    color: var(--green-glow); letter-spacing: 4px; flex-shrink: 0;
-  }
-
-  h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; color: var(--text-main); }
-
-  h3 {
-    font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 700;
-    color: var(--green-light); margin: 26px 0 14px;
-    display: flex; align-items: center; gap: 12px;
-  }
-
-  h3::before {
-    content: ''; display: inline-block;
-    width: 6px; height: 17px;
-    background: var(--green-light); border-radius: 4px; flex-shrink: 0;
-  }
-
-  p { margin-bottom: 14px; font-size: 16px; color: var(--text-main); line-height: 1.85; }
-
-  .card {
-    background: var(--glass);
-    border: 3px solid var(--border);
-    border-radius: 6px;
-    padding: 22px 26px;
-    margin-bottom: 16px;
-    position: relative;
-    backdrop-filter: blur(10px);
-    transition: border-color 0.3s;
-  }
-
-  .card:hover { border-color: var(--border-bright); }
-
-  .card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 5px; height: 100%;
-    background: var(--green-accent); border-radius: 6px 0 0 6px;
-  }
-
-  .card.gold::before { background: var(--gold); }
-  .card.moon::before { background: var(--moon); }
-  .card.highlight::before { background: var(--green-glow); }
-
-  .table-wrap { overflow-x: auto; margin-bottom: 22px; }
-  table { width: 100%; border-collapse: collapse; font-size: 15px; }
-
-  thead th {
-    background: rgba(45,122,79,0.3); color: var(--green-glow);
-    font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px;
-    padding: 12px 18px; text-align: left;
-    border-bottom: 3px solid var(--border-bright); white-space: nowrap;
-  }
-
-  tbody td {
-    padding: 12px 18px;
-    border-bottom: 3px solid rgba(75,175,120,0.08);
-    vertical-align: top; line-height: 1.7; font-size: 15px;
-  }
-  tbody td:first-child { min-width: 112px; }
-  tbody tr:hover td { background: rgba(75,175,120,0.05); }
-
-  .tag {
-    display: inline-block; font-size: 12px; letter-spacing: 3px;
-    padding: 4px 10px; border-radius: 4px; font-weight: 500; white-space: nowrap;
-  }
-
-  .tag-green { background: rgba(75,175,120,0.2); color: var(--green-glow); border: 3px solid rgba(75,175,120,0.3); }
-  .tag-gold  { background: rgba(200,168,75,0.2); color: var(--gold-light); border: 3px solid rgba(200,168,75,0.3); }
-  .tag-moon  { background: rgba(142,202,230,0.15); color: var(--moon-light); border: 3px solid rgba(142,202,230,0.25); }
-  .tag-red   { background: rgba(192,57,43,0.2); color: #f08070; border: 3px solid rgba(192,57,43,0.3); }
-
-  .stalk-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
-    gap: 16px; margin-bottom: 22px;
-  }
-
-  .stalk-card {
-    background: var(--glass); border: 3px solid var(--border);
-    border-radius: 6px; padding: 20px 22px; backdrop-filter: blur(10px);
-  }
-
-  .stalk-card.s-crimson { border-color: rgba(192,57,43,0.4); }
-  .stalk-card.s-gold    { border-color: rgba(200,168,75,0.4); }
-  .stalk-card.s-moon    { border-color: rgba(142,202,230,0.3); }
-
-  .stalk-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-
-  .stalk-icon {
-    width: 32px; height: 32px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; flex-shrink: 0;
-  }
-
-  .si-crimson { background: rgba(192,57,43,0.2); }
-  .si-gold    { background: rgba(200,168,75,0.2); }
-  .si-moon    { background: rgba(142,202,230,0.15); }
-
-  .stalk-name  { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; }
-  .n-crimson   { color: #f08070; }
-  .n-gold      { color: var(--gold-light); }
-  .n-moon      { color: var(--moon-light); }
-  .stalk-order { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
-  .stalk-desc  { font-size: 14px; color: var(--text-main); line-height: 1.75; }
-
-  .stalk-tip {
-    margin-top: 12px; padding: 10px 14px;
-    background: rgba(111,223,154,0.05);
-    border-left: 4px solid var(--green-accent);
-    font-size: 13px; color: var(--text-muted); line-height: 1.65;
-  }
-
-  .notice {
-    background: rgba(200,168,75,0.08); border: 3px solid rgba(200,168,75,0.3);
-    border-radius: 6px; padding: 15px 20px; font-size: 15px;
-    color: var(--gold-light); margin: 16px 0;
-    display: flex; gap: 14px; align-items: flex-start; line-height: 1.75;
-  }
-
-  .notice.danger { background: rgba(192,57,43,0.08); border-color: rgba(192,57,43,0.3); color: #f08070; }
-  .notice.info   { background: rgba(142,202,230,0.06); border-color: rgba(142,202,230,0.25); color: var(--moon-light); }
-  .notice-icon   { flex-shrink: 0; font-size: 17px; margin-top: 3px; }
-
-  .rot-step {
-    display: grid; grid-template-columns: 32px 1fr;
-    gap: 16px; padding: 15px 0;
-    border-bottom: 3px solid rgba(75,175,120,0.07);
-    align-items: start;
-  }
-
-  .rot-num {
-    width: 28px; height: 28px;
-    background: rgba(45,122,79,0.4);
-    border: 3px solid var(--green-accent); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cinzel', serif; font-size: 12px;
-    color: var(--green-glow); flex-shrink: 0; margin-top: 4px;
-  }
-
-  .rot-title  { font-size: 15px; font-weight: 700; color: var(--green-light); margin-bottom: 5px; }
-  .rot-detail { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
-
-  .stat-row {
-    display: grid; grid-template-columns: 102px 1fr 72px;
-    align-items: center; gap: 16px; margin-bottom: 15px;
-  }
-
-  .stat-label { font-size: 14px; color: var(--text-muted); text-align: right; }
-
-  .stat-bar-wrap { height: 8px; background: rgba(75,175,120,0.1); border-radius: 5px; overflow: hidden; }
-  .stat-bar { height: 100%; border-radius: 5px; }
-  .bar-kiyou   { background: linear-gradient(90deg, var(--green-accent), var(--green-glow)); width: 80%; }
-  .bar-fast    { background: linear-gradient(90deg, #3a8f7a, #5dd6c0); width: 72%; }
-  .bar-bannnou { background: linear-gradient(90deg, #5a6f9a, #8ab0e8); width: 42%; }
-  .bar-kaishin { background: linear-gradient(90deg, #9a6a3a, #d4a870); width: 26%; }
-
-  .stat-target { font-family: 'Cinzel', serif; font-size: 15px; color: var(--green-glow); font-weight: 700; }
-
-  .priority-list { list-style: none; }
-
-  .priority-list li {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 13px 0; border-bottom: 3px solid rgba(75,175,120,0.08); font-size: 15px;
-  }
-
-  .pri-rank {
-    width: 24px; height: 24px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cinzel', serif; font-size: 12px; flex-shrink: 0; margin-top: 3px;
-  }
-
-  .pr-1 { background: rgba(200,168,75,0.3);  color: var(--gold-light); border: 3px solid var(--gold); }
-  .pr-2 { background: rgba(192,192,192,0.2); color: #d0d0d0;           border: 3px solid #888; }
-  .pr-3 { background: rgba(150,100,60,0.2);  color: #c8a060;           border: 3px solid #9a7040; }
-  .pr-4 { background: rgba(75,175,120,0.15); color: var(--text-muted); border: 3px solid var(--text-dim); }
-  .pr-5 { background: rgba(75,175,120,0.08); color: var(--text-dim);   border: 3px solid rgba(75,175,120,0.15); }
-
-  .pri-name   { font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
-  .pri-reason { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-  .ability-list { display: flex; flex-direction: column; }
-
-  .ability-node {
-    display: flex; gap: 14px; padding: 12px 0;
-    border-bottom: 3px solid rgba(75,175,120,0.06); align-items: flex-start;
-  }
-
-  .an-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green-accent); flex-shrink: 0; margin-top: 9px; }
-  .an-dot.core { background: var(--green-glow); box-shadow: 0 0 10px rgba(111,223,154,0.5); }
-  .an-name   { font-weight: 700; font-size: 15px; color: var(--green-light); margin-bottom: 4px; }
-  .an-effect { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-
-  .emblem-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-
-  .ep-branch {
-    background: var(--glass); border: 3px solid var(--border);
-    border-radius: 6px; padding: 18px 20px;
-  }
-
-  .ep-branch-title {
-    font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px;
-    color: var(--green-glow); margin-bottom: 14px; padding-bottom: 10px;
-    border-bottom: 3px solid var(--border);
-  }
-
-  .ep-node { display: flex; gap: 12px; margin-bottom: 12px; font-size: 14px; align-items: flex-start; }
-  .ep-icon { flex-shrink: 0; font-size: 14px; margin-top: 4px; }
-  .ep-name { font-weight: 700; color: var(--text-main); }
-  .ep-effect { color: var(--text-muted); font-size: 13px; }
-
-  .imagine-card {
-    background: var(--glass); border: 3px solid var(--border);
-    border-radius: 6px; padding: 16px 20px; margin-bottom: 12px;
-    display: grid; grid-template-columns: 28px 1fr; gap: 16px;
-  }
-
-  .im-rank   { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold-light); text-align: center; padding-top: 4px; }
-  .im-name   { font-weight: 700; font-size: 16px; margin-bottom: 5px; }
-  .im-effect { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-  .im-tip    { font-size: 13px; color: var(--green-glow); margin-top: 6px; }
-
-  .faq-item {
-    margin-bottom: 18px; background: var(--glass);
-    border: 3px solid var(--border); border-radius: 6px; overflow: hidden;
-  }
-
-  .faq-q {
-    padding: 16px 20px; font-weight: 700; font-size: 15px;
-    color: var(--green-light); background: rgba(45,122,79,0.15);
-    border-bottom: 3px solid var(--border); display: flex; gap: 14px;
-  }
-
-  .faq-q::before { content: 'Q'; font-family: 'Cinzel', serif; font-size: 13px; color: var(--green-glow); flex-shrink: 0; }
-
-  .faq-a {
-    padding: 16px 20px; font-size: 15px;
-    color: var(--text-muted); line-height: 1.85;
-    display: flex; gap: 14px;
-  }
-
-  .faq-a::before { content: 'A'; font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold); flex-shrink: 0; margin-top: 3px; }
-
-  .set-card {
-    background: rgba(30,69,48,0.5); border: 3px solid rgba(75,175,120,0.25);
-    border-radius: 6px; padding: 18px 22px; margin-bottom: 14px;
-  }
-
-  .set-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-
-  .set-count {
-    font-family: 'Cinzel', serif; font-size: 12px; color: var(--green-glow);
-    background: rgba(111,223,154,0.1); border: 3px solid rgba(111,223,154,0.3);
-    padding: 4px 12px; border-radius: 4px;
-  }
-
-  .set-name   { font-weight: 700; font-size: 16px; }
-  .set-effect { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
-
-  .divider {
-    display: flex; align-items: center; gap: 18px;
-    margin: 50px 0; opacity: 0.4;
-  }
-
-  .divider::before, .divider::after { content: ''; flex: 1; height: 3px; background: var(--green-accent); }
-  .divider span { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 5px; color: var(--green-light); }
-
-  .hl      { color: var(--green-glow); font-weight: 700; }
-  .hl-gold { color: var(--gold-light); font-weight: 700; }
-  .hl-moon { color: var(--moon-light); font-weight: 700; }
-  .hl-red  { color: #f08070; font-weight: 700; }
-
-  footer {
-    text-align: center; padding: 42px 0 26px;
-    font-size: 13px; color: var(--text-dim);
-    border-top: 3px solid var(--border); letter-spacing: 3px;
-  }
-
-  @media (max-width: 602px) {
-    .two-col, .emblem-grid { grid-template-columns: 1fr; }
-    .stalk-grid { grid-template-columns: 1fr; }
-    .stat-row { grid-template-columns: 92px 1fr 62px; }
-  }
+:root {
+--green-deep: #0d2018;
+--green-dark: #152d1f;
+--green-mid: #1e4530;
+--green-accent: #2d7a4f;
+--green-light: #4baf78;
+--green-glow: #6fdf9a;
+--gold: #c8a84b;
+--gold-light: #e8cc7a;
+--crimson: #c0392b;
+--moon: #8ecae6;
+--moon-light: #aedde8;
+--text-main: #d4e8d8;
+--text-muted: #7aab8a;
+--text-dim: #4a7a5a;
+--border: rgba(75, 175, 120, 0.2);
+--border-bright: rgba(111, 223, 154, 0.4);
+--glass: rgba(21, 45, 31, 0.7);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+background: var(--green-deep);
+color: var(--text-main);
+font-family: 'Noto Sans JP', sans-serif;
+font-weight: 300;
+line-height: 1.8;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 50% at 20% 20%, rgba(45,122,79,0.12) 0%, transparent 60%),
+radial-gradient(ellipse 60% 40% at 80% 80%, rgba(111,223,154,0.06) 0%, transparent 50%),
+radial-gradient(ellipse 40% 60% at 50% 50%, rgba(13,32,24,0.8) 0%, transparent 100%);
+pointer-events: none;
+z-index: 0;
+}
+
+body::after {
+content: '';
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(rgba(75,175,120,0.03) 3px, transparent 3px),
+linear-gradient(90deg, rgba(75,175,120,0.03) 3px, transparent 3px);
+background-size: 42px 42px;
+pointer-events: none;
+z-index: 0;
+}
+
+.container {
+max-width: 1082px;
+margin: 0 auto;
+padding: 0 26px 82px;
+position: relative;
+z-index: 1;
+}
+
+header { text-align: center; padding: 66px 0 50px; }
+
+.header-badge {
+display: inline-block;
+font-family: 'Cinzel', serif;
+font-size: 12px;
+letter-spacing: 6px;
+color: var(--green-glow);
+text-transform: uppercase;
+border: 3px solid var(--border-bright);
+padding: 8px 22px;
+margin-bottom: 26px;
+background: rgba(111,223,154,0.05);
+}
+
+h1 {
+font-family: 'Noto Serif JP', serif;
+font-size: clamp(28px, 5vw, 44px);
+font-weight: 700;
+line-height: 1.3;
+color: var(--text-main);
+margin-bottom: 10px;
+}
+
+h1 span { color: var(--green-glow); text-shadow: 0 0 32px rgba(111,223,154,0.5); }
+
+.header-sub { font-size: 15px; color: var(--text-muted); letter-spacing: 4px; margin-top: 14px; }
+
+.header-line {
+width: 122px; height: 3px;
+background: linear-gradient(90deg, transparent, var(--green-accent), transparent);
+margin: 30px auto 0;
+}
+
+section { margin-bottom: 58px; }
+
+.section-header {
+display: flex; align-items: center; gap: 18px;
+margin-bottom: 30px; padding-bottom: 18px;
+border-bottom: 3px solid var(--border);
+}
+
+.section-num {
+font-family: 'Cinzel', serif; font-size: 13px;
+color: var(--green-glow); letter-spacing: 4px; flex-shrink: 0;
+}
+
+h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; color: var(--text-main); }
+
+h3 {
+font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 700;
+color: var(--green-light); margin: 26px 0 14px;
+display: flex; align-items: center; gap: 12px;
+}
+
+h3::before {
+content: ''; display: inline-block;
+width: 6px; height: 17px;
+background: var(--green-light); border-radius: 4px; flex-shrink: 0;
+}
+
+p { margin-bottom: 14px; font-size: 16px; color: var(--text-main); line-height: 1.85; }
+
+.card {
+background: var(--glass);
+border: 3px solid var(--border);
+border-radius: 6px;
+padding: 22px 26px;
+margin-bottom: 16px;
+position: relative;
+backdrop-filter: blur(10px);
+transition: border-color 0.3s;
+}
+
+.card:hover { border-color: var(--border-bright); }
+
+.card::before {
+content: ''; position: absolute; top: 0; left: 0;
+width: 5px; height: 100%;
+background: var(--green-accent); border-radius: 6px 0 0 6px;
+}
+
+.card.gold::before { background: var(--gold); }
+.card.moon::before { background: var(--moon); }
+.card.highlight::before { background: var(--green-glow); }
+
+.table-wrap { overflow-x: auto; margin-bottom: 22px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+
+thead th {
+background: rgba(45,122,79,0.3); color: var(--green-glow);
+font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px;
+padding: 12px 18px; text-align: left;
+border-bottom: 3px solid var(--border-bright); white-space: nowrap;
+}
+
+tbody td {
+padding: 12px 18px;
+border-bottom: 3px solid rgba(75,175,120,0.08);
+vertical-align: top; line-height: 1.7; font-size: 15px;
+}
+tbody td:first-child { min-width: 112px; }
+tbody tr:hover td { background: rgba(75,175,120,0.05); }
+
+.tag {
+display: inline-block; font-size: 12px; letter-spacing: 3px;
+padding: 4px 10px; border-radius: 4px; font-weight: 500; white-space: nowrap;
+}
+
+.tag-green { background: rgba(75,175,120,0.2); color: var(--green-glow); border: 3px solid rgba(75,175,120,0.3); }
+.tag-gold  { background: rgba(200,168,75,0.2); color: var(--gold-light); border: 3px solid rgba(200,168,75,0.3); }
+.tag-moon  { background: rgba(142,202,230,0.15); color: var(--moon-light); border: 3px solid rgba(142,202,230,0.25); }
+.tag-red   { background: rgba(192,57,43,0.2); color: #f08070; border: 3px solid rgba(192,57,43,0.3); }
+
+.stalk-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
+gap: 16px; margin-bottom: 22px;
+}
+
+.stalk-card {
+background: var(--glass); border: 3px solid var(--border);
+border-radius: 6px; padding: 20px 22px; backdrop-filter: blur(10px);
+}
+
+.stalk-card.s-crimson { border-color: rgba(192,57,43,0.4); }
+.stalk-card.s-gold    { border-color: rgba(200,168,75,0.4); }
+.stalk-card.s-moon    { border-color: rgba(142,202,230,0.3); }
+
+.stalk-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+
+.stalk-icon {
+width: 32px; height: 32px; border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-size: 15px; flex-shrink: 0;
+}
+
+.si-crimson { background: rgba(192,57,43,0.2); }
+.si-gold    { background: rgba(200,168,75,0.2); }
+.si-moon    { background: rgba(142,202,230,0.15); }
+
+.stalk-name  { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; }
+.n-crimson   { color: #f08070; }
+.n-gold      { color: var(--gold-light); }
+.n-moon      { color: var(--moon-light); }
+.stalk-order { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
+.stalk-desc  { font-size: 14px; color: var(--text-main); line-height: 1.75; }
+
+.stalk-tip {
+margin-top: 12px; padding: 10px 14px;
+background: rgba(111,223,154,0.05);
+border-left: 4px solid var(--green-accent);
+font-size: 13px; color: var(--text-muted); line-height: 1.65;
+}
+
+.notice {
+background: rgba(200,168,75,0.08); border: 3px solid rgba(200,168,75,0.3);
+border-radius: 6px; padding: 15px 20px; font-size: 15px;
+color: var(--gold-light); margin: 16px 0;
+display: flex; gap: 14px; align-items: flex-start; line-height: 1.75;
+}
+
+.notice.danger { background: rgba(192,57,43,0.08); border-color: rgba(192,57,43,0.3); color: #f08070; }
+.notice.info   { background: rgba(142,202,230,0.06); border-color: rgba(142,202,230,0.25); color: var(--moon-light); }
+.notice-icon   { flex-shrink: 0; font-size: 17px; margin-top: 3px; }
+
+.rot-step {
+display: grid; grid-template-columns: 32px 1fr;
+gap: 16px; padding: 15px 0;
+border-bottom: 3px solid rgba(75,175,120,0.07);
+align-items: start;
+}
+
+.rot-num {
+width: 28px; height: 28px;
+background: rgba(45,122,79,0.4);
+border: 3px solid var(--green-accent); border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-family: 'Cinzel', serif; font-size: 12px;
+color: var(--green-glow); flex-shrink: 0; margin-top: 4px;
+}
+
+.rot-title  { font-size: 15px; font-weight: 700; color: var(--green-light); margin-bottom: 5px; }
+.rot-detail { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+
+.stat-row {
+display: grid; grid-template-columns: 102px 1fr 72px;
+align-items: center; gap: 16px; margin-bottom: 15px;
+}
+
+.stat-label { font-size: 14px; color: var(--text-muted); text-align: right; }
+
+.stat-bar-wrap { height: 8px; background: rgba(75,175,120,0.1); border-radius: 5px; overflow: hidden; }
+.stat-bar { height: 100%; border-radius: 5px; }
+.bar-kiyou   { background: linear-gradient(90deg, var(--green-accent), var(--green-glow)); width: 80%; }
+.bar-fast    { background: linear-gradient(90deg, #3a8f7a, #5dd6c0); width: 72%; }
+.bar-bannnou { background: linear-gradient(90deg, #5a6f9a, #8ab0e8); width: 42%; }
+.bar-kaishin { background: linear-gradient(90deg, #9a6a3a, #d4a870); width: 26%; }
+
+.stat-target { font-family: 'Cinzel', serif; font-size: 15px; color: var(--green-glow); font-weight: 700; }
+
+.priority-list { list-style: none; }
+
+.priority-list li {
+display: flex; align-items: flex-start; gap: 14px;
+padding: 13px 0; border-bottom: 3px solid rgba(75,175,120,0.08); font-size: 15px;
+}
+
+.pri-rank {
+width: 24px; height: 24px; border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-family: 'Cinzel', serif; font-size: 12px; flex-shrink: 0; margin-top: 3px;
+}
+
+.pr-1 { background: rgba(200,168,75,0.3);  color: var(--gold-light); border: 3px solid var(--gold); }
+.pr-2 { background: rgba(192,192,192,0.2); color: #d0d0d0;           border: 3px solid #888; }
+.pr-3 { background: rgba(150,100,60,0.2);  color: #c8a060;           border: 3px solid #9a7040; }
+.pr-4 { background: rgba(75,175,120,0.15); color: var(--text-muted); border: 3px solid var(--text-dim); }
+.pr-5 { background: rgba(75,175,120,0.08); color: var(--text-dim);   border: 3px solid rgba(75,175,120,0.15); }
+
+.pri-name   { font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+.pri-reason { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.ability-list { display: flex; flex-direction: column; }
+
+.ability-node {
+display: flex; gap: 14px; padding: 12px 0;
+border-bottom: 3px solid rgba(75,175,120,0.06); align-items: flex-start;
+}
+
+.an-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green-accent); flex-shrink: 0; margin-top: 9px; }
+.an-dot.core { background: var(--green-glow); box-shadow: 0 0 10px rgba(111,223,154,0.5); }
+.an-name   { font-weight: 700; font-size: 15px; color: var(--green-light); margin-bottom: 4px; }
+.an-effect { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+.emblem-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+.ep-branch {
+background: var(--glass); border: 3px solid var(--border);
+border-radius: 6px; padding: 18px 20px;
+}
+
+.ep-branch-title {
+font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px;
+color: var(--green-glow); margin-bottom: 14px; padding-bottom: 10px;
+border-bottom: 3px solid var(--border);
+}
+
+.ep-node { display: flex; gap: 12px; margin-bottom: 12px; font-size: 14px; align-items: flex-start; }
+.ep-icon { flex-shrink: 0; font-size: 14px; margin-top: 4px; }
+.ep-name { font-weight: 700; color: var(--text-main); }
+.ep-effect { color: var(--text-muted); font-size: 13px; }
+
+.imagine-card {
+background: var(--glass); border: 3px solid var(--border);
+border-radius: 6px; padding: 16px 20px; margin-bottom: 12px;
+display: grid; grid-template-columns: 28px 1fr; gap: 16px;
+}
+
+.im-rank   { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold-light); text-align: center; padding-top: 4px; }
+.im-name   { font-weight: 700; font-size: 16px; margin-bottom: 5px; }
+.im-effect { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+.im-tip    { font-size: 13px; color: var(--green-glow); margin-top: 6px; }
+
+.faq-item {
+margin-bottom: 18px; background: var(--glass);
+border: 3px solid var(--border); border-radius: 6px; overflow: hidden;
+}
+
+.faq-q {
+padding: 16px 20px; font-weight: 700; font-size: 15px;
+color: var(--green-light); background: rgba(45,122,79,0.15);
+border-bottom: 3px solid var(--border); display: flex; gap: 14px;
+}
+
+.faq-q::before { content: 'Q'; font-family: 'Cinzel', serif; font-size: 13px; color: var(--green-glow); flex-shrink: 0; }
+
+.faq-a {
+padding: 16px 20px; font-size: 15px;
+color: var(--text-muted); line-height: 1.85;
+display: flex; gap: 14px;
+}
+
+.faq-a::before { content: 'A'; font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold); flex-shrink: 0; margin-top: 3px; }
+
+.set-card {
+background: rgba(30,69,48,0.5); border: 3px solid rgba(75,175,120,0.25);
+border-radius: 6px; padding: 18px 22px; margin-bottom: 14px;
+}
+
+.set-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+
+.set-count {
+font-family: 'Cinzel', serif; font-size: 12px; color: var(--green-glow);
+background: rgba(111,223,154,0.1); border: 3px solid rgba(111,223,154,0.3);
+padding: 4px 12px; border-radius: 4px;
+}
+
+.set-name   { font-weight: 700; font-size: 16px; }
+.set-effect { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+
+.divider {
+display: flex; align-items: center; gap: 18px;
+margin: 50px 0; opacity: 0.4;
+}
+
+.divider::before, .divider::after { content: ''; flex: 1; height: 3px; background: var(--green-accent); }
+.divider span { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 5px; color: var(--green-light); }
+
+.hl      { color: var(--green-glow); font-weight: 700; }
+.hl-gold { color: var(--gold-light); font-weight: 700; }
+.hl-moon { color: var(--moon-light); font-weight: 700; }
+.hl-red  { color: #f08070; font-weight: 700; }
+
+footer {
+text-align: center; padding: 42px 0 26px;
+font-size: 13px; color: var(--text-dim);
+border-top: 3px solid var(--border); letter-spacing: 3px;
+}
+
+@media (max-width: 602px) {
+.two-col, .emblem-grid { grid-template-columns: 1fr; }
+.stalk-grid { grid-template-columns: 1fr; }
+.stat-row { grid-template-columns: 92px 1fr 62px; }
+}
 </style>
 </head>
 <body>
 <div class="container">
 
-  <header>
-    <div class="header-badge">Blue Protocol: Star Resonance</div>
-    <h1>ヴァーダントオラクル<br><span>森癒型</span></h1>
-    <p class="header-sub">解説ガイド — Last Updated: March 21, 2026</p>
-    <div class="header-line"></div>
-  </header>
+<header>
+<div class="header-badge">Blue Protocol: Star Resonance</div>
+<h1>ヴァーダントオラクル<br><span>森癒型</span></h1>
+<p class="header-sub">解説ガイド — Last Updated: March 21, 2026</p>
+<div class="header-line"></div>
+</header>
 
-  <section>
-    <p>森癒型は、チームを回復・防御バフで支え続ける<span class="hl">サポート特化のスペック</span>です。ダメージはほぼ出しませんが、<br>仲間を生かし続けることに特化しており、チームの安全を一手に担います。<br>このガイドでは「最低限知っておくべき動き」から「森としての価値を高めるための立ち回り」まで順を追って説明します。</p>
-  </section>
+<section>
+<p>森癒型は、チームを回復・防御バフで支え続ける<span class="hl">サポート特化のスペック</span>です。ダメージはほぼ出しませんが、<br>仲間を生かし続けることに特化しており、チームの安全を一手に担います。<br>このガイドでは「最低限知っておくべき動き」から「森としての価値を高めるための立ち回り」まで順を追って説明します。</p>
+</section>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <!-- 01 SKILLS -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>スキル説明</h2>
-    </div>
+<!-- 01 SKILLS -->
+<section>
+<div class="section-header">
+<span class="section-num">01</span>
+<h2>スキル説明</h2>
+</div>
 
-    <p>まずは森癒型で使うスキルの役割をそれぞれ把握しましょう。<span class="hl">何のためのスキルか</span>を知っておくことが大切です。</p>
+<p>まずは森癒型で使うスキルの役割をそれぞれ把握しましょう。<span class="hl">何のためのスキルか</span>を知っておくことが大切です。</p>
 
-    <h3>メインスキル</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>スキル名</th><th>役割</th><th>ポイント</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><strong>リジェネ<br>レーション</strong></td>
-            <td>主力スキル</td>
-            <td>アビリティ：活気により最大5スタックまで重ね掛け可能。<br>スタックが多いほど回復量が上がり、<br>自身の被ダメージも10%軽減される。<br>常に維持することが重要。</td>
-          </tr>
-          <tr>
-            <td><strong>バイタル<br>ブルーム</strong></td>
-            <td>回復 ＋ 再生の蕾を生成</td>
-            <td>後述する「再生の蕾」を生み出すスキル。<br>ブルームチャージの後に使うと無詠唱になる。</td>
-          </tr>
-          <tr>
-            <td><strong>ブルーム<br>チャージ</strong></td>
-            <td>即時回復 ＋ 敵スキル中断 ＋ 次のバイタルブルームを無詠唱化</td>
-            <td>回復・妨害・エネルギー補充を同時にこなす多機能スキル。<br>クールダウンのたびに積極的に使う。</td>
-          </tr>
-          <tr>
-            <td><strong>グローヴ<br>ウィッシュ</strong></td>
-            <td>回復 ＋ 全属性耐性を10秒付与</td>
-            <td>回復しながらパーティの属性耐性を高める。<br>瞬間回復が必要にならない相手の時は<br>クールダウンのたびに使い続けるだけでOK。</td>
-          </tr>
-          <tr>
-            <td><strong>深葉<br>ブルーム<br>サークル</strong></td>
-            <td>範囲回復 ＋ ダメージ軽減</td>
-            <td>大ダメージが来る場面で使うウルトスキル。<br>意外と発生が遅いので早めの使用を心がけよう。</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<h3>メインスキル</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>スキル名</th><th>役割</th><th>ポイント</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>リジェネ<br>レーション</strong></td>
+<td>主力スキル</td>
+<td>アビリティ：活気により最大5スタックまで重ね掛け可能。<br>スタックが多いほど回復量が上がり、<br>自身の被ダメージも10%軽減される。<br>常に維持することが重要。</td>
+</tr>
+<tr>
+<td><strong>バイタル<br>ブルーム</strong></td>
+<td>回復 ＋ 再生の蕾を生成</td>
+<td>後述する「再生の蕾」を生み出すスキル。<br>ブルームチャージの後に使うと無詠唱になる。</td>
+</tr>
+<tr>
+<td><strong>ブルーム<br>チャージ</strong></td>
+<td>即時回復 ＋ 敵スキル中断 ＋ 次のバイタルブルームを無詠唱化</td>
+<td>回復・妨害・エネルギー補充を同時にこなす多機能スキル。<br>クールダウンのたびに積極的に使う。</td>
+</tr>
+<tr>
+<td><strong>グローヴ<br>ウィッシュ</strong></td>
+<td>回復 ＋ 全属性耐性を10秒付与</td>
+<td>回復しながらパーティの属性耐性を高める。<br>瞬間回復が必要にならない相手の時は<br>クールダウンのたびに使い続けるだけでOK。</td>
+</tr>
+<tr>
+<td><strong>深葉<br>ブルーム<br>サークル</strong></td>
+<td>範囲回復 ＋ ダメージ軽減</td>
+<td>大ダメージが来る場面で使うウルトスキル。<br>意外と発生が遅いので早めの使用を心がけよう。</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-    <h3>状況で使い分けるスキル</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>スキル名</th><th>役割</th><th>使いどころ</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><strong>ファスト<br>グロウス</strong></td>
-            <td>MATK増加 ＋ スキルCD短縮</td>
-            <td>効果中はスキルの回転が少し速くなり全体的な回復量が上がる。<br>イマジンCTと赤花に合わせて使うことを意識する。</td>
-          </tr>
-          <tr>
-            <td><strong>ネイチャー<br>ワード</strong></td>
-            <td>バリア付与</td>
-            <td>自身と周囲の10名にバリアを付与。<br>本領は威咲で発揮するものだが、<br>森で使ってもそれなりの効果はある。</td>
-          </tr>
-          <tr>
-            <td><strong>フェラルシード</strong></td>
-            <td>エネルギーを補充</td>
-            <td>エネルギー管理に不安がある場合にファストグロウスの代わりとして採用。</td>
-          </tr>
-          <tr>
-            <td><strong>ライフサージ</strong></td>
-            <td>エネルギー回復速度を<br>強化</td>
-            <td>エネルギーが足りないと感じたときや、<br>スキルサイクルを高速化したい時向けのウルト変化スキル。<br>軽減がなくなるので使える所は限られるかも。</td>
-          </tr>
-          
+<h3>状況で使い分けるスキル</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>スキル名</th><th>役割</th><th>使いどころ</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>ファスト<br>グロウス</strong></td>
+<td>MATK増加 ＋ スキルCD短縮</td>
+<td>効果中はスキルの回転が少し速くなり全体的な回復量が上がる。<br>イマジンCTと赤花に合わせて使うことを意識する。</td>
+</tr>
+<tr>
+<td><strong>ネイチャー<br>ワード</strong></td>
+<td>バリア付与</td>
+<td>自身と周囲の10名にバリアを付与。<br>本領は威咲で発揮するものだが、<br>森で使ってもそれなりの効果はある。</td>
+</tr>
+<tr>
+<td><strong>フェラルシード</strong></td>
+<td>エネルギーを補充</td>
+<td>エネルギー管理に不安がある場合にファストグロウスの代わりとして採用。</td>
+</tr>
+<tr>
+<td><strong>ライフサージ</strong></td>
+<td>エネルギー回復速度を<br>強化</td>
+<td>エネルギーが足りないと感じたときや、<br>スキルサイクルを高速化したい時向けのウルト変化スキル。<br>軽減がなくなるので使える所は限られるかも。</td>
+</tr>
 
-        </tbody>
-      </table>
-    </div>
 
-    <div class="notice">
-      <span class="notice-icon">💡</span>
-      <span>まずは<strong>リジェネレーション・バイタルブルーム・ブルームチャージ・グローヴウィッシュ</strong>の4つを軸にしてください。<br>これだけで十分に機能します。</span>
-    </div>
-  </section>
+</tbody>
+</table>
+</div>
 
-  <div class="divider"><span>✦</span></div>
+<div class="notice">
+<span class="notice-icon">💡</span>
+<span>まずは<strong>リジェネレーション・バイタルブルーム・ブルームチャージ・グローヴウィッシュ</strong>の4つを軸にしてください。<br>これだけで十分に機能します。</span>
+</div>
+</section>
 
-  <!-- 02 ABILITY -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>アビリティ説明</h2>
-    </div>
+<div class="divider"><span>✦</span></div>
 
-    <p>アビリティツリーにはポイントを最大40pt振れます。全ノードは取れないため、<span class="hl">優先度の高いものから</span>取っていきましょう。</p>
+<!-- 02 ABILITY -->
+<section>
+<div class="section-header">
+<span class="section-num">02</span>
+<h2>アビリティ説明</h2>
+</div>
 
-    <h3>必ず取るべきアビリティ（コア）</h3>
-    <div class="ability-list">
-      <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">花の輪舞</div>
-          <div class="an-effect">「花の苗」を解禁するアビリティ。これを取らないと花の苗が発生しない。</div>
-        </div>
-      </div>
-      <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">活気 ＋ 無心 ＋ 緑の滋養 ＋ 滋養の華　</div>
-          <div class="an-effect">リジェネレーションを強化するセット。スタック上限増加・バイタルブルームで確率付与・<br>自身のみダメージ10%軽減・エネルギー回復など、森癒型の中核をなす。</div>
-        </div>
-      </div>
-      <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">生命開花 ＋ 満開 ＋ 尽きせぬ花</div>
-          <div class="an-effect">生命開花によりブルームチャージ後に無詠唱でバイタルブルームを打つ。満開により20%の固定確率で5秒間バイタルブルームをエネルギー消費なしにする。</div>
-        </div>
-      </div>
-            <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">花言葉</div>
-          <div class="an-effect">マスタリースキルの回復+20%。代わりにバイタルブルームは回復-50%。<br>森癒型の回復量の8割はリジェネレーションによるものなのでバイタルブルームを落としてでもコレを取るべき。</div>
-        </div>
-      </div>
-            <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">エネルギー増量</div>
-          <div class="an-effect">エネルギーの上限アップ。ブルームチャージ使用時に失ったエネルギーの30%を回復。エネルギー切れのリスクを大幅に下げる。</div>
-        </div>
-      </div>
-      <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">尽きせぬ花</div>
-          <div class="an-effect">バイタルブルーム発動時、50％の固定確率でブルームチャージのCTを減らす。</div>
-          </div>
-      </div>
-      <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">緑の根幹</div>
-          <div class="an-effect">2秒間立ち止まる事で草の領域を生成。領域内にいるだけで自身のファストを+10％する。</div>
-          </div>
-      </div>
-      <div class="ability-node">
-        <div class="an-dot core"></div>
-        <div>
-          <div class="an-name">鼓舞強化 ＋ 鼓舞の極意</div>
-          <div class="an-effect">鼓舞バフを強化し、チーム全体のステータスを大幅に底上げ。必須アビリティ。</div>
-        </div>
-      </div>
-    </div>
+<p>アビリティツリーにはポイントを最大40pt振れます。全ノードは取れないため、<span class="hl">優先度の高いものから</span>取っていきましょう。</p>
 
-    <h3>余ったポイントで取るアビリティ</h3>
-    <div class="two-col">
-      <div class="card">
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.85;">
-          <strong style="color:var(--text-main);display:block;margin-bottom:8px;">安定を重視する場合</strong>
-          <strong>復活の翼</strong> — 味方がHP30%超のダメージを受けた際に緊急回復<br>
-          <strong>救護</strong> — HP50%以下の味方へのマスタリースキル回復量アップ<br>
-        </div>
-      </div>
-      <div class="card gold">
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.85;">
-          <strong style="color:var(--text-main);display:block;margin-bottom:8px;">回転速度を重視する場合</strong>
-          <strong>エネルギー発生</strong> — ファストグロウス中のエネルギー回復強化<br>
-          <strong>緑の二重奏</strong> — バイタルブルームが20%の確率で追加ヒール<br>
-          <strong>旺盛な苗</strong> — 草の領域にいる際、花の苗の生成速度向上
-        </div>
-      </div>
-    </div>
-  </section>
+<h3>必ず取るべきアビリティ（コア）</h3>
+<div class="ability-list">
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">花の輪舞</div>
+<div class="an-effect">「花の苗」を解禁するアビリティ。これを取らないと花の苗が発生しない。</div>
+</div>
+</div>
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">活気 ＋ 無心 ＋ 緑の滋養 ＋ 滋養の華　</div>
+<div class="an-effect">リジェネレーションを強化するセット。スタック上限増加・バイタルブルームで確率付与・<br>自身のみダメージ10%軽減・エネルギー回復など、森癒型の中核をなす。</div>
+</div>
+</div>
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">生命開花 ＋ 満開 ＋ 尽きせぬ花</div>
+<div class="an-effect">生命開花によりブルームチャージ後に無詠唱でバイタルブルームを打つ。満開により20%の固定確率で5秒間バイタルブルームをエネルギー消費なしにする。</div>
+</div>
+</div>
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">花言葉</div>
+<div class="an-effect">マスタリースキルの回復+20%。代わりにバイタルブルームは回復-50%。<br>森癒型の回復量の8割はリジェネレーションによるものなのでバイタルブルームを落としてでもコレを取るべき。</div>
+</div>
+</div>
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">エネルギー増量</div>
+<div class="an-effect">エネルギーの上限アップ。ブルームチャージ使用時に失ったエネルギーの30%を回復。エネルギー切れのリスクを大幅に下げる。</div>
+</div>
+</div>
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">尽きせぬ花</div>
+<div class="an-effect">バイタルブルーム発動時、50％の固定確率でブルームチャージのCTを減らす。</div>
+</div>
+</div>
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">緑の根幹</div>
+<div class="an-effect">2秒間立ち止まる事で草の領域を生成。領域内にいるだけで自身のファストを+10％する。</div>
+</div>
+</div>
+<div class="ability-node">
+<div class="an-dot core"></div>
+<div>
+<div class="an-name">鼓舞強化 ＋ 鼓舞の極意</div>
+<div class="an-effect">鼓舞バフを強化し、チーム全体のステータスを大幅に底上げ。必須アビリティ。</div>
+</div>
+</div>
+</div>
 
-  <div class="divider"><span>✦</span></div>
+<h3>余ったポイントで取るアビリティ</h3>
+<div class="two-col">
+<div class="card">
+<div style="font-size:14px;color:var(--text-muted);line-height:1.85;">
+<strong style="color:var(--text-main);display:block;margin-bottom:8px;">安定を重視する場合</strong>
+<strong>復活の翼</strong> — 味方がHP30%超のダメージを受けた際に緊急回復<br>
+<strong>救護</strong> — HP50%以下の味方へのマスタリースキル回復量アップ<br>
+</div>
+</div>
+<div class="card gold">
+<div style="font-size:14px;color:var(--text-muted);line-height:1.85;">
+<strong style="color:var(--text-main);display:block;margin-bottom:8px;">回転速度を重視する場合</strong>
+<strong>エネルギー発生</strong> — ファストグロウス中のエネルギー回復強化<br>
+<strong>緑の二重奏</strong> — バイタルブルームが20%の確率で追加ヒール<br>
+<strong>旺盛な苗</strong> — 草の領域にいる際、花の苗の生成速度向上
+</div>
+</div>
+</div>
+</section>
 
-  <!-- 03 ENERGY -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>エネルギー管理</h2>
-    </div>
+<div class="divider"><span>✦</span></div>
 
-    <p>エネルギーは一部のスキルを使うために消費するリソースです。毎秒4ずつ自動回復するため基本的には枯渇しにくいですが、<br><span class="hl">適当に連打していると枯渇する</span>ため、上を目指すほど意識が必要になります。</p>
+<!-- 03 ENERGY -->
+<section>
+<div class="section-header">
+<span class="section-num">03</span>
+<h2>エネルギー管理</h2>
+</div>
 
-    <h3>エネルギーの回復手段</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>手段</th><th>回復量 / 条件</th></tr></thead>
-        <tbody>
-          <tr><td>自然回復</td><td>毎秒4（常時）</td></tr>
-          <tr><td>エネルギー増量（アビリティ）</td><td>ブルームチャージ使用時に失ったエネルギーの30%を回復</td></tr>
-          <tr><td>無心（アビリティ）</td><td>発動時にエネルギー100回復</td></tr>
-          <tr><td>ライフサージ（ウルト変化スキル）</td><td>使用中に回復速度が増加</td></tr>
-          <tr><td>フェラルシード（スキル）</td><td>攻撃ヒット時に追加回復（代替スキル枠）</td></tr>
-        </tbody>
-      </table>
-    </div>
+<p>エネルギーは一部のスキルを使うために消費するリソースです。毎秒4ずつ自動回復するため基本的には枯渇しにくいですが、<br><span class="hl">適当に連打していると枯渇する</span>ため、上を目指すほど意識が必要になります。</p>
 
-    <div class="notice">
-      <span class="notice-icon">💡</span>
+<h3>エネルギーの回復手段</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>手段</th><th>回復量 / 条件</th></tr></thead>
+<tbody>
+<tr><td>自然回復</td><td>毎秒4（常時）</td></tr>
+<tr><td>エネルギー増量（アビリティ）</td><td>ブルームチャージ使用時に失ったエネルギーの30%を回復</td></tr>
+<tr><td>無心（アビリティ）</td><td>発動時にエネルギー100回復</td></tr>
+<tr><td>ライフサージ（ウルト変化スキル）</td><td>使用中に回復速度が増加</td></tr>
+<tr><td>フェラルシード（スキル）</td><td>攻撃ヒット時に追加回復（代替スキル枠）</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="notice">
+<span class="notice-icon">💡</span>
       <span><strong>初心者向け：</strong>エネルギーを意識しすぎず、まずはリジェネレーションを維持することに集中してください。<br>エネルギーが足りなくなったら<strong>ブルームチャージ・フェラルシードを使う</strong>と維持が簡単になります。</span>
-    </div>
+      <span>エネルギーを意識しすぎず、まずはリジェネレーションを維持することに集中してください。<br>エネルギーが足りなくなったら<strong>ブルームチャージ・フェラルシードを使う</strong>と維持が簡単になります。</span>
+</div>
 
     <div class="notice info">
       <span class="notice-icon">🎯</span>
       <span><strong>上級者向け：</strong>エネルギーゲージの緑色が空になったタイミングで花の苗が発生します。<br>紅き蓮をファストグロウスやグローヴウィッシュに使用することで対応力が上がります。</span>
     </div>
-  </section>
+</section>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <!-- 04 BUDS -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>再生の蕾について</h2>
-    </div>
+<!-- 04 BUDS -->
+<section>
+<div class="section-header">
+<span class="section-num">04</span>
+<h2>再生の蕾について</h2>
+</div>
 
-    <p>再生の蕾は<span class="hl">バイタルブルームを使うたびに1個生成</span>されるリソースで、最大8個まで蓄積します。<br>マスタリースキルやアルティメットを使う際に2個ずつ消費され、追加効果を発動させます。</p>
+<p>再生の蕾は<span class="hl">バイタルブルームを使うたびに1個生成</span>されるリソースで、最大8個まで蓄積します。<br>マスタリースキルやアルティメットを使う際に2個ずつ消費され、追加効果を発動させます。</p>
 
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>消費タイミング</th><th>消費数</th><th>発動効果</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>マスタリースキル or 究極スキルで<strong>回復</strong>したとき</td>
-            <td><span class="tag tag-green">2個</span></td>
-            <td><strong>滋養の種</strong> — 味方のHPを追加回復</td>
-          </tr>
-          <tr>
-            <td>マスタリースキル or 究極スキルで<strong>ダメージ</strong>を与えたとき</td>
-            <td><span class="tag tag-green">2個</span></td>
-            <td><strong>荒野の種</strong> — 敵にダメージ</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+<div class="table-wrap">
+<table>
+<thead><tr><th>消費タイミング</th><th>消費数</th><th>発動効果</th></tr></thead>
+<tbody>
+<tr>
+<td>マスタリースキル or 究極スキルで<strong>回復</strong>したとき</td>
+<td><span class="tag tag-green">2個</span></td>
+<td><strong>滋養の種</strong> — 味方のHPを追加回復</td>
+</tr>
+<tr>
+<td>マスタリースキル or 究極スキルで<strong>ダメージ</strong>を与えたとき</td>
+<td><span class="tag tag-green">2個</span></td>
+<td><strong>荒野の種</strong> — 敵にダメージ</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <!-- 05 STALKS -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">05</span>
-      <h2>花の苗について</h2>
-    </div>
+<!-- 05 STALKS -->
+<section>
+<div class="section-header">
+<span class="section-num">05</span>
+<h2>花の苗について</h2>
+</div>
 
-    <p>花の苗は<span class="hl">45秒ごとに1つ自動生成</span>されるクラスメカニズムです。アビリティ「花の輪舞」を取ることで解禁されます。<br>3種類が<span class="hl">決まった順番で循環</span>し、それぞれ異なる強化効果をスキルに付与します。</p>
+<p>花の苗は<span class="hl">45秒ごとに1つ自動生成</span>されるクラスメカニズムです。アビリティ「花の輪舞」を取ることで解禁されます。<br>3種類が<span class="hl">決まった順番で循環</span>し、それぞれ異なる強化効果をスキルに付与します。</p>
 
-    <div class="notice">
-      <span class="notice-icon">💡</span>
-      <span>花の苗は蒼月の祈り以外は<strong>マスタリースキルであれば何にでも消費します。</strong><br>次に何の苗が来るか常に把握しておき、合わせる事で効率の良いスキルを使う習慣をつけましょう。</span>
-    </div>
+<div class="notice">
+<span class="notice-icon">💡</span>
+<span>花の苗は蒼月の祈り以外は<strong>マスタリースキルであれば何にでも消費します。</strong><br>次に何の苗が来るか常に把握しておき、合わせる事で効率の良いスキルを使う習慣をつけましょう。</span>
+</div>
 
-    <div class="stalk-grid">
-      <div class="stalk-card s-crimson">
-        <div class="stalk-header">
-          <div class="stalk-icon si-crimson">🔴</div>
-          <div>
-            <div class="stalk-name n-crimson">紅き蓮</div>
-            <div class="stalk-order">1番目 / 45秒ごと</div>
-          </div>
-        </div>
-        <div class="stalk-desc">次に使うマスタリースキルのクールダウンを<br><strong style="color:#f08070;">50%短縮</strong>。任意のマスタリースキルで発動。</div>
-        <div class="stalk-tip">▶ CDが長いマスタリースキルに合わせると最も効果的。スキル回転が苦しいときの立て直しにも有効です。</div>
-      </div>
+<div class="stalk-grid">
+<div class="stalk-card s-crimson">
+<div class="stalk-header">
+<div class="stalk-icon si-crimson">🔴</div>
+<div>
+<div class="stalk-name n-crimson">紅き蓮</div>
+<div class="stalk-order">1番目 / 45秒ごと</div>
+</div>
+</div>
+<div class="stalk-desc">次に使うマスタリースキルのクールダウンを<br><strong style="color:#f08070;">50%短縮</strong>。任意のマスタリースキルで発動。</div>
+<div class="stalk-tip">▶ CDが長いマスタリースキルに合わせると最も効果的。スキル回転が苦しいときの立て直しにも有効です。</div>
+</div>
 
-      <div class="stalk-card s-gold">
-        <div class="stalk-header">
-          <div class="stalk-icon si-gold">🟡</div>
-          <div>
-            <div class="stalk-name n-gold">黄金の祈り</div>
-            <div class="stalk-order">2番目 / 45秒ごと</div>
-          </div>
-        </div>
-        <div class="stalk-desc">次にマスタリースキルを使用すると<strong style="color:var(--gold-light);">自身の回復量+20%（10秒間）</strong>を付与。</div>
-        <div class="stalk-tip">▶ 使用するマスタリースキルに決まりはなく、バフ効果も持続10秒の物なので適当に発動して良い。</div>
-      </div>
+<div class="stalk-card s-gold">
+<div class="stalk-header">
+<div class="stalk-icon si-gold">🟡</div>
+<div>
+<div class="stalk-name n-gold">黄金の祈り</div>
+<div class="stalk-order">2番目 / 45秒ごと</div>
+</div>
+</div>
+<div class="stalk-desc">次にマスタリースキルを使用すると<strong style="color:var(--gold-light);">自身の回復量+20%（10秒間）</strong>を付与。</div>
+<div class="stalk-tip">▶ 使用するマスタリースキルに決まりはなく、バフ効果も持続10秒の物なので適当に発動して良い。</div>
+</div>
 
-      <div class="stalk-card s-moon">
-        <div class="stalk-header">
-          <div class="stalk-icon si-moon">🌙</div>
-          <div>
-            <div class="stalk-name n-moon">蒼月の慰め</div>
-            <div class="stalk-order">3番目 / 45秒ごと</div>
-          </div>
-        </div>
-        <div class="stalk-desc">次の<strong style="color:var(--moon-light);">バイタルブルームがシールド（攻撃力の200%相当）＋被ダメージ10%軽減（8秒）</strong>を付与。</div>
-        <div class="stalk-tip">▶ バイタルブルームを使ったときだけ発動するため温存が可能。これが管理出来れば耐えの幅が広がります。</div>
-      </div>
-    </div>
+<div class="stalk-card s-moon">
+<div class="stalk-header">
+<div class="stalk-icon si-moon">🌙</div>
+<div>
+<div class="stalk-name n-moon">蒼月の慰め</div>
+<div class="stalk-order">3番目 / 45秒ごと</div>
+</div>
+</div>
+<div class="stalk-desc">次の<strong style="color:var(--moon-light);">バイタルブルームがシールド（攻撃力の200%相当）＋被ダメージ10%軽減（8秒）</strong>を付与。</div>
+<div class="stalk-tip">▶ バイタルブルームを使ったときだけ発動するため温存が可能。これが管理出来れば耐えの幅が広がります。</div>
+</div>
+</div>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <!-- 06 ROTATION -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">06</span>
-      <h2>ローテーション・スキル維持の優先度</h2>
-    </div>
+<!-- 06 ROTATION -->
+<section>
+<div class="section-header">
+<span class="section-num">06</span>
+<h2>ローテーション・スキル維持の優先度</h2>
+</div>
 
-    <p>森癒型に決まった順番の「ローテーション」はありません。<br>ですが、<span class="hl">適当に撃つのではなく、状況に応じた使い分け</span>が重要です。以下の順番を意識して動きましょう。</p>
+<p>森癒型に決まった順番の「ローテーション」はありません。<br>ですが、<span class="hl">適当に撃つのではなく、状況に応じた使い分け</span>が重要です。以下の順番を意識して動きましょう。</p>
 
-    <div class="rot-step">
-      <div class="rot-num">1</div>
-      <div>
-        <div class="rot-title">イマジン — バフ系を味方のバーストに合わせて使う</div>
-        <div class="rot-detail">基本的にバフ系イマジンを付けます。そのため適当に打つのではなく、味方のバーストに合わせて使えるとより効果的です。</div>
-      </div>
-    </div>
-    <div class="rot-step">
-      <div class="rot-num">2</div>
-      <div>
-        <div class="rot-title">リジェネレーション — 常に5スタックを維持する</div>
-        <div class="rot-detail">森癒型の最重要タスクです。スタックが切れると回復量が落ち、ダメージ軽減効果も消えます。スタックを切らすことは極力避けましょう。</div>
-      </div>
-    </div>
-    <div class="rot-step">
-      <div class="rot-num">3</div>
-      <div>
-        <div class="rot-title">ファストグロウス — 出来るだけ最速、かつ紅き蓮に合わせる</div>
-        <div class="rot-detail">使用中はスキルCDが短縮され、全体の回転数が上がります。CTが上がったらすぐ使い直す意識を持ちましょう。</div>
-      </div>
-    </div>
-    <div class="rot-step">
-      <div class="rot-num">4</div>
-      <div>
-        <div class="rot-title">ブルームチャージ — 状況に応じて使う</div>
-        <div class="rot-detail">使うと複数の効果が連鎖します：①即時回復 ②敵のスキルを中断、スタン。 ③失ったエネルギーの30%回復 ④次のバイタルブルームが無詠唱化。<br>使い所が多い為、無駄撃ちしないよう気をつけましょう。</div>
-      </div>
-    </div>
-    <div class="rot-step">
-      <div class="rot-num">5</div>
-      <div>
-        <div class="rot-title">バイタルブルーム — ブルームチャージの後や、リジェネレーションのスタック更新に</div>
-        <div class="rot-detail">ブルームチャージ直後の無詠唱化を意識して使えると効率的。使うたびに再生の蕾が1個増えます。<br>蒼月の慰めが出ているときはバイタルブルームを使ってシールドを発動させましょう。</div>
-      </div>
-    </div>
-    <div class="rot-step">
-      <div class="rot-num">6</div>
-      <div>
-        <div class="rot-title">グローヴウィッシュ — 大技に合わせて軽減、瞬間回復に使う</div>
-        <div class="rot-detail">回復しながら全属性耐性を10秒付与。大技前に軽減付与はもちろん、<br>瞬間回復が欲しくなるタイミングに合わせられるかどうかでパーティの生存率を大きく左右します。</div>
-      </div>
-    </div>
+<div class="rot-step">
+<div class="rot-num">1</div>
+<div>
+<div class="rot-title">イマジン — バフ系を味方のバーストに合わせて使う</div>
+<div class="rot-detail">基本的にバフ系イマジンを付けます。そのため適当に打つのではなく、味方のバーストに合わせて使えるとより効果的です。</div>
+</div>
+</div>
+<div class="rot-step">
+<div class="rot-num">2</div>
+<div>
+<div class="rot-title">リジェネレーション — 常に5スタックを維持する</div>
+<div class="rot-detail">森癒型の最重要タスクです。スタックが切れると回復量が落ち、ダメージ軽減効果も消えます。スタックを切らすことは極力避けましょう。</div>
+</div>
+</div>
+<div class="rot-step">
+<div class="rot-num">3</div>
+<div>
+<div class="rot-title">ファストグロウス — 出来るだけ最速、かつ紅き蓮に合わせる</div>
+<div class="rot-detail">使用中はスキルCDが短縮され、全体の回転数が上がります。CTが上がったらすぐ使い直す意識を持ちましょう。</div>
+</div>
+</div>
+<div class="rot-step">
+<div class="rot-num">4</div>
+<div>
+<div class="rot-title">ブルームチャージ — 状況に応じて使う</div>
+<div class="rot-detail">使うと複数の効果が連鎖します：①即時回復 ②敵のスキルを中断、スタン。 ③失ったエネルギーの30%回復 ④次のバイタルブルームが無詠唱化。<br>使い所が多い為、無駄撃ちしないよう気をつけましょう。</div>
+</div>
+</div>
+<div class="rot-step">
+<div class="rot-num">5</div>
+<div>
+<div class="rot-title">バイタルブルーム — ブルームチャージの後や、リジェネレーションのスタック更新に</div>
+<div class="rot-detail">ブルームチャージ直後の無詠唱化を意識して使えると効率的。使うたびに再生の蕾が1個増えます。<br>蒼月の慰めが出ているときはバイタルブルームを使ってシールドを発動させましょう。</div>
+</div>
+</div>
+<div class="rot-step">
+<div class="rot-num">6</div>
+<div>
+<div class="rot-title">グローヴウィッシュ — 大技に合わせて軽減、瞬間回復に使う</div>
+<div class="rot-detail">回復しながら全属性耐性を10秒付与。大技前に軽減付与はもちろん、<br>瞬間回復が欲しくなるタイミングに合わせられるかどうかでパーティの生存率を大きく左右します。</div>
+</div>
+</div>
 
-    <div class="notice">
-      <span class="notice-icon">💡</span>
-      <span><strong>まず意識すること：</strong>「リジェネレーションのスタックを切らさない」と「軽減スキルを適切なタイミングで打つ」<br>この2点だけ守れば、チームの生存率が大幅に上がります。慣れてきたら花の苗のタイミング管理も加えていきましょう。</span>
-    </div>
+<div class="notice">
+<span class="notice-icon">💡</span>
+<span><strong>まず意識すること：</strong>「リジェネレーションのスタックを切らさない」と「軽減スキルを適切なタイミングで打つ」<br>この2点だけ守れば、チームの生存率が大幅に上がります。慣れてきたら花の苗のタイミング管理も加えていきましょう。</span>
+</div>
 
-    <div class="notice danger">
-      <span class="notice-icon">⚠️</span>
-      <span><strong>CCについて：</strong>ブルームチャージによる敵スキルの中断、スタン付与は15秒以内に同一の敵へ3回まで有効で、<br>回数を重ねるごとに効果時間が短くなります。無闇に発動せずタイミングを合わせられるようになりましょう。</span>
-    </div>
-  </section>
+<div class="notice danger">
+<span class="notice-icon">⚠️</span>
+<span><strong>CCについて：</strong>ブルームチャージによる敵スキルの中断、スタン付与は15秒以内に同一の敵へ3回まで有効で、<br>回数を重ねるごとに効果時間が短くなります。無闇に発動せずタイミングを合わせられるようになりましょう。</span>
+</div>
+</section>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <!-- 07 GEARING -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">07</span>
-      <h2>ステータス最適化</h2>
-    </div>
+<!-- 07 GEARING -->
+<section>
+<div class="section-header">
+<span class="section-num">07</span>
+<h2>ステータス最適化</h2>
+</div>
 
-    <p>森癒型に必要なステータスの優先順位は以下の通りです。まずは<span class="hl">器用とファストを中心</span>に揃えていきましょう。</p>
+<p>森癒型に必要なステータスの優先順位は以下の通りです。まずは<span class="hl">器用とファストを中心</span>に揃えていきましょう。</p>
 
-    <h3>ステータス目標値</h3>
-    <div class="card">
-      <div class="stat-row">
-        <div class="stat-label">器用</div>
-        <div class="stat-bar-wrap"><div class="stat-bar bar-kiyou"></div></div>
-        <div class="stat-target">40%</div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">ファスト</div>
-        <div class="stat-bar-wrap"><div class="stat-bar bar-fast"></div></div>
-        <div class="stat-target">30%</div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">万能</div>
-        <div class="stat-bar-wrap"><div class="stat-bar bar-bannnou"></div></div>
-        <div class="stat-target">22%</div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label">会心</div>
-        <div class="stat-bar-wrap"><div class="stat-bar bar-kaishin"></div></div>
-        <div class="stat-target">11%</div>
-      </div>
-      <div style="font-size:13px;color:var(--text-dim);margin-top:10px;">※ セット装備が揃っていない段階は、万能より<strong>ファストを優先</strong>してください。</div>
-    </div>
+<h3>ステータス目標値</h3>
+<div class="card">
+<div class="stat-row">
+<div class="stat-label">器用</div>
+<div class="stat-bar-wrap"><div class="stat-bar bar-kiyou"></div></div>
+<div class="stat-target">40%</div>
+</div>
+<div class="stat-row">
+<div class="stat-label">ファスト</div>
+<div class="stat-bar-wrap"><div class="stat-bar bar-fast"></div></div>
+<div class="stat-target">30%</div>
+</div>
+<div class="stat-row">
+<div class="stat-label">万能</div>
+<div class="stat-bar-wrap"><div class="stat-bar bar-bannnou"></div></div>
+<div class="stat-target">22%</div>
+</div>
+<div class="stat-row">
+<div class="stat-label">会心</div>
+<div class="stat-bar-wrap"><div class="stat-bar bar-kaishin"></div></div>
+<div class="stat-target">11%</div>
+</div>
+<div style="font-size:13px;color:var(--text-dim);margin-top:10px;">※ セット装備が揃っていない段階は、万能より<strong>ファストを優先</strong>してください。</div>
+</div>
 
-    <h3>各ステータスの役割</h3>
-    <div class="two-col">
-      <div class="card">
-        <div style="font-weight:700;color:var(--green-glow);margin-bottom:8px;font-size:15px;">器用（最重要）</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.75;">全ての回復スキルの回復量を直接増加させます。森癒型の根幹ステータスです。</div>
-      </div>
-      <div class="card">
-        <div style="font-weight:700;color:var(--green-light);margin-bottom:8px;font-size:15px;">ファスト（第2優先）</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.75;">エネルギー回復速度・詠唱速度・攻撃速度をまとめて改善。リジェネレーションの回復頻度にも関係するため、毎秒回復量（HPS）が向上します。</div>
-      </div>
-      <div class="card">
-        <div style="font-weight:700;color:var(--moon-light);margin-bottom:8px;font-size:15px;">万能（第3優先）</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.75;">回復量とダメージ軽減を同時に強化。器用とファストの変換効率が悪くなる数値まで上がったら万能を上げるようにしましょう。</div>
-      </div>
-      <div class="card">
-        <div style="font-weight:700;color:var(--gold-light);margin-bottom:8px;font-size:15px;">会心（補助）</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.75;">回復スキルにも会心が発生します。瞬間的に大きな回復が出せますが、安定性は他のステータスより低いため補助的に積む程度で十分です。</div>
-      </div>
-    </div>
+<h3>各ステータスの役割</h3>
+<div class="two-col">
+<div class="card">
+<div style="font-weight:700;color:var(--green-glow);margin-bottom:8px;font-size:15px;">器用（最重要）</div>
+<div style="font-size:14px;color:var(--text-muted);line-height:1.75;">全ての回復スキルの回復量を直接増加させます。森癒型の根幹ステータスです。</div>
+</div>
+<div class="card">
+<div style="font-weight:700;color:var(--green-light);margin-bottom:8px;font-size:15px;">ファスト（第2優先）</div>
+<div style="font-size:14px;color:var(--text-muted);line-height:1.75;">エネルギー回復速度・詠唱速度・攻撃速度をまとめて改善。リジェネレーションの回復頻度にも関係するため、毎秒回復量（HPS）が向上します。</div>
+</div>
+<div class="card">
+<div style="font-weight:700;color:var(--moon-light);margin-bottom:8px;font-size:15px;">万能（第3優先）</div>
+<div style="font-size:14px;color:var(--text-muted);line-height:1.75;">回復量とダメージ軽減を同時に強化。器用とファストの変換効率が悪くなる数値まで上がったら万能を上げるようにしましょう。</div>
+</div>
+<div class="card">
+<div style="font-weight:700;color:var(--gold-light);margin-bottom:8px;font-size:15px;">会心（補助）</div>
+<div style="font-size:14px;color:var(--text-muted);line-height:1.75;">回復スキルにも会心が発生します。瞬間的に大きな回復が出せますが、安定性は他のステータスより低いため補助的に積む程度で十分です。</div>
+</div>
+</div>
 
-    <h3>セット装備のボーナス効果（セット装備については海外サイトより引用）</h3>
-    <p style="font-size:15px;">S2では全6部位（Genesis Spellbinder系）のセット装備を集めることを目標にしましょう。取得優先はブレスレットR→L→手袋→兜→防具→靴の順です。</p>
-    <div class="set-card">
-      <div class="set-header">
-        <span class="set-count">2セット</span>
-        <span class="set-name">スプリング・ブリーズ</span>
-      </div>
-      <div class="set-effect">回復スキルを使うたびに対象へスタックを付与：<strong>MaxHP+2.5%（10秒）、最大5スタック。</strong><br><span style="font-size:13px;color:var(--text-dim);">▶ 全スタックが揃うとパーティ全体のHPが12.5%増加します。切れないよう維持し続けましょう。</span></div>
-    </div>
-    <div class="set-card">
-      <div class="set-header">
-        <span class="set-count">4セット</span>
-        <span class="set-name">フルブルーム</span>
-      </div>
-      <div class="set-effect">スタックが5つ積まれた状態で直接回復スキルを使うと「フルブルーム」に変換<br><strong>ATKの1200%相当のシールドを即時付与 ＋ インスピレーション効果+20%（10秒）。</strong><br><span style="font-size:13px;color:var(--text-dim);">▶ 大ダメージギミック直前や、チームバフが最も効果的なタイミングで意図的に発動させることが上位プレイの鍵です。</span></div>
-    </div>
-  </section>
+<h3>セット装備のボーナス効果（セット装備については海外サイトより引用）</h3>
+<p style="font-size:15px;">S2では全6部位（Genesis Spellbinder系）のセット装備を集めることを目標にしましょう。取得優先はブレスレットR→L→手袋→兜→防具→靴の順です。</p>
+<div class="set-card">
+<div class="set-header">
+<span class="set-count">2セット</span>
+<span class="set-name">スプリング・ブリーズ</span>
+</div>
+<div class="set-effect">回復スキルを使うたびに対象へスタックを付与：<strong>MaxHP+2.5%（10秒）、最大5スタック。</strong><br><span style="font-size:13px;color:var(--text-dim);">▶ 全スタックが揃うとパーティ全体のHPが12.5%増加します。切れないよう維持し続けましょう。</span></div>
+</div>
+<div class="set-card">
+<div class="set-header">
+<span class="set-count">4セット</span>
+<span class="set-name">フルブルーム</span>
+</div>
+<div class="set-effect">スタックが5つ積まれた状態で直接回復スキルを使うと「フルブルーム」に変換<br><strong>ATKの1200%相当のシールドを即時付与 ＋ インスピレーション効果+20%（10秒）。</strong><br><span style="font-size:13px;color:var(--text-dim);">▶ 大ダメージギミック直前や、チームバフが最も効果的なタイミングで意図的に発動させることが上位プレイの鍵です。</span></div>
+</div>
+</section>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <!-- 08 MODULES -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">08</span>
-      <h2>モジュール優先度</h2>
-    </div>
+<!-- 08 MODULES -->
+<section>
+<div class="section-header">
+<span class="section-num">08</span>
+<h2>モジュール優先度</h2>
+</div>
 
-    <p>モジュールは同時に最大4つ装備できます。以下の優先順位で揃えていきましょう。</p>
+<p>モジュールは同時に最大4つ装備できます。以下の優先順位で揃えていきましょう。</p>
 
-    <ul class="priority-list">
-      <li>
-        <div class="pri-rank pr-1">1</div>
-        <div>
-          <div class="pri-name">極・HP変動</div>
-          <div class="pri-reason">HPが増減するたびに最も高いステータスを10%増加（5秒）。回復スキルを使うたびにほぼ確実に発動するため、非常に安定して効果が乗ります。</div>
-        </div>
-      </li>
-      <li>
-        <div class="pri-rank pr-2">2</div>
-        <div>
-          <div class="pri-name">極・幸運会心</div>
-          <div class="pri-reason">PT全体の幸運ダメージと会心ダメージを底上げ。PTメンバーに付けている人がいないなら優先度が上がる。</div>
-        </div>
-      </li>
-      <li>
-        <div class="pri-rank pr-3">3</div>
-        <div>
-          <div class="pri-name">マスタリー回復強化</div>
-          <div class="pri-reason">マスタリースキルの回復量を直接強化。シンプルに回復量が上がる汎用モジュール。上記2つが揃うまでの代替としても優秀。</div>
-        </div>
-      </li>
-      <li>
-        <div class="pri-rank pr-4">4</div>
-        <div>
-          <div class="pri-name">集中・詠唱</div>
-          <div class="pri-reason">詠唱速度を増加。バイタルブルーム・グローヴウィッシュを素早く使えるようになりスキル回しが安定するかも。</div>
-        </div>
-      </li>
-      <li>
-        <div class="pri-rank pr-5">5</div>
-        <div>
-          <div class="pri-name">極・HP凝縮</div>
-          <div class="pri-reason">自分のHPが50%以上のときに回復量増加。安定して自分のHPを保てる森癒型と相性が良い。限界まで回復力を上げたい人向け。</div>
-        </div>
-      </li>
-    </ul>
-  </section>
+<ul class="priority-list">
+<li>
+<div class="pri-rank pr-1">1</div>
+<div>
+<div class="pri-name">極・HP変動</div>
+<div class="pri-reason">HPが増減するたびに最も高いステータスを10%増加（5秒）。回復スキルを使うたびにほぼ確実に発動するため、非常に安定して効果が乗ります。</div>
+</div>
+</li>
+<li>
+<div class="pri-rank pr-2">2</div>
+<div>
+<div class="pri-name">極・幸運会心</div>
+<div class="pri-reason">PT全体の幸運ダメージと会心ダメージを底上げ。PTメンバーに付けている人がいないなら優先度が上がる。</div>
+</div>
+</li>
+<li>
+<div class="pri-rank pr-3">3</div>
+<div>
+<div class="pri-name">マスタリー回復強化</div>
+<div class="pri-reason">マスタリースキルの回復量を直接強化。シンプルに回復量が上がる汎用モジュール。上記2つが揃うまでの代替としても優秀。</div>
+</div>
+</li>
+<li>
+<div class="pri-rank pr-4">4</div>
+<div>
+<div class="pri-name">集中・詠唱</div>
+<div class="pri-reason">詠唱速度を増加。バイタルブルーム・グローヴウィッシュを素早く使えるようになりスキル回しが安定するかも。</div>
+</div>
+</li>
+<li>
+<div class="pri-rank pr-5">5</div>
+<div>
+<div class="pri-name">極・HP凝縮</div>
+<div class="pri-reason">自分のHPが50%以上のときに回復量増加。安定して自分のHPを保てる森癒型と相性が良い。限界まで回復力を上げたい人向け。</div>
+</div>
+</li>
+</ul>
+</section>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <!-- 09 EMBLEM -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">09</span>
-      <h2>潜在心相晶について</h2>
-    </div>
+<!-- 09 EMBLEM -->
+<section>
+<div class="section-header">
+<span class="section-num">09</span>
+<h2>潜在心相晶について</h2>
+</div>
 
-    <p>基本的には<span class="hl">無限思考</span>を使用します。タンクの方が使用していない場合は、<span class="hl">寂滅の夢</span>を使用することもあります。</p>
+<p>基本的には<span class="hl">無限思考</span>を使用します。タンクの方が使用していない場合は、<span class="hl">寂滅の夢</span>を使用することもあります。</p>
 
-    <div class="ep-branch">
-      <div class="ep-branch-title">潜在心相晶</div>
-      <div class="ep-node">
-        <span class="ep-icon">🔷</span>
-        <div>
-          <div class="ep-name">極性 X3 G10</div>
-          <div class="ep-effect">知力+75 / 知力+2%。基礎値の強化。</div>
-        </div>
-      </div>
-      <div class="ep-node">
-        <span class="ep-icon">🛡️</span>
-        <div>
-          <div class="ep-name">恒常性 ×5 G10</div>
-          <div class="ep-effect">MaxHP+2000。受けるダメージが現在HPを超える場合、<br>そのダメージを35%軽減（30秒に1回）。即死防止として強力。</div>
-        </div>
-      </div>
-      <div class="ep-node">
-        <span class="ep-icon">🌿</span>
-        <div>
-          <div class="ep-name">ヴァーダントオラクル ×8 G10</div>
-          <div class="ep-effect">ブルームチャージ使用時にスーパーアーマー5秒付与。<br>ブルームチャージの夢界ダメージ+100%・CC時間+1.5秒。</div>
-        </div>
-      </div>
-
-
-      <div class="ep-node">
-        <span class="ep-icon">🔷</span>
-        <div>
-          <div class="ep-name">極性 ×7 G10</div>
-          <div class="ep-effect">器用の獲得量+10%（幸運-6%）。<br>器用依存のこのスペックには実質的なステータス強化になります。</div>
-        </div>
-      </div>
-      <div class="ep-node">
-        <span class="ep-icon">🌸</span>
-        <div>
-          <div class="ep-name">ヴァーダントオラクル・恒常性 ×1 G10</div>
-          <div class="ep-effect">余剰回復をシールドに変換（MaxHPの18%まで、10秒）。<br>自身のHPが満タンでも回復が無駄になりません。</div>
-        </div>
-      </div>
-      <div class="ep-node">
-        <span class="ep-icon">⚡</span>
-        <div>
-          <div class="ep-name">ヴァーダントオラクル ×6 G10</div>
-          <div class="ep-effect">ネイチャーワードのバリア量＋50％、幸運または会心1％につき、<br>さらに＋1％を追加する。ネイチャーワードは5％の全属性ダメージ軽減を付与する。持続8秒。</div>
-        </div>
-      </div>
+<div class="ep-branch">
+<div class="ep-branch-title">潜在心相晶</div>
+<div class="ep-node">
+<span class="ep-icon">🔷</span>
+<div>
+<div class="ep-name">極性 X3 G10</div>
+<div class="ep-effect">知力+75 / 知力+2%。基礎値の強化。</div>
+</div>
+</div>
+<div class="ep-node">
+<span class="ep-icon">🛡️</span>
+<div>
+<div class="ep-name">恒常性 ×5 G10</div>
+<div class="ep-effect">MaxHP+2000。受けるダメージが現在HPを超える場合、<br>そのダメージを35%軽減（30秒に1回）。即死防止として強力。</div>
+</div>
+</div>
+<div class="ep-node">
+<span class="ep-icon">🌿</span>
+<div>
+<div class="ep-name">ヴァーダントオラクル ×8 G10</div>
+<div class="ep-effect">ブルームチャージ使用時にスーパーアーマー5秒付与。<br>ブルームチャージの夢界ダメージ+100%・CC時間+1.5秒。</div>
+</div>
+</div>
 
 
-      <div class="ep-node">
-        <span class="ep-icon">🔷</span>
-        <div>
-          <div class="ep-name">恒常性 ×1 G10</div>
-          <div class="ep-effect">全属性+212。属性ダメージへの耐性を底上げ。</div>
-        </div>
-      </div>
-      <div class="ep-node">
-        <span class="ep-icon">🛡️</span>
-        <div>
-          <div class="ep-name">恒常性 ×4 G10</div>
-          <div class="ep-effect">MaxHP+6000 / MaxHP+1.5%。生存性の底上げ。</div>
-        </div>
-      </div>
-      <div class="ep-node">
-        <span class="ep-icon">⏱️</span>
-        <div>
-          <div class="ep-name">時の秘薬 / 瞬間ブレス</div>
-          <div class="ep-effect">最終選択ノード。コンテンツに応じて選択。</div>
-        </div>
-      </div>
-      <div class="ep-node">
-        <span class="ep-icon">🎵</span>
-        <div>
-          <div class="ep-name">終盤速唱</div>
-          <div class="ep-effect">強力な効果を持つ最終取得ノード。</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="ep-node">
+<span class="ep-icon">🔷</span>
+<div>
+<div class="ep-name">極性 ×7 G10</div>
+<div class="ep-effect">器用の獲得量+10%（幸運-6%）。<br>器用依存のこのスペックには実質的なステータス強化になります。</div>
+</div>
+</div>
+<div class="ep-node">
+<span class="ep-icon">🌸</span>
+<div>
+<div class="ep-name">ヴァーダントオラクル・恒常性 ×1 G10</div>
+<div class="ep-effect">余剰回復をシールドに変換（MaxHPの18%まで、10秒）。<br>自身のHPが満タンでも回復が無駄になりません。</div>
+</div>
+</div>
+<div class="ep-node">
+<span class="ep-icon">⚡</span>
+<div>
+<div class="ep-name">ヴァーダントオラクル ×6 G10</div>
+<div class="ep-effect">ネイチャーワードのバリア量＋50％、幸運または会心1％につき、<br>さらに＋1％を追加する。ネイチャーワードは5％の全属性ダメージ軽減を付与する。持続8秒。</div>
+</div>
+</div>
 
-  <div class="divider"><span>✦</span></div>
 
-  <!-- 10 IMAGINES -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">10</span>
-      <h2>イマジンについて</h2>
-    </div>
+<div class="ep-node">
+<span class="ep-icon">🔷</span>
+<div>
+<div class="ep-name">恒常性 ×1 G10</div>
+<div class="ep-effect">全属性+212。属性ダメージへの耐性を底上げ。</div>
+</div>
+</div>
+<div class="ep-node">
+<span class="ep-icon">🛡️</span>
+<div>
+<div class="ep-name">恒常性 ×4 G10</div>
+<div class="ep-effect">MaxHP+6000 / MaxHP+1.5%。生存性の底上げ。</div>
+</div>
+</div>
+<div class="ep-node">
+<span class="ep-icon">⏱️</span>
+<div>
+<div class="ep-name">時の秘薬 / 瞬間ブレス</div>
+<div class="ep-effect">最終選択ノード。コンテンツに応じて選択。</div>
+</div>
+</div>
+<div class="ep-node">
+<span class="ep-icon">🎵</span>
+<div>
+<div class="ep-name">終盤速唱</div>
+<div class="ep-effect">強力な効果を持つ最終取得ノード。</div>
+</div>
+</div>
+</div>
+</section>
 
-    
-    <p>森癒型が使用するイマジンは基本的に味方をバフする、敵にデバフを与える物が優先です。<br><span class="hl">故に紫イマジンだけでは少し厳しいことも。</span>。以下の優先度で取得を目指しましょう。</p>
+<div class="divider"><span>✦</span></div>
 
-    <div class="notice danger">
-      <span class="notice-icon">⚠️</span>
-      <span><strong>発動制限デバフに注意：</strong> ティナ・バジリスク・アルーナは使用後60秒間、同じ効果を受け付けなくなります。<br>パーティ内で同じイマジンを持つ人がいる場合、無駄撃ちしないようデバフアイコンには気を配りましょう。</span>
-    </div>
+<!-- 10 IMAGINES -->
+<section>
+<div class="section-header">
+<span class="section-num">10</span>
+<h2>イマジンについて</h2>
+</div>
 
-    <div class="imagine-card">
-      <div class="im-rank">S</div>
-      <div>
-        <div class="im-name">ティナ</div>
-        <div class="im-effect">周囲10人のスキルCDを20秒間加速。スキル回転が上がり、回復量の底上げにもなります。</div>
-        <div class="im-tip">▶ 味方のバーストに合わせて使用出来るとPT全体のDPSを劇的に上昇します。出来るならバーストに合わせましょう。</div>
-      </div>
-    </div>
 
-    <div class="imagine-card">
-      <div class="im-rank">S</div>
-      <div>
-        <div class="im-name">バジリスク</div>
-        <div class="im-effect">使用後10秒間、自分と周囲10人に全属性ボーナスを付与。攻撃・防御どちらにも有用な汎用バフ。</div>
-        <div class="im-tip">▶ ティナと組み合わせると非常に強力。両方が同じ凸状況の場合、ティナのCT上がりが遅れる為、タイミングを合わせるよう意識しましょう。</div>
-      </div>
-    </div>
+<p>森癒型が使用するイマジンは基本的に味方をバフする、敵にデバフを与える物が優先です。<br><span class="hl">故に紫イマジンだけでは少し厳しいことも。</span>。以下の優先度で取得を目指しましょう。</p>
 
-    <div class="imagine-card">
-      <div class="im-rank">A</div>
-      <div>
-        <div class="im-name">ヒグマ</div>
-        <div class="im-effect">チームのATK・MATKを一定時間増加（自分には2倍の効果）。シンプルなチームバフとして使いやすい。</div>
-        <div class="im-tip">▶ 森癒型自身にはパッシブもアクティブもほぼ効果がないですが、バフ効果自体は強力です。</div>
-      </div>
-    </div>
+<div class="notice danger">
+<span class="notice-icon">⚠️</span>
+<span><strong>発動制限デバフに注意：</strong> ティナ・バジリスク・アルーナは使用後60秒間、同じ効果を受け付けなくなります。<br>パーティ内で同じイマジンを持つ人がいる場合、無駄撃ちしないようデバフアイコンには気を配りましょう。</span>
+</div>
 
-    <div class="imagine-card">
-      <div class="im-rank">A</div>
-      <div>
-        <div class="im-name">ヴェノミーンの巣</div>
-        <div class="im-effect">敵に「弱体化」を8秒付与。弱体中の敵へのダメージが増加（自分は2倍）</div>
-        <div class="im-tip">▶ PTメンバーにバジリスク持ちが既にいる際の選択肢に。</div>
-      </div>
+<div class="imagine-card">
+<div class="im-rank">S</div>
+<div>
+<div class="im-name">ティナ</div>
+<div class="im-effect">周囲10人のスキルCDを20秒間加速。スキル回転が上がり、回復量の底上げにもなります。</div>
+<div class="im-tip">▶ 味方のバーストに合わせて使用出来るとPT全体のDPSを劇的に上昇します。出来るならバーストに合わせましょう。</div>
+</div>
+</div>
+
+<div class="imagine-card">
+<div class="im-rank">S</div>
+<div>
+<div class="im-name">バジリスク</div>
+<div class="im-effect">使用後10秒間、自分と周囲10人に全属性ボーナスを付与。攻撃・防御どちらにも有用な汎用バフ。</div>
+<div class="im-tip">▶ ティナと組み合わせると非常に強力。両方が同じ凸状況の場合、ティナのCT上がりが遅れる為、タイミングを合わせるよう意識しましょう。</div>
+</div>
+</div>
+
+<div class="imagine-card">
+<div class="im-rank">A</div>
+<div>
+<div class="im-name">ヒグマ</div>
+<div class="im-effect">チームのATK・MATKを一定時間増加（自分には2倍の効果）。シンプルなチームバフとして使いやすい。</div>
+<div class="im-tip">▶ 森癒型自身にはパッシブもアクティブもほぼ効果がないですが、バフ効果自体は強力です。</div>
+</div>
+</div>
+
+<div class="imagine-card">
+<div class="im-rank">A</div>
+<div>
+<div class="im-name">ヴェノミーンの巣</div>
+<div class="im-effect">敵に「弱体化」を8秒付与。弱体中の敵へのダメージが増加（自分は2倍）</div>
+<div class="im-tip">▶ PTメンバーにバジリスク持ちが既にいる際の選択肢に。</div>
+</div>
+</div>
+
+<div class="imagine-card">
+<div class="im-rank">B</div>
+<div>
+<div class="im-name">アルーナ</div>
+<div class="im-effect">近くの味方最大4人を蘇生。スキルブロック60秒。</div>
+<div class="im-tip">▶ ロールスキルでの蘇生がある為、普段は使う機会が少なく、必要ならタンクの方に持ってもらうで良いと思いますが、高難易度コンテンツでは活躍する可能性もあります。</div>
+</div>
+</div>
+
+<div class="imagine-card">
+<div class="im-rank">B</div>
+<div>
+<div class="im-name">暗霧銃士隊長</div>
+<div class="im-effect">使用時に範囲攻撃して敵の行動を中断し、回復力上昇。パッシブでも回復量上昇を図れる。</div>
+<div class="im-tip">▶ 回復量の上昇と追加の中断手段を得られるので、金イマジンがない時に頼れる味方その１。</div>
+</div>
     </div>
 
     <div class="imagine-card">
       <div class="im-rank">B</div>
-      <div>
-        <div class="im-name">アルーナ</div>
-        <div class="im-effect">近くの味方最大4人を蘇生。スキルブロック60秒。</div>
-        <div class="im-tip">▶ ロールスキルでの蘇生がある為、普段は使う機会が少なく、必要ならタンクの方に持ってもらうで良いと思いますが、高難易度コンテンツでは活躍する可能性もあります。</div>
-      </div>
-    </div>
-
-    <div class="imagine-card">
-      <div class="im-rank">B</div>
-      <div>
-        <div class="im-name">暗霧銃士隊長</div>
-        <div class="im-effect">使用時に範囲攻撃して敵の行動を中断し、回復力上昇。パッシブでも回復量上昇を図れる。</div>
-        <div class="im-tip">▶ 回復量の上昇と追加の中断手段を得られるので、金イマジンがない時に頼れる味方その１。</div>
-      </div>
-      <div>
-        <div class="im-name">炎のエルダーゴブリン</div>
-        <div class="im-effect">こちらも範囲攻撃と中断持ち。銃士との違いは回復量ではなく、知力の上昇。パッシブでも知力上昇を図れる。</div>
-        <div class="im-tip">▶ 暗霧銃士とほぼ同じ。欠点は微妙のモーションが長いこと。金イマジンがない時に頼れる味方その２。</div>
-      </div>
+<div>
+<div class="im-name">炎のエルダーゴブリン</div>
+<div class="im-effect">こちらも範囲攻撃と中断持ち。銃士との違いは回復量ではなく、知力の上昇。パッシブでも知力上昇を図れる。</div>
+<div class="im-tip">▶ 暗霧銃士とほぼ同じ。欠点は微妙のモーションが長いこと。金イマジンがない時に頼れる味方その２。</div>
+</div>
       
-    </div>
+</div>
 
-    <h3>コンテンツ別おすすめ組み合わせ</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>状況</th><th>おすすめ</th><th>理由</th></tr></thead>
-        <tbody>
-          <tr><td>基本構成</td><td>ティナ ＋ バジリスク / ヒグマ / ヴェノミーンの巣</td><td>汎用性が高くどんな場面でも活躍</td></tr>
-          <tr><td>無課金</td><td>暗霧銃士隊長 ＋ 炎のエルダーゴブリン</td><td>入手しやすく回復量の底上げに直結</td></tr>
-          <tr><td>道中有能を目指すなら</td><td>ティナ ＋ フロストオーガ / サンダーオーガ</td><td>道中はバフよりも敵を拘束する事に特化した方が有用なことも。</td></tr>
-          <tr><td>高難易度・蘇生が必要</td><td>ティナ ＋ アルーナ</td><td>チームの生存率を最優先に確保</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+<h3>コンテンツ別おすすめ組み合わせ</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>状況</th><th>おすすめ</th><th>理由</th></tr></thead>
+<tbody>
+<tr><td>基本構成</td><td>ティナ ＋ バジリスク / ヒグマ / ヴェノミーンの巣</td><td>汎用性が高くどんな場面でも活躍</td></tr>
+<tr><td>無課金</td><td>暗霧銃士隊長 ＋ 炎のエルダーゴブリン</td><td>入手しやすく回復量の底上げに直結</td></tr>
+<tr><td>道中有能を目指すなら</td><td>ティナ ＋ フロストオーガ / サンダーオーガ</td><td>道中はバフよりも敵を拘束する事に特化した方が有用なことも。</td></tr>
+<tr><td>高難易度・蘇生が必要</td><td>ティナ ＋ アルーナ</td><td>チームの生存率を最優先に確保</td></tr>
+</tbody>
+</table>
+</div>
+</section>
 
-  <div class="divider"><span>✦</span></div>
+<div class="divider"><span>✦</span></div>
 
-  <section>
-    <div class="section-header">
-      <span class="section-num">11</span>
-      <h2>立ち回りについて</h2>
-    </div>
-    <p>ここまで読んだなら何をすべきか、もうお分かりですね？</p>
-    <p><s>リジェネレーションを5スタック維持できるようスキルを打ち、棒立ちしておくだけ</s></p>
-    <p>違います。スキル回しが楽だからこそ出来る事が多くあります。</p>
+<section>
+<div class="section-header">
+<span class="section-num">11</span>
+<h2>立ち回りについて</h2>
+</div>
+<p>ここまで読んだなら何をすべきか、もうお分かりですね？</p>
+<p><s>リジェネレーションを5スタック維持できるようスキルを打ち、棒立ちしておくだけ</s></p>
+<p>違います。スキル回しが楽だからこそ出来る事が多くあります。</p>
     <p>ギミック処理は当然のこと、味方へのバリア・軽減付与、<br>ブルームチャージによる敵へのスタン、ロールスキルによる沈黙、<br>リジェネレーションによる耐久力を活かし集敵など、<br>アタッカーが快適に敵を攻撃できる環境を作る事こそが森癒型の見せ場と言えるでしょう。</p>
-  </section>
+    <p>ギミック処理は当然のこと、味方へのバリア・軽減付与、<br>ブルームチャージによる敵へのスタン、ロールスキルによる沈黙、<br>リジェネレーションによる耐久力を活かし集敵など、<br>アタッカーが快適に敵を攻撃できる環境を作る事こそが森癒型の見せ場と言えるでしょう。<br>具体例は以下の通りです。</p>
 
-  <div class="divider"><span>✦</span></div>
-
-  <!-- 12 FAQ -->
-  <section>
-    <div class="section-header">
-      <span class="section-num">12</span>
-      <h2>Q&amp;A</h2>
+    <h3>道中・集団戦</h3>
+    <p>敵が複数いる場面では、まず<span class="hl">ブルームチャージによるスタン</span>と<span class="hl">ロールスキルの沈黙</span>で敵の行動そのものを止めにいきましょう。<br>この2つの制限が切れた後は、敵の攻撃が通り始めるタイミングです。<br>ここから先は<span class="hl">ウルトスキル（深葉ブルームサークル）によるダメージ軽減</span>、<span class="hl">グローヴウィッシュによる軽減・瞬間回復</span><br><span class="hl">ロールスキルのバリア付与</span>を駆使し、味方を生き残らせる事を意識しましょう。<br>スタン耐性が付いてブルームチャージでスタンが入らなくなった後は適当に打つのではなく、<br><span class="hl">被弾のタイミングに合わせて打つ</span>ことで瞬間回復としての価値を最大化できます。</p>
+    <div style="font-size: 13px; color: var(--text-muted); line-height: 1.7; padding: 14px 18px; background: rgba(111,223,154,0.05); border-left: 4px solid var(--green-accent); margin-bottom: 14px;">
+      <div style="font-size: 13px; color: var(--green-glow); letter-spacing: 2px; margin-bottom: 10px; font-weight: 700;">筆者のスキル回し例</div>
+      <ol style="list-style: none; padding: 0; margin: 0; counter-reset: step;">
+        <li style="display: flex; gap: 12px; padding: 6px 0; counter-increment: step;">
+          <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(111,223,154,0.15); color: var(--green-glow); font-family: 'Cinzel', serif; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 700;">1</span>
+          <span><span style="color: var(--green-glow);">イマジン2種</span> を発動</span>
+        </li>
+        <li style="display: flex; gap: 12px; padding: 6px 0;">
+          <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(111,223,154,0.15); color: var(--green-glow); font-family: 'Cinzel', serif; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 700;">2</span>
+          <span>（接近して <span style="color: var(--green-glow);">ブルームチャージ</span> → 回避で一旦離れて <span style="color: var(--green-glow);">バイタルブルーム</span>） × 2〜3回</span>
+        </li>
+        <li style="display: flex; gap: 12px; padding: 6px 0;">
+          <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(111,223,154,0.15); color: var(--green-glow); font-family: 'Cinzel', serif; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 700;">3</span>
+          <span><span style="color: var(--green-glow);">ロールスキル</span> で沈黙</span>
+        </li>
+        <li style="display: flex; gap: 12px; padding: 6px 0;">
+          <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(111,223,154,0.15); color: var(--green-glow); font-family: 'Cinzel', serif; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 700;">4</span>
+          <span>沈黙切れ or 効かないなら <span style="color: var(--green-glow);">ウルトスキルでダメージ軽減</span></span>
+        </li>
+        <li style="display: flex; gap: 12px; padding: 6px 0;">
+          <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(111,223,154,0.15); color: var(--green-glow); font-family: 'Cinzel', serif; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 700;">5</span>
+          <span><span style="color: var(--green-glow);">グローヴウィッシュ</span> や <span style="color: var(--green-glow);">ブルームチャージ</span> で瞬間回復出来るよう備える</span>
+        </li>
+      </ol>
     </div>
 
-    <div class="faq-item">
-      <div class="faq-q">リジェネレーションはスキルスロットに必ず入れる必要がありますか？</div>
-      <div class="faq-a">アビリティの「滋養の華」があればバイタルブルームから50％の確率で付与することも可能ですが、スタックが切れた際のリスクが激増します。<br>スロットにリジェネレーションを入れておけば任意のタイミングでスタックを更新できる上、付与が確実になる為、<br>ミスに対する許容範囲が大きく広がります。外すのはギャンブルしたくなった時だけにしましょう。</div>
+    <div style="font-size: 13px; color: var(--text-muted); line-height: 1.75; padding: 14px 18px; background: rgba(200,168,75,0.06); border-left: 4px solid var(--gold); margin-bottom: 14px;">
+      <div style="font-size: 13px; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 10px; font-weight: 700;">注意点・Tips</div>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="display: flex; gap: 10px; padding: 5px 0;">
+          <span style="flex-shrink: 0; color: var(--gold); font-weight: 700;">▶</span>
+          <span>集敵が完了する前に <span style="color: var(--gold-light);">スタン</span> を入れると、敵が散らばった状態で戦うハメになることがある。<br>きちんと集まったのを確認してからスタンを入れるのが基本。<br><span style="color: var(--text-dim);">※ ただし、大ダメージを与えてくる敵など、死人が出そうな相手には集敵完了前に先行して入れるのもアリ。</span></span>
+        </li>
+        <li style="display: flex; gap: 10px; padding: 5px 0;">
+          <span style="flex-shrink: 0; color: var(--gold); font-weight: 700;">▶</span>
+          <span>スタンを入れた敵のヘイトが自分に向いている場合、<span style="color: var(--gold-light);">スタン中に距離を取ることで敵の移動を誘導</span>できる事がある。<br>立ち位置の調整にも使える。</span>
+        </li>
+        <li style="display: flex; gap: 10px; padding: 5px 0;">
+          <span style="flex-shrink: 0; color: var(--gold); font-weight: 700;">▶</span>
+          <span>一連の流れをやりきる前に敵を倒しきれないような高難度コンテンツでは、イマジンに <span style="color: var(--gold-light);">フロストオーガ</span> を採用し、<br>開幕に打つのではなく<span style="color: var(--gold-light);">凍結・ブレイク</span> をスタン切れなどに合わせて重ねる事で拘束時間を延ばす。</span>
+        </li>
+      </ul>
     </div>
 
+    <h3>ボス戦・単体戦</h3>
+    <p>ボス戦ではブルームチャージをエネルギーゲージ回復にも使いますが、<br><span class="hl">被弾直後に素早く回復できるよう出来るだけ無駄打ちしない</span>ことを意識しましょう。<br>頭割りや、絶対に被弾する上に痛い攻撃に対しては、<span class="hl">ウルトスキルによるダメージ軽減やロールスキルのバリア</span><br><span class="hl">グローヴウィッシュの回復</span>が上手く被さるようタイミングを合わせて打つのが理想です。</p>
+</section>
 
-    <div class="faq-item">
-      <div class="faq-q">花言葉は絶対に取るべきですか？</div>
-      <div class="faq-a">必須と言うわけではありません。無くても十分リジェネの回復量は高いです。バイタルブルームをメインヒールとして多用している場合は切る事も考えられます。</div>
-    </div>
+<div class="divider"><span>✦</span></div>
 
-    <div class="faq-item">
-      <div class="faq-q">4セット効果のフルブルームを最大限に活用するには？（セット装備については海外サイトより引用）</div>
-      <div class="faq-a">スプリング・ブリーズを5スタックに積んだ後、大ダメージギミックが来る直前や、<br>チームバフが最も効果的な場面で直接回復スキルを使ってフルブルームに変換します。<br>シールドとインスピレーション強化は10秒しか持続しないため、タイミングを合わせることが重要です。<br>スタックを常に満タンに保ちながら発動タイミングを意識することが上位プレイに直結します。</div>
-    </div>
-  </section>
+<!-- 12 FAQ -->
+<section>
+<div class="section-header">
+<span class="section-num">12</span>
+<h2>Q&amp;A</h2>
+</div>
 
-  <section>
-    <div class="section-header">
-      <span class="section-num">13</span>
-      <h2>最後に</h2>
-    </div>
-    <p>ここまで読んでいただきありがとうございます。</p>
+<div class="faq-item">
+<div class="faq-q">リジェネレーションはスキルスロットに必ず入れる必要がありますか？</div>
+<div class="faq-a">アビリティの「滋養の華」があればバイタルブルームから50％の確率で付与することも可能ですが、スタックが切れた際のリスクが激増します。<br>スロットにリジェネレーションを入れておけば任意のタイミングでスタックを更新できる上、付与が確実になる為、<br>ミスに対する許容範囲が大きく広がります。外すのはギャンブルしたくなった時だけにしましょう。</div>
+</div>
+
+
+<div class="faq-item">
+<div class="faq-q">花言葉は絶対に取るべきですか？</div>
+<div class="faq-a">必須と言うわけではありません。無くても十分リジェネの回復量は高いです。バイタルブルームをメインヒールとして多用している場合は切る事も考えられます。</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">4セット効果のフルブルームを最大限に活用するには？（セット装備については海外サイトより引用）</div>
+<div class="faq-a">スプリング・ブリーズを5スタックに積んだ後、大ダメージギミックが来る直前や、<br>チームバフが最も効果的な場面で直接回復スキルを使ってフルブルームに変換します。<br>シールドとインスピレーション強化は10秒しか持続しないため、タイミングを合わせることが重要です。<br>スタックを常に満タンに保ちながら発動タイミングを意識することが上位プレイに直結します。</div>
+</div>
+</section>
+
+<section>
+<div class="section-header">
+<span class="section-num">13</span>
+<h2>最後に</h2>
+</div>
+<p>ここまで読んでいただきありがとうございます。</p>
     <p>トップページ及び森癒ページに関してですが、これらはただの一般ヒーラーの「狐月」が<br>HTMLの練習がてらエイプリルフールネタ的な意味も込めて作成した物であり、今後本気で更新していくつもりは特にありません。</p>
     <p>その為、他のクラスについても需要があるなら更新されるかもしれない程度の物となりますが、ご了承ください。</p>
-  </section>
+    <p>トップページ及び森癒ページに関してですが、これらはただの一般ヒーラーが<br>HTMLの練習がてら作成した物であり、今後本気で更新していくつもりは特にありません。</p>
+</section>
 
-  <footer>
-    ヴァーダントオラクル 森癒型 ガイド / Written by MoonFox <br>
-  </footer>
+<footer>
+ヴァーダントオラクル 森癒型 ガイド / Written by MoonFox <br>
+</footer>
 
 </div>
 </body>
