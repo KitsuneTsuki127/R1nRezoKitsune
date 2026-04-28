@@ -296,6 +296,133 @@ body.uiu-mode .box b { color: #6080C0; letter-spacing: 1.5px; text-transform: up
 body.uiu-mode #log { color: #C8C8D8; }
 body.uiu-mode #candidates { color: #D8D8E0; font-family: 'Orbitron', monospace; letter-spacing: 1px; }
 body.uiu-mode #distribution { color: #C8C8D8; }
+
+/* ============================================================ */
+/* ===== もちもちモード（黒・青・黄色 / お餅と月）===== */
+/* ============================================================ */
+body.mochi-mode {
+  background:
+    radial-gradient(circle at 75% 18%, rgba(255, 230, 140, 0.22) 0%, rgba(255, 230, 140, 0.08) 18%, transparent 38%),
+    radial-gradient(circle at 25% 90%, rgba(80, 130, 220, 0.18) 0%, transparent 50%),
+    linear-gradient(160deg, #0B1530 0%, #142450 50%, #0B1530 100%);
+  background-attachment: fixed;
+  color: #F5EDD0;
+  font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', sans-serif;
+}
+body.mochi-mode h2 {
+  color: #FFE89C;
+  text-shadow: 0 0 18px rgba(255, 220, 120, 0.7), 0 0 6px rgba(255, 220, 120, 0.5);
+  letter-spacing: 1px;
+}
+
+body.mochi-mode #mode-toggle {
+  background: rgba(20, 36, 80, 0.85);
+  border: 1.5px solid rgba(255, 220, 120, 0.3);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4), 0 0 12px rgba(255, 220, 120, 0.15);
+  backdrop-filter: blur(8px);
+}
+body.mochi-mode #mode-toggle button { color: #B0C4E8; }
+body.mochi-mode #mode-toggle button.active {
+  background: linear-gradient(180deg, #FFE89C 0%, #F5C860 100%);
+  color: #2A2010;
+  box-shadow: 0 0 14px rgba(255, 220, 120, 0.6), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+body.mochi-mode .howto {
+  background: linear-gradient(160deg, rgba(30, 50, 100, 0.85) 0%, rgba(20, 36, 80, 0.85) 100%);
+  border: 1.5px solid rgba(255, 220, 120, 0.25);
+  border-radius: 26px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+body.mochi-mode .howto-title { color: #FFE89C; text-shadow: 0 0 10px rgba(255,220,120,0.5); }
+body.mochi-mode .howto-body { color: #E8E0C0; }
+body.mochi-mode .howto-note { color: #95B0DC; }
+
+body.mochi-mode .label { color: #FFE89C; letter-spacing: 1px; }
+
+/* 「次に入力」= 月 */
+body.mochi-mode #guess {
+  background:
+    radial-gradient(circle at 35% 30%, #FFF8DC 0%, #FFE89C 40%, #F5C860 75%, #D9A640 100%);
+  color: #4A3510;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  border-radius: 50% / 32%;
+  border: none;
+  box-shadow:
+    0 0 60px rgba(255, 220, 120, 0.45),
+    0 0 30px rgba(255, 220, 120, 0.35),
+    0 12px 30px rgba(0,0,0,0.4),
+    inset 0 4px 12px rgba(255,255,255,0.5),
+    inset 0 -6px 14px rgba(180, 130, 50, 0.3);
+  letter-spacing: 12px;
+  padding: 32px 22px;
+}
+
+/* 正解数ボタン = もちもち */
+body.mochi-mode #buttons button {
+  border: none;
+  border-radius: 24px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  padding: 18px 0;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
+}
+body.mochi-mode #buttons button:nth-child(odd) {
+  background: radial-gradient(circle at 35% 25%, #FFFAEC 0%, #FFE89C 55%, #E5B848 100%);
+  color: #4A3510;
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.35),
+    0 0 18px rgba(255, 220, 120, 0.35),
+    inset 0 3px 8px rgba(255,255,255,0.6),
+    inset 0 -4px 10px rgba(180, 130, 50, 0.25);
+}
+body.mochi-mode #buttons button:nth-child(even) {
+  background: radial-gradient(circle at 35% 25%, #B8D0F5 0%, #6088D8 55%, #2A4FA0 100%);
+  color: #0F1A35;
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.4),
+    0 0 18px rgba(80, 130, 220, 0.35),
+    inset 0 3px 8px rgba(255,255,255,0.45),
+    inset 0 -4px 10px rgba(20, 36, 80, 0.4);
+}
+body.mochi-mode #buttons button:hover:not(:disabled) {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.04);
+}
+body.mochi-mode #buttons button:active:not(:disabled) {
+  transform: translateY(2px) scale(0.97);
+}
+body.mochi-mode #buttons button:disabled {
+  opacity: 0.25;
+  background: linear-gradient(180deg, #2A3A5C 0%, #1A2540 100%);
+  color: #4A5575;
+  text-shadow: none;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+  transform: translateY(3px);
+}
+
+body.mochi-mode button[onclick="reset()"] {
+  background: linear-gradient(180deg, rgba(30, 50, 100, 0.9) 0%, rgba(20, 36, 80, 0.9) 100%);
+  color: #FFE89C;
+  border: 1.5px solid rgba(255, 220, 120, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+body.mochi-mode button[onclick="reset()"]:hover {
+  background: linear-gradient(180deg, rgba(40, 60, 120, 0.9) 0%, rgba(30, 46, 100, 0.9) 100%);
+}
+
+body.mochi-mode .box {
+  background: linear-gradient(160deg, rgba(30, 50, 100, 0.7) 0%, rgba(20, 36, 80, 0.7) 100%);
+  border: 1.5px solid rgba(255, 220, 120, 0.2);
+  border-radius: 26px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+body.mochi-mode .box b { color: #FFE89C; letter-spacing: 0.5px; }
+body.mochi-mode #log { color: #E8E0C0; }
+body.mochi-mode #candidates { color: #E8E0C0; letter-spacing: 1px; }
+body.mochi-mode #distribution { color: #E8E0C0; }
 </style>
 </head>
 <body>
@@ -303,6 +430,7 @@ body.uiu-mode #distribution { color: #C8C8D8; }
 <div id="mode-toggle">
   <button id="btn-pastel" class="active">パステル</button>
   <button id="btn-uiu">ういう</button>
+  <button id="btn-mochi">もちもち</button>
 </div>
 
 <h2>🔐 終焉の化身解読</h2>
@@ -348,23 +476,29 @@ function match(a, b){
   return c;
 }
 // ===== モード =====
-let mode = "pastel"; // "pastel" | "uiu"
+let mode = "pastel"; // "pastel" | "uiu" | "mochi"
 function displayCode(code){
   if(mode === "uiu"){
     return code.replaceAll("1", "う").replaceAll("2", "い");
+  }
+  if(mode === "mochi"){
+    return code.replaceAll("1", "も").replaceAll("2", "ち");
   }
   return code;
 }
 function setMode(newMode){
   mode = newMode;
   document.body.classList.toggle("uiu-mode", mode === "uiu");
+  document.body.classList.toggle("mochi-mode", mode === "mochi");
   document.getElementById("btn-pastel").classList.toggle("active", mode === "pastel");
   document.getElementById("btn-uiu").classList.toggle("active", mode === "uiu");
+  document.getElementById("btn-mochi").classList.toggle("active", mode === "mochi");
   update();
   refreshLog();
 }
 document.getElementById("btn-pastel").onclick = () => setMode("pastel");
 document.getElementById("btn-uiu").onclick = () => setMode("uiu");
+document.getElementById("btn-mochi").onclick = () => setMode("mochi");
 
 // ===== 状態 =====
 let candidates, guess, step;
