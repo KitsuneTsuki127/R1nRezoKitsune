@@ -3,593 +3,732 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>終焉の化身解読</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<title>Blue Protocol: Star Resonance — Guide Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Cinzel:wght@400;700;900&family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; }
-body {
-  background: #FFF8F0;
-  color: #4A3F35;
-  font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', 'YuGothic', sans-serif;
-  padding: 20px;
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.7;
-  transition: background 0.4s, color 0.4s;
-}
-h2 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #6B4F35;
-  margin: 0 0 14px;
-  letter-spacing: 0.5px;
-}
+  :root {
+    --bg-deep: #06080e;
+    --bg-dark: #0a0e18;
+    --bg-card: rgba(12, 18, 32, 0.85);
+    --accent-blue: #4a8fe7;
+    --accent-cyan: #5dd6d0;
+    --accent-purple: #8b6fcf;
+    --accent-gold: #c8a84b;
+    --accent-gold-light: #e8cc7a;
+    --green-glow: #6fdf9a;
+    --green-accent: #2d7a4f;
+    --red-accent: #e85a5a;
+    --text-main: #d0d8e8;
+    --text-muted: #6a7a98;
+    --text-dim: #3a4a68;
+    --border: rgba(74, 143, 231, 0.15);
+    --border-hover: rgba(74, 143, 231, 0.4);
+    --glass: rgba(12, 18, 32, 0.7);
+  }
 
-/* ===== モード切替ボタン ===== */
-#mode-toggle {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  display: flex;
-  background: #FFFFFF;
-  border: 1.5px solid #EDDEC8;
-  border-radius: 999px;
-  padding: 3px;
-  z-index: 100;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-#mode-toggle button {
-  border: none;
-  background: transparent;
-  color: #8B6F4A;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.25s;
-}
-#mode-toggle button.active {
-  background: #FFD3C2;
-  color: #8B4530;
-}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-.howto {
-  background: #FFE6EC;
-  border: 1px solid #F5C6D2;
-  border-radius: 16px;
-  padding: 14px 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 0 #F5C6D2;
-}
-.howto-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #8B3D5F;
-  margin-bottom: 6px;
-  letter-spacing: 0.3px;
-}
-.howto-body {
-  font-size: 14px;
-  color: #5C2538;
-  line-height: 2;
-}
-.howto-note {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #A35A78;
-  line-height: 1.6;
-}
+  body {
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-.label {
-  font-size: 13px;
-  color: #8B6F4A;
-  margin-bottom: 6px;
-  margin-top: 14px;
-  font-weight: 500;
-}
-.label:first-of-type { margin-top: 8px; }
+  /* starfield background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 0%, rgba(74,143,231,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(139,111,207,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(93,214,208,0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-#guess {
-  background: #FFE8B0;
-  color: #5C4410;
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 8px;
-  text-align: center;
-  padding: 22px;
-  border-radius: 18px;
-  margin: 6px 0 14px;
-  box-shadow: 0 2px 0 #F0D585;
-}
+  /* subtle grid overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,143,231,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,143,231,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-#buttons {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-#buttons button {
-  flex: 1;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 14px 0;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  font-family: inherit;
-  transition: transform 0.08s ease, opacity 0.15s ease;
-}
-#buttons button:hover:not(:disabled) { opacity: 0.85; }
-#buttons button:active:not(:disabled) { transform: translateY(2px); }
-#buttons button:nth-child(1) { background: #DCC9F0; color: #5B4380; box-shadow: 0 3px 0 #C4ACE4; }
-#buttons button:nth-child(2) { background: #B5E8D5; color: #2D6B5A; box-shadow: 0 3px 0 #8FD9BD; }
-#buttons button:nth-child(3) { background: #FFD3C2; color: #8B4530; box-shadow: 0 3px 0 #F4B59C; }
-#buttons button:nth-child(4) { background: #FFE8B0; color: #5C4410; box-shadow: 0 3px 0 #F0D585; }
-#buttons button:nth-child(5) { background: #FFC9D9; color: #8B3D5F; box-shadow: 0 3px 0 #F4A8BD; }
-#buttons button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: translateY(3px);
-}
+  /* floating particles */
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
 
-button[onclick="reset()"] {
-  background: #FFFFFF;
-  color: #8B6F4A;
-  border: 1.5px solid #EDDEC8;
-  border-radius: 12px;
-  padding: 8px 18px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  margin-bottom: 14px;
-  font-family: inherit;
-  transition: background 0.15s;
-}
-button[onclick="reset()"]:hover { background: #FFFAF0; }
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    animation: drift linear infinite;
+  }
 
-.box {
-  background: #FFFFFF;
-  border: 1px solid #F2E5D2;
-  border-radius: 16px;
-  padding: 14px 18px;
-  margin-top: 12px;
-}
-.box b {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  color: #8B6F4A;
-  margin-bottom: 6px;
-  letter-spacing: 0.3px;
-}
+  @keyframes drift {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+  }
 
-#log { font-size: 13px; color: #4A3F35; min-height: 28px; }
-#log div { padding: 2px 0; }
-#candidates {
-  font-size: 13px;
-  font-family: 'M PLUS Rounded 1c', monospace;
-  color: #4A3F35;
-  word-break: break-all;
-  line-height: 1.9;
-}
-#distribution { font-size: 13px; color: #4A3F35; line-height: 1.9; }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
 
-/* ============================================================ */
-/* ===== ういうモード（メタリック・赤青黒）===== */
-/* ============================================================ */
-body.uiu-mode {
-  background:
-    radial-gradient(circle at 20% 0%, rgba(30, 91, 184, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 100%, rgba(200, 16, 46, 0.15) 0%, transparent 50%),
-    linear-gradient(135deg, #0A0A12 0%, #15151F 100%);
-  background-attachment: fixed;
-  color: #D8D8E0;
-  font-family: 'Orbitron', 'M PLUS Rounded 1c', sans-serif;
-}
-body.uiu-mode h2 {
-  color: #F0F0F8;
-  text-shadow: 0 0 14px rgba(200, 16, 46, 0.6), 0 0 4px rgba(64, 128, 208, 0.4);
-  letter-spacing: 2px;
-  font-weight: 900;
-}
+  /* header */
+  header {
+    text-align: center;
+    padding: 80px 0 60px;
+  }
 
-body.uiu-mode #mode-toggle {
-  background: linear-gradient(180deg, #2A2A38 0%, #0F0F18 100%);
-  border: 1px solid #3A3A4A;
-  box-shadow: 0 0 12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
-}
-body.uiu-mode #mode-toggle button { color: #8888A0; }
-body.uiu-mode #mode-toggle button.active {
-  background: linear-gradient(180deg, #E04050 0%, #B8001E 50%, #8A0015 100%);
-  color: #FFFFFF;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 8px rgba(200,16,46,0.5);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
+  .header-logo {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    border: 1px solid rgba(93,214,208,0.3);
+    padding: 8px 24px;
+    margin-bottom: 32px;
+    background: rgba(93,214,208,0.05);
+  }
 
-body.uiu-mode .howto {
-  background: linear-gradient(135deg, #1A1A28 0%, #0F0F18 100%);
-  border: 1px solid #2A2A38;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
-}
-body.uiu-mode .howto-title { color: #FF6080; text-shadow: 0 0 6px rgba(200,16,46,0.5); }
-body.uiu-mode .howto-body { color: #C8C8D8; }
-body.uiu-mode .howto-note { color: #6080C0; }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(29px, 5vw, 49px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #e0e8f8, #4a8fe7, #8b6fcf, #5dd6d0);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 8s ease infinite;
+  }
 
-body.uiu-mode .label { color: #8090B0; letter-spacing: 1px; text-transform: uppercase; }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 
-body.uiu-mode #guess {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 50%),
-    linear-gradient(135deg, #1F1F2E 0%, #0A0A14 50%, #1F1F2E 100%);
-  color: #FFFFFF;
-  text-shadow:
-    0 0 8px rgba(64, 128, 208, 0.8),
-    0 0 16px rgba(200, 16, 46, 0.4);
-  border: 1px solid #3A3A4A;
-  box-shadow:
-    0 6px 20px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.1),
-    inset 0 -1px 0 rgba(0,0,0,0.5);
-  letter-spacing: 14px;
-  font-family: 'Orbitron', sans-serif;
-}
+  .header-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 4px;
+    margin-top: 16px;
+    text-transform: uppercase;
+  }
 
-body.uiu-mode #buttons button {
-  border: 1px solid rgba(255,255,255,0.1);
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-  box-shadow: 0 4px 0 rgba(0,0,0,0.4), 0 6px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
-}
-body.uiu-mode #buttons button:nth-child(1) {
-  background: linear-gradient(180deg, #4080D0 0%, #1E5BB8 50%, #0F3A85 100%);
-  color: #FFFFFF;
-}
-body.uiu-mode #buttons button:nth-child(2) {
-  background: linear-gradient(180deg, #E04050 0%, #B8001E 50%, #8A0015 100%);
-  color: #FFFFFF;
-}
-body.uiu-mode #buttons button:nth-child(3) {
-  background: linear-gradient(180deg, #4080D0 0%, #1E5BB8 50%, #0F3A85 100%);
-  color: #FFFFFF;
-}
-body.uiu-mode #buttons button:nth-child(4) {
-  background: linear-gradient(180deg, #E04050 0%, #B8001E 50%, #8A0015 100%);
-  color: #FFFFFF;
-}
-body.uiu-mode #buttons button:nth-child(5) {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 40%),
-    linear-gradient(180deg, #FF4060 0%, #C8102E 50%, #800015 100%);
-  color: #FFFFFF;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.4), 0 0 16px rgba(200,16,46,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
-}
-body.uiu-mode #buttons button:disabled {
-  opacity: 0.2;
-  background: linear-gradient(180deg, #2A2A38 0%, #15151F 100%);
-  color: #555566;
-  text-shadow: none;
-  box-shadow: none;
-}
+  .header-line {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-purple), transparent);
+    margin: 32px auto 0;
+  }
 
-body.uiu-mode button[onclick="reset()"] {
-  background: linear-gradient(180deg, #2A2A38 0%, #0F0F18 100%);
-  color: #C8C8D8;
-  border: 1px solid #3A3A4A;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
-  letter-spacing: 1px;
-}
-body.uiu-mode button[onclick="reset()"]:hover {
-  background: linear-gradient(180deg, #3A3A48 0%, #1F1F28 100%);
-}
+  .header-desc {
+    max-width: 560px;
+    margin: 28px auto 0;
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
 
-body.uiu-mode .box {
-  background: linear-gradient(135deg, #15151F 0%, #0A0A12 100%);
-  border: 1px solid #2A2A38;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
-}
-body.uiu-mode .box b { color: #6080C0; letter-spacing: 1.5px; text-transform: uppercase; }
-body.uiu-mode #log { color: #C8C8D8; }
-body.uiu-mode #candidates { color: #D8D8E0; font-family: 'Orbitron', monospace; letter-spacing: 1px; }
-body.uiu-mode #distribution { color: #C8C8D8; }
+  /* section title */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
 
-/* ============================================================ */
-/* ===== もちもちモード（黒・青・黄色 / お餅と月）===== */
-/* ============================================================ */
-body.mochi-mode {
-  background:
-    radial-gradient(circle at 75% 18%, rgba(255, 230, 140, 0.22) 0%, rgba(255, 230, 140, 0.08) 18%, transparent 38%),
-    radial-gradient(circle at 25% 90%, rgba(80, 130, 220, 0.18) 0%, transparent 50%),
-    linear-gradient(160deg, #0B1530 0%, #142450 50%, #0B1530 100%);
-  background-attachment: fixed;
-  color: #F5EDD0;
-  font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', sans-serif;
-}
-body.mochi-mode h2 {
-  color: #FFE89C;
-  text-shadow: 0 0 18px rgba(255, 220, 120, 0.7), 0 0 6px rgba(255, 220, 120, 0.5);
-  letter-spacing: 1px;
-}
+  .section-title::before,
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
 
-body.mochi-mode #mode-toggle {
-  background: rgba(20, 36, 80, 0.85);
-  border: 1.5px solid rgba(255, 220, 120, 0.3);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.4), 0 0 12px rgba(255, 220, 120, 0.15);
-  backdrop-filter: blur(8px);
-}
-body.mochi-mode #mode-toggle button { color: #B0C4E8; }
-body.mochi-mode #mode-toggle button.active {
-  background: linear-gradient(180deg, #FFE89C 0%, #F5C860 100%);
-  color: #2A2010;
-  box-shadow: 0 0 14px rgba(255, 220, 120, 0.6), inset 0 1px 0 rgba(255,255,255,0.5);
-}
+  .section-title h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
 
-body.mochi-mode .howto {
-  background: linear-gradient(160deg, rgba(30, 50, 100, 0.85) 0%, rgba(20, 36, 80, 0.85) 100%);
-  border: 1.5px solid rgba(255, 220, 120, 0.25);
-  border-radius: 26px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-}
-body.mochi-mode .howto-title { color: #FFE89C; text-shadow: 0 0 10px rgba(255,220,120,0.5); }
-body.mochi-mode .howto-body { color: #E8E0C0; }
-body.mochi-mode .howto-note { color: #95B0DC; }
+  /* class grid */
+  .class-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+  }
 
-body.mochi-mode .label { color: #FFE89C; letter-spacing: 1px; }
+  .class-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px 24px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    overflow: hidden;
+  }
 
-/* 「次に入力」= 月 */
-body.mochi-mode #guess {
-  background:
-    radial-gradient(circle at 35% 30%, #FFF8DC 0%, #FFE89C 40%, #F5C860 75%, #D9A640 100%);
-  color: #4A3510;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-  border-radius: 50% / 32%;
-  border: none;
-  box-shadow:
-    0 0 60px rgba(255, 220, 120, 0.45),
-    0 0 30px rgba(255, 220, 120, 0.35),
-    0 12px 30px rgba(0,0,0,0.4),
-    inset 0 4px 12px rgba(255,255,255,0.5),
-    inset 0 -6px 14px rgba(180, 130, 50, 0.3);
-  letter-spacing: 12px;
-  padding: 32px 22px;
-}
+  .class-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--accent-blue));
+    opacity: 0.6;
+    transition: opacity 0.4s;
+  }
 
-/* 正解数ボタン = もちもち */
-body.mochi-mode #buttons button {
-  border: none;
-  border-radius: 24px;
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-weight: 700;
-  padding: 18px 0;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
-}
-body.mochi-mode #buttons button:nth-child(odd) {
-  background: radial-gradient(circle at 35% 25%, #FFFAEC 0%, #FFE89C 55%, #E5B848 100%);
-  color: #4A3510;
-  box-shadow:
-    0 6px 16px rgba(0,0,0,0.35),
-    0 0 18px rgba(255, 220, 120, 0.35),
-    inset 0 3px 8px rgba(255,255,255,0.6),
-    inset 0 -4px 10px rgba(180, 130, 50, 0.25);
-}
-body.mochi-mode #buttons button:nth-child(even) {
-  background: radial-gradient(circle at 35% 25%, #B8D0F5 0%, #6088D8 55%, #2A4FA0 100%);
-  color: #0F1A35;
-  box-shadow:
-    0 6px 16px rgba(0,0,0,0.4),
-    0 0 18px rgba(80, 130, 220, 0.35),
-    inset 0 3px 8px rgba(255,255,255,0.45),
-    inset 0 -4px 10px rgba(20, 36, 80, 0.4);
-}
-body.mochi-mode #buttons button:hover:not(:disabled) {
-  opacity: 1;
-  transform: translateY(-2px) scale(1.04);
-}
-body.mochi-mode #buttons button:active:not(:disabled) {
-  transform: translateY(2px) scale(0.97);
-}
-body.mochi-mode #buttons button:disabled {
-  opacity: 0.25;
-  background: linear-gradient(180deg, #2A3A5C 0%, #1A2540 100%);
-  color: #4A5575;
-  text-shadow: none;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
-  transform: translateY(3px);
-}
+  .class-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, var(--card-glow, rgba(74,143,231,0.06)) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
 
-body.mochi-mode button[onclick="reset()"] {
-  background: linear-gradient(180deg, rgba(30, 50, 100, 0.9) 0%, rgba(20, 36, 80, 0.9) 100%);
-  color: #FFE89C;
-  border: 1.5px solid rgba(255, 220, 120, 0.35);
-  border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
-}
-body.mochi-mode button[onclick="reset()"]:hover {
-  background: linear-gradient(180deg, rgba(40, 60, 120, 0.9) 0%, rgba(30, 46, 100, 0.9) 100%);
-}
+  .class-card:hover {
+    border-color: var(--card-accent, var(--border-hover));
+    transform: translateY(-6px);
+    box-shadow:
+      0 12px 40px rgba(0,0,0,0.4),
+      0 0 30px var(--card-shadow, rgba(74,143,231,0.08));
+  }
 
-body.mochi-mode .box {
-  background: linear-gradient(160deg, rgba(30, 50, 100, 0.7) 0%, rgba(20, 36, 80, 0.7) 100%);
-  border: 1.5px solid rgba(255, 220, 120, 0.2);
-  border-radius: 26px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
-}
-body.mochi-mode .box b { color: #FFE89C; letter-spacing: 0.5px; }
-body.mochi-mode #log { color: #E8E0C0; }
-body.mochi-mode #candidates { color: #E8E0C0; letter-spacing: 1px; }
-body.mochi-mode #distribution { color: #E8E0C0; }
+  .class-card:hover::before { opacity: 1; }
+  .class-card:hover::after { opacity: 1; }
+
+  .class-card:hover .card-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--card-shadow, rgba(74,143,231,0.3));
+  }
+
+  .class-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* card inner */
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    flex-shrink: 0;
+    transition: all 0.4s;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .card-titles { flex: 1; min-width: 0; }
+
+  .card-class-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.3;
+  }
+
+  .card-spec-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--card-accent, var(--accent-blue));
+    margin-top: 2px;
+  }
+
+  .card-role {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .card-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+    border: 1px solid rgba(255,255,255,0.06);
+    letter-spacing: 0.5px;
+  }
+
+  .card-arrow {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--card-accent, var(--accent-blue));
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.4s;
+  }
+
+  /* role-based themes */
+  .role-tank {
+    --card-accent: #4a8fe7;
+    --card-glow: rgba(74,143,231,0.08);
+    --card-shadow: rgba(74,143,231,0.15);
+  }
+  .role-tank .card-icon { background: rgba(74,143,231,0.2); }
+  .role-tank .card-role { background: rgba(74,143,231,0.12); color: #4a8fe7; border: 1px solid rgba(74,143,231,0.25); }
+
+  .role-attacker {
+    --card-accent: #e85a5a;
+    --card-glow: rgba(232,90,90,0.08);
+    --card-shadow: rgba(232,90,90,0.15);
+  }
+  .role-attacker .card-icon { background: rgba(232,90,90,0.15); }
+  .role-attacker .card-role { background: rgba(232,90,90,0.12); color: #e85a5a; border: 1px solid rgba(232,90,90,0.25); }
+
+  .role-healer {
+    --card-accent: #6fdf9a;
+    --card-glow: rgba(111,223,154,0.08);
+    --card-shadow: rgba(111,223,154,0.15);
+  }
+  .role-healer .card-icon { background: rgba(45,122,79,0.25); }
+  .role-healer .card-role { background: rgba(111,223,154,0.12); color: #6fdf9a; border: 1px solid rgba(111,223,154,0.25); }
+
+  /* spec branches inside card */
+  .spec-branches {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .spec-branch {
+    position: relative;
+    display: block;
+    padding: 14px 14px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    z-index: 1;
+  }
+
+  .spec-branch:hover {
+    border-color: var(--card-accent, var(--accent-blue));
+    background: rgba(255,255,255,0.04);
+  }
+
+  .spec-branch:hover .spec-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .spec-branch.soon {
+    cursor: default;
+    opacity: 0.45;
+  }
+
+  .spec-branch.soon:hover {
+    border-color: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .spec-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+
+  .spec-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--card-accent, var(--accent-blue));
+    text-transform: uppercase;
+  }
+
+  .spec-soon-label {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--text-main);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-top: 6px;
+  }
+
+  .spec-arrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--card-accent, var(--accent-blue));
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.3s;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* card-level hover still works */
+  .class-card {
+    cursor: default;
+  }
+
+  .class-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .class-card:hover .card-arrow {
+    opacity: 0;
+  }
+
+  /* footer */
+  footer {
+    text-align: center;
+    padding: 40px 0 24px;
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    letter-spacing: 1px;
+  }
+
+  footer a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  footer a:hover { color: var(--accent-cyan); }
+
+  @media (max-width: 700px) {
+    .class-grid { grid-template-columns: 1fr; }
+    header { padding: 60px 0 40px; }
+  }
 </style>
 </head>
 <body>
 
-<div id="mode-toggle">
-  <button id="btn-pastel" class="active">パステル</button>
-  <button id="btn-uiu">ういう</button>
-  <button id="btn-mochi">もちもち</button>
-</div>
+<!-- particles -->
+<div class="particles" id="particles"></div>
 
-<h2>🔐 終焉の化身解読</h2>
-<div class="howto">
-  <div class="howto-title">📖 解読の手順</div>
-  <div class="howto-body">
-    ① 表示された4桁を入力<br>
-    ② 返ってきた「正解数」を選択<br>
-    ③ あとは繰り返すだけ
+<div class="container">
+
+  <header>
+    <div class="header-logo">Guide Hub</div>
+    <h1>BLUE PROTOCOL<br>STAR RESONANCE</h1>
+    <p class="header-sub">Class &amp; Spec Guides</p>
+    <div class="header-line"></div>
+    <p class="header-desc">各クラス・型の解説ガイドを集約する予定のポータルページです。<br>知りたいクラス・型のガイドを選択してください。</p>
+  </header>
+
+  <div class="section-title">
+    <h2>Select Your Spec</h2>
   </div>
-  <div class="howto-note">※ 威厳ある終焉の化身でも、余裕で突破できます。<br>これ無くてもできる？それは、そう。</div>
+
+  <div class="class-grid">
+
+    <!-- 1. ヘビィガーディアン — タンク -->
+    <div class="class-card role-tank">
+      <div class="card-top">
+        <div class="card-icon">⚔️</div>
+        <div class="card-titles">
+          <div class="card-class-name">ヘビィガーディアン</div>
+          <div class="card-spec-name">Heavy Guardian</div>
+        </div>
+      </div>
+      <div class="card-role">TANK</div>
+      <div class="card-desc">重戦刃を武器とした近接戦闘を得意とする。岩石を凝集させて身を守り、優れた防御力とフィールド制御能力を有する。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">剛身型</div>
+          <div class="spec-sub">Earthfort</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">剛守型</div>
+          <div class="spec-sub">Block</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. シールドファイター — タンク -->
+    <div class="class-card role-tank">
+      <div class="card-top">
+        <div class="card-icon">🛡️</div>
+        <div class="card-titles">
+          <div class="card-class-name">シールドファイター</div>
+          <div class="card-spec-name">Shield Fighter</div>
+        </div>
+      </div>
+      <div class="card-role">TANK</div>
+      <div class="card-desc">光の加護を持つ剣と盾を武器とした近接戦闘を得意とする。加護の光により優れた防御力と自己治癒能力を発揮する。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">光砕型</div>
+          <div class="spec-sub">Recovery</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">光盾型</div>
+          <div class="spec-sub">Shield</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. ストームブレイド — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">🗡️</div>
+        <div class="card-titles">
+          <div class="card-class-name">ストームブレイド</div>
+          <div class="card-spec-name">Storm Blade</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">月鎌刀を武器とした近接戦闘を得意とする。長刀と鎌を自在に切り替えながら戦うことができ、小範囲への攻撃に優れている。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">雷刃型</div>
+          <div class="spec-sub">IaidoSlash</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">月影型</div>
+          <div class="spec-sub">Moonstrike</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ゲイルランサー — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">🔱</div>
+        <div class="card-titles">
+          <div class="card-class-name">ゲイルランサー</div>
+          <div class="card-spec-name">Gale Lancer</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">穿雲槍を武器とした近接戦闘を得意とする。風のように流れる槍裁きで小範囲攻撃に優れている。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">烈風型</div>
+          <div class="spec-sub">Vanguard</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">乱風型</div>
+          <div class="spec-sub">Skyward</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. フロストメイジ — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">❄️</div>
+        <div class="card-titles">
+          <div class="card-class-name">フロストメイジ</div>
+          <div class="card-spec-name">Frost Mage</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">氷魔の杖を武器とした遠距離戦闘を得意とする。氷の力を操り広範囲攻撃と敵の制御に優れている。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">氷牙型</div>
+          <div class="spec-sub">Icicle</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">霜天型</div>
+          <div class="spec-sub">Frostbeam</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. ディバインアーチャー — アタッカー -->
+    <div class="class-card role-attacker">
+      <div class="card-top">
+        <div class="card-icon">🏹</div>
+        <div class="card-titles">
+          <div class="card-class-name">ディバインアーチャー</div>
+          <div class="card-spec-name">Divine Archer</div>
+        </div>
+      </div>
+      <div class="card-role">ATTACKER</div>
+      <div class="card-desc">ディバインアークという弓を武器とした遠距離戦闘を得意とする。臣獣を使役し共に戦うことで優れた広範囲攻撃能力を有する。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">狼弓型</div>
+          <div class="spec-sub">Wildpack</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">鷹弓型</div>
+          <div class="spec-sub">Falconry</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. ヴァーダントオラクル — ヒーラー -->
+    <div class="class-card role-healer">
+      <div class="card-top">
+        <div class="card-icon">🌿</div>
+        <div class="card-titles">
+          <div class="card-class-name">ヴァーダントオラクル</div>
+          <div class="card-spec-name">Verdant Oracle</div>
+        </div>
+      </div>
+      <div class="card-role">HEALER</div>
+      <div class="card-desc">仙輪を武器とした遠距離回復を得意とする。森の生命力による回復と支援の能力に優れている。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">威咲型</div>
+          <div class="spec-sub">Smite</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <a href="VerdantOracleForestGuide.html" class="spec-branch">
+          <div class="spec-name">森癒型</div>
+          <div class="spec-sub">Lifebind</div>
+          <span class="spec-arrow">VIEW ></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 8. ビートパフォーマー — ヒーラー -->
+    <div class="class-card role-healer">
+      <div class="card-top">
+        <div class="card-icon">🎵</div>
+        <div class="card-titles">
+          <div class="card-class-name">ビートパフォーマー</div>
+          <div class="card-spec-name">Beat Performer</div>
+        </div>
+      </div>
+      <div class="card-role">HEALER</div>
+      <div class="card-desc">楽器ギター・ソノリスを武器とした近・遠距離戦闘を得意とする。攻撃によって味方に治癒効果と能力の向上を付与する優れたサポート能力を有する。</div>
+      <div class="spec-branches">
+        <div class="spec-branch soon">
+          <div class="spec-name">狂音型</div>
+          <div class="spec-sub">Dissonance</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+        <div class="spec-branch soon">
+          <div class="spec-name">響奏型</div>
+          <div class="spec-sub">Concerto</div>
+          <span class="spec-soon-label">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Blue Protocol: Star Resonance — Guide Hub<br>
+    This page was originally created as an April Fools' project. Guides other than Lifebind (森癒型) may never be updated.
+  </footer>
+
 </div>
-<div class="label">次に入力</div>
-<div id="guess">----</div>
-<div class="label">正解数を選択</div>
-<div id="buttons"></div>
-<button onclick="reset()">🔄 リセット</button>
-<div id="log" class="box"></div>
-<div class="box">
-<b>🍬 残り候補</b>
-<div id="candidates"></div>
-</div>
-<div class="box">
-<b>📊 結果分布</b>
-<div id="distribution"></div>
-</div>
+
 <script>
-// ===== 全候補 =====
-const all = [];
-for (let i = 0; i < 16; i++) {
-  let s = "";
-  for (let j = 0; j < 4; j++) {
-    s += ((i >> j) & 1) ? "2" : "1";
+  // generate floating particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (12 + Math.random() * 20) + 's';
+    p.style.animationDelay = -(Math.random() * 30) + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+    p.style.opacity = 0.2 + Math.random() * 0.5;
+    container.appendChild(p);
   }
-  all.push(s);
-}
-// ===== 位置一致 =====
-function match(a, b){
-  let c = 0;
-  for(let i=0;i<4;i++){
-    if(a[i] === b[i]) c++;
-  }
-  return c;
-}
-// ===== モード =====
-let mode = "pastel"; // "pastel" | "uiu" | "mochi"
-function displayCode(code){
-  if(mode === "uiu"){
-    return code.replaceAll("1", "う").replaceAll("2", "い");
-  }
-  if(mode === "mochi"){
-    return code.replaceAll("1", "も").replaceAll("2", "ち");
-  }
-  return code;
-}
-function setMode(newMode){
-  mode = newMode;
-  document.body.classList.toggle("uiu-mode", mode === "uiu");
-  document.body.classList.toggle("mochi-mode", mode === "mochi");
-  document.getElementById("btn-pastel").classList.toggle("active", mode === "pastel");
-  document.getElementById("btn-uiu").classList.toggle("active", mode === "uiu");
-  document.getElementById("btn-mochi").classList.toggle("active", mode === "mochi");
-  update();
-  refreshLog();
-}
-document.getElementById("btn-pastel").onclick = () => setMode("pastel");
-document.getElementById("btn-uiu").onclick = () => setMode("uiu");
-document.getElementById("btn-mochi").onclick = () => setMode("mochi");
-
-// ===== 状態 =====
-let candidates, guess, step;
-// ログ履歴（モード切替時に再描画するため保持）
-let logHistory = []; // {step, guess, res} もしくは {msg}
-
-// ===== 初期化 =====
-function reset(){
-  candidates = [...all];
-  guess = "1111";
-  step = 1;
-  logHistory = [];
-  refreshLog();
-  update();
-}
-
-// ===== 全ボタン無効化 =====
-function disableAllButtons(){
-  const btnEls = document.getElementById("buttons").children;
-  for(let el of btnEls){
-    el.disabled = true;
-  }
-}
-
-// ===== ログ再描画 =====
-function refreshLog(){
-  const logEl = document.getElementById("log");
-  logEl.innerHTML = "";
-  for(const e of logHistory){
-    if(e.msg){
-      logEl.innerHTML += `<div>${e.msg}</div>`;
-    } else {
-      logEl.innerHTML += `<div>${e.step}手目: ${displayCode(e.guess)} → ${e.res}</div>`;
-    }
-  }
-}
-
-// ===== UI更新 =====
-function update(){
-  document.getElementById("guess").textContent = displayCode(guess);
-  document.getElementById("candidates").innerHTML = candidates.map(displayCode).join(" , ");
-  let dist = {};
-  for(let c of candidates){
-    let r = match(c, guess);
-    dist[r] = (dist[r] || 0) + 1;
-  }
-  let text = "";
-  for(let i=0;i<=4;i++){
-    text += `${i}一致: ${dist[i]||0}件<br>`;
-  }
-  document.getElementById("distribution").innerHTML = text;
-  // 出るはずのない正解数のボタンを無効化
-  const btnEls = document.getElementById("buttons").children;
-  for(let i=0;i<=4;i++){
-    btnEls[i].disabled = !dist[i];
-  }
-}
-
-// ===== 手動入力 =====
-function next(res){
-  logHistory.push({step, guess, res});
-  if(res === 4){
-    logHistory.push({msg: "✅ 正解"});
-    refreshLog();
-    disableAllButtons();
-    return;
-  }
-  candidates = candidates.filter(c => match(c, guess) === res);
-  if(candidates.length === 0){
-    logHistory.push({msg: "⚠️ 矛盾"});
-    refreshLog();
-    disableAllButtons();
-    return;
-  }
-  guess = candidates[0];
-  step++;
-  refreshLog();
-  update();
-}
-
-// ===== ボタン生成 =====
-const btns = document.getElementById("buttons");
-for(let i=0;i<=4;i++){
-  let b = document.createElement("button");
-  b.textContent = i;
-  b.onclick = ()=>next(i);
-  btns.appendChild(b);
-}
-
-// 初期化
-reset();
 </script>
 </body>
 </html>
