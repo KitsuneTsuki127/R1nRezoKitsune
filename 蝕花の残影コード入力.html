@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>終焉の化身解読</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+body {
+  background: #FFF8F0;
+  color: #4A3F35;
+  font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', 'YuGothic', sans-serif;
+  padding: 20px;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+  transition: background 0.4s, color 0.4s;
+}
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #6B4F35;
+  margin: 0 0 14px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== モード切替ボタン ===== */
+#mode-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  background: #FFFFFF;
+  border: 1.5px solid #EDDEC8;
+  border-radius: 999px;
+  padding: 3px;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+#mode-toggle button {
+  border: none;
+  background: transparent;
+  color: #8B6F4A;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+#mode-toggle button.active {
+  background: #FFD3C2;
+  color: #8B4530;
+}
+
+.howto {
+  background: #FFE6EC;
+  border: 1px solid #F5C6D2;
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 0 #F5C6D2;
+}
+.howto-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #8B3D5F;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+.howto-body {
+  font-size: 14px;
+  color: #5C2538;
+  line-height: 2;
+}
+.howto-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #A35A78;
+  line-height: 1.6;
+}
+
+.label {
+  font-size: 13px;
+  color: #8B6F4A;
+  margin-bottom: 6px;
+  margin-top: 14px;
+  font-weight: 500;
+}
+.label:first-of-type { margin-top: 8px; }
+
+#guess {
+  background: #FFE8B0;
+  color: #5C4410;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  text-align: center;
+  padding: 22px;
+  border-radius: 18px;
+  margin: 6px 0 14px;
+  box-shadow: 0 2px 0 #F0D585;
+}
+
+#buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+#buttons button {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 14px 0;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.08s ease, opacity 0.15s ease;
+}
+#buttons button:hover:not(:disabled) { opacity: 0.85; }
+#buttons button:active:not(:disabled) { transform: translateY(2px); }
+#buttons button:nth-child(1) { background: #DCC9F0; color: #5B4380; box-shadow: 0 3px 0 #C4ACE4; }
+#buttons button:nth-child(2) { background: #B5E8D5; color: #2D6B5A; box-shadow: 0 3px 0 #8FD9BD; }
+#buttons button:nth-child(3) { background: #FFD3C2; color: #8B4530; box-shadow: 0 3px 0 #F4B59C; }
+#buttons button:nth-child(4) { background: #FFE8B0; color: #5C4410; box-shadow: 0 3px 0 #F0D585; }
+#buttons button:nth-child(5) { background: #FFC9D9; color: #8B3D5F; box-shadow: 0 3px 0 #F4A8BD; }
+#buttons button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: translateY(3px);
+}
+
+button[onclick="reset()"] {
+  background: #FFFFFF;
+  color: #8B6F4A;
+  border: 1.5px solid #EDDEC8;
+  border-radius: 12px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 14px;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+button[onclick="reset()"]:hover { background: #FFFAF0; }
+
+.box {
+  background: #FFFFFF;
+  border: 1px solid #F2E5D2;
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin-top: 12px;
+}
+.box b {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #8B6F4A;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+#log { font-size: 13px; color: #4A3F35; min-height: 28px; }
+#log div { padding: 2px 0; }
+#candidates {
+  font-size: 13px;
+  font-family: 'M PLUS Rounded 1c', monospace;
+  color: #4A3F35;
+  word-break: break-all;
+  line-height: 1.9;
+}
+#distribution { font-size: 13px; color: #4A3F35; line-height: 1.9; }
+
+/* ============================================================ */
+/* ===== ういうモード（メタリック・赤青黒）===== */
+/* ============================================================ */
+body.uiu-mode {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(30, 91, 184, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 100%, rgba(200, 16, 46, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #0A0A12 0%, #15151F 100%);
+  background-attachment: fixed;
+  color: #D8D8E0;
+  font-family: 'Orbitron', 'M PLUS Rounded 1c', sans-serif;
+}
+body.uiu-mode h2 {
+  color: #F0F0F8;
+  text-shadow: 0 0 14px rgba(200, 16, 46, 0.6), 0 0 4px rgba(64, 128, 208, 0.4);
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+body.uiu-mode #mode-toggle {
+  background: linear-gradient(180deg, #2A2A38 0%, #0F0F18 100%);
+  border: 1px solid #3A3A4A;
+  box-shadow: 0 0 12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+body.uiu-mode #mode-toggle button { color: #8888A0; }
+body.uiu-mode #mode-toggle button.active {
+  background: linear-gradient(180deg, #E04050 0%, #B8001E 50%, #8A0015 100%);
+  color: #FFFFFF;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 8px rgba(200,16,46,0.5);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+body.uiu-mode .howto {
+  background: linear-gradient(135deg, #1A1A28 0%, #0F0F18 100%);
+  border: 1px solid #2A2A38;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+body.uiu-mode .howto-title { color: #FF6080; text-shadow: 0 0 6px rgba(200,16,46,0.5); }
+body.uiu-mode .howto-body { color: #C8C8D8; }
+body.uiu-mode .howto-note { color: #6080C0; }
+
+body.uiu-mode .label { color: #8090B0; letter-spacing: 1px; text-transform: uppercase; }
+
+body.uiu-mode #guess {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 50%),
+    linear-gradient(135deg, #1F1F2E 0%, #0A0A14 50%, #1F1F2E 100%);
+  color: #FFFFFF;
+  text-shadow:
+    0 0 8px rgba(64, 128, 208, 0.8),
+    0 0 16px rgba(200, 16, 46, 0.4);
+  border: 1px solid #3A3A4A;
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    inset 0 -1px 0 rgba(0,0,0,0.5);
+  letter-spacing: 14px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body.uiu-mode #buttons button {
+  border: 1px solid rgba(255,255,255,0.1);
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.4), 0 6px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+body.uiu-mode #buttons button:nth-child(1) {
+  background: linear-gradient(180deg, #4080D0 0%, #1E5BB8 50%, #0F3A85 100%);
+  color: #FFFFFF;
+}
+body.uiu-mode #buttons button:nth-child(2) {
+  background: linear-gradient(180deg, #E04050 0%, #B8001E 50%, #8A0015 100%);
+  color: #FFFFFF;
+}
+body.uiu-mode #buttons button:nth-child(3) {
+  background: linear-gradient(180deg, #4080D0 0%, #1E5BB8 50%, #0F3A85 100%);
+  color: #FFFFFF;
+}
+body.uiu-mode #buttons button:nth-child(4) {
+  background: linear-gradient(180deg, #E04050 0%, #B8001E 50%, #8A0015 100%);
+  color: #FFFFFF;
+}
+body.uiu-mode #buttons button:nth-child(5) {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 40%),
+    linear-gradient(180deg, #FF4060 0%, #C8102E 50%, #800015 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.4), 0 0 16px rgba(200,16,46,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+body.uiu-mode #buttons button:disabled {
+  opacity: 0.2;
+  background: linear-gradient(180deg, #2A2A38 0%, #15151F 100%);
+  color: #555566;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+body.uiu-mode button[onclick="reset()"] {
+  background: linear-gradient(180deg, #2A2A38 0%, #0F0F18 100%);
+  color: #C8C8D8;
+  border: 1px solid #3A3A4A;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+  letter-spacing: 1px;
+}
+body.uiu-mode button[onclick="reset()"]:hover {
+  background: linear-gradient(180deg, #3A3A48 0%, #1F1F28 100%);
+}
+
+body.uiu-mode .box {
+  background: linear-gradient(135deg, #15151F 0%, #0A0A12 100%);
+  border: 1px solid #2A2A38;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+body.uiu-mode .box b { color: #6080C0; letter-spacing: 1.5px; text-transform: uppercase; }
+body.uiu-mode #log { color: #C8C8D8; }
+body.uiu-mode #candidates { color: #D8D8E0; font-family: 'Orbitron', monospace; letter-spacing: 1px; }
+body.uiu-mode #distribution { color: #C8C8D8; }
+</style>
+</head>
+<body>
+
+<div id="mode-toggle">
+  <button id="btn-pastel" class="active">パステル</button>
+  <button id="btn-uiu">ういう</button>
+</div>
+
+<h2>🔐 終焉の化身解読</h2>
+<div class="howto">
+  <div class="howto-title">📖 解読の手順</div>
+  <div class="howto-body">
+    ① 表示された4桁を入力<br>
+    ② 返ってきた「正解数」を選択<br>
+    ③ あとは繰り返すだけ
+  </div>
+  <div class="howto-note">※ 威厳ある終焉の化身でも、余裕で突破できます。<br>これ無くてもできる？それは、そう。</div>
+</div>
+<div class="label">次に入力</div>
+<div id="guess">----</div>
+<div class="label">正解数を選択</div>
+<div id="buttons"></div>
+<button onclick="reset()">🔄 リセット</button>
+<div id="log" class="box"></div>
+<div class="box">
+<b>🍬 残り候補</b>
+<div id="candidates"></div>
+</div>
+<div class="box">
+<b>📊 結果分布</b>
+<div id="distribution"></div>
+</div>
+<script>
+// ===== 全候補 =====
+const all = [];
+for (let i = 0; i < 16; i++) {
+  let s = "";
+  for (let j = 0; j < 4; j++) {
+    s += ((i >> j) & 1) ? "2" : "1";
+  }
+  all.push(s);
+}
+// ===== 位置一致 =====
+function match(a, b){
+  let c = 0;
+  for(let i=0;i<4;i++){
+    if(a[i] === b[i]) c++;
+  }
+  return c;
+}
+// ===== モード =====
+let mode = "pastel"; // "pastel" | "uiu"
+function displayCode(code){
+  if(mode === "uiu"){
+    return code.replaceAll("1", "う").replaceAll("2", "い");
+  }
+  return code;
+}
+function setMode(newMode){
+  mode = newMode;
+  document.body.classList.toggle("uiu-mode", mode === "uiu");
+  document.getElementById("btn-pastel").classList.toggle("active", mode === "pastel");
+  document.getElementById("btn-uiu").classList.toggle("active", mode === "uiu");
+  update();
+  refreshLog();
+}
+document.getElementById("btn-pastel").onclick = () => setMode("pastel");
+document.getElementById("btn-uiu").onclick = () => setMode("uiu");
+
+// ===== 状態 =====
+let candidates, guess, step;
+// ログ履歴（モード切替時に再描画するため保持）
+let logHistory = []; // {step, guess, res} もしくは {msg}
+
+// ===== 初期化 =====
+function reset(){
+  candidates = [...all];
+  guess = "1111";
+  step = 1;
+  logHistory = [];
+  refreshLog();
+  update();
+}
+
+// ===== 全ボタン無効化 =====
+function disableAllButtons(){
+  const btnEls = document.getElementById("buttons").children;
+  for(let el of btnEls){
+    el.disabled = true;
+  }
+}
+
+// ===== ログ再描画 =====
+function refreshLog(){
+  const logEl = document.getElementById("log");
+  logEl.innerHTML = "";
+  for(const e of logHistory){
+    if(e.msg){
+      logEl.innerHTML += `<div>${e.msg}</div>`;
+    } else {
+      logEl.innerHTML += `<div>${e.step}手目: ${displayCode(e.guess)} → ${e.res}</div>`;
+    }
+  }
+}
+
+// ===== UI更新 =====
+function update(){
+  document.getElementById("guess").textContent = displayCode(guess);
+  document.getElementById("candidates").innerHTML = candidates.map(displayCode).join(" , ");
+  let dist = {};
+  for(let c of candidates){
+    let r = match(c, guess);
+    dist[r] = (dist[r] || 0) + 1;
+  }
+  let text = "";
+  for(let i=0;i<=4;i++){
+    text += `${i}一致: ${dist[i]||0}件<br>`;
+  }
+  document.getElementById("distribution").innerHTML = text;
+  // 出るはずのない正解数のボタンを無効化
+  const btnEls = document.getElementById("buttons").children;
+  for(let i=0;i<=4;i++){
+    btnEls[i].disabled = !dist[i];
+  }
+}
+
+// ===== 手動入力 =====
+function next(res){
+  logHistory.push({step, guess, res});
+  if(res === 4){
+    logHistory.push({msg: "✅ 正解"});
+    refreshLog();
+    disableAllButtons();
+    return;
+  }
+  candidates = candidates.filter(c => match(c, guess) === res);
+  if(candidates.length === 0){
+    logHistory.push({msg: "⚠️ 矛盾"});
+    refreshLog();
+    disableAllButtons();
+    return;
+  }
+  guess = candidates[0];
+  step++;
+  refreshLog();
+  update();
+}
+
+// ===== ボタン生成 =====
+const btns = document.getElementById("buttons");
+for(let i=0;i<=4;i++){
+  let b = document.createElement("button");
+  b.textContent = i;
+  b.onclick = ()=>next(i);
+  btns.appendChild(b);
+}
+
+// 初期化
+reset();
+</script>
+</body>
+</html>
